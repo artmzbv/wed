@@ -1,21 +1,18 @@
 const { getNotionData } = require('../models/notionApi');
-const Notion = require('../models/notion');
+const Notion = require('../models/notion'); // For FAQs
+const Profiles = require('../models/notionPhotos'); // For Profiles, if using separate collections
 
+// Function to extract the relevant FAQ data
 const extractFAQs = (notionData) => {
-  // Check if the Notion data has results
   if (!notionData || !notionData.results) return [];
 
-  // Filter pages where the status is 'Done' and map them to only include Question and Answer
-  const faqs = notionData.results
+  return notionData.results
     .filter((page) => page.properties?.Status?.status?.name === "Done")
     .map((page) => ({
-      Question: page.properties?.Question?.title[0]?.text?.content,
-      Answer: page.properties?.Answer?.rich_text[0]?.text?.content
+      Question: page.properties?.Question?.title[0]?.text?.content || "No question available",
+      Answer: page.properties?.Answer?.rich_text[0]?.text?.content || "No answer available"
     }));
-
-  return faqs;
 };
-
 
 // Controller to get FAQs from Notion and send response
 const getFAQs = async (req, res) => {
@@ -27,39 +24,41 @@ const getFAQs = async (req, res) => {
       return res.status(500).json({ error: "Environment variables not set." });
     }
 
-    // Fetch data from Notion API
     const notionData = await getNotionData(databaseId, apiToken);
-
-    // Extract and filter FAQs
     const filteredFAQs = extractFAQs(notionData);
 
-    // Save the filtered data to MongoDB
     const notionDocument = new Notion({ faqs: filteredFAQs });
     await notionDocument.save();
 
-    // Send the filtered data back to the client
     res.status(200).json(filteredFAQs);
   } catch (err) {
     console.error('Error in FAQ Controller:', err.message);
     res.status(500).json({ error: 'Failed to fetch and save FAQ data from Notion.' });
   }
 };
-
-
-// Function to extract the relevant profile data from Notion response
+// Function to extract the relevant profile data
 const extractPhotos = (notionData) => {
-  // Check if the Notion data has results
   if (!notionData || !notionData.results) return [];
 
-  // Filter pages where the status is 'Done' and map them to only include the required fields
+  // Log the structure of each page to see what is being returned (optional, for debugging)
+  console.log("Inspecting each page's properties...");
+  notionData.results.forEach((page, index) => {
+    // console.log(`Page ${index} Properties:`, JSON.stringify(page.properties, null, 2));
+  });
+
+  // Filter pages where the status is 'Done' and map them to include the required fields
   const profiles = notionData.results
     .filter((page) => page.properties?.Status?.status?.name === "Done")
     .map((page) => ({
-      Name: page.properties?.Name?.title?.[0]?.text?.content || "No name available",
-      Photo: page.properties?.Photo?.files?.[0]?.file?.url || "No photo available",
+      Name: page.properties?.name?.title?.[0]?.text?.content || "No name available",
+      Photo: page.properties?.['Files & media']?.files?.[0]?.file?.url || "No photo available",
       BlockID: page.properties?.BlockID?.rich_text?.[0]?.text?.content || "No block ID available",
       Status: page.properties?.Status?.status?.name || "No status available",
+      Order: page.properties?.Order?.number || 0, // Extract the order property
     }));
+
+  // Sort the profiles by Order property in ascending order
+  profiles.sort((a, b) => a.Order - b.Order);
 
   return profiles;
 };
@@ -67,7 +66,7 @@ const extractPhotos = (notionData) => {
 // Controller to get Profiles from Notion and send response
 const getPhotos = async (req, res) => {
   try {
-    const databaseId = process.env.PROFILES_DATABASE_ID; // Use a different environment variable for the Profiles database ID
+    const databaseId = process.env.PHOTOS_DATABASE_ID;
     const apiToken = process.env.NOTION_API_TOKEN;
 
     if (!databaseId || !apiToken) {
@@ -77,14 +76,14 @@ const getPhotos = async (req, res) => {
     // Fetch data from Notion API
     const notionData = await getNotionData(databaseId, apiToken);
 
-    // Extract and filter Profiles
-    const filteredProfiles = extractProfiles(notionData);
+    // Extract and sort profiles
+    const filteredProfiles = extractPhotos(notionData);
 
-    // Save the filtered data to MongoDB
-    const notionDocument = new Notion({ profiles: filteredProfiles });
+    // Save the filtered data to MongoDB (optional, if you need to persist it)
+    const notionDocument = new Profiles({ profiles: filteredProfiles });
     await notionDocument.save();
 
-    // Send the filtered data back to the client
+    // Send the sorted profiles data back to the client
     res.status(200).json(filteredProfiles);
   } catch (err) {
     console.error('Error in Profiles Controller:', err.message);
@@ -92,5 +91,6 @@ const getPhotos = async (req, res) => {
   }
 };
 
-module.exports = { getFAQs, getPhotos };
+module.exports = { getPhotos };
 
+module.exports = { getFAQs, getPhotos };

@@ -2,7 +2,7 @@
     width: 80%;
     margin: 0 auto;
     padding: 40px 0;
-    height: calc(100vh - 65px)
+    min-height: calc(100vh - 65px)
   }
   
   .faq__title {

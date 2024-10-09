@@ -1,7 +1,7 @@
 const cors = require('cors');
 
 // Define a whitelist of domains allowed to access your server
-const whitelist = ['https://self-made-portraits.github.io/portraits/', 'https://self-made-portraits.com/', 'http://localhost:3002'];
+const whitelist = ['https://self-made-portraits.github.io/portraits/', 'https://self-made-portraits.com/', 'http://localhost:3001'];
 
 // CORS options
 const corsOptions = {
@@ -12,7 +12,7 @@ const corsOptions = {
     } else {
       callback(new Error('Not allowed by CORS'));  // Deny CORS for this request
     }
-  },
+  }, 
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204

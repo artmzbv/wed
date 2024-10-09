@@ -1,5 +1,6 @@
 // TimeBookingVerification.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formatTime, transactionTimer } from '../../utils/constants';
 import './TimeBookingVerification.css';
 // TimeBookingVerification.jsx
@@ -31,6 +32,8 @@ const [remainingTime, setRemainingTime] = useState(600); // Timer state for coun
 const [coupon, setCoupon] = useState("");
 const [discount, setDiscount] = useState(0);
 // Calculate the final price based on the duration
+const navigate = useNavigate(); // Initialize useNavigate
+
 const finalPrice = (() => {
   switch (selectedDuration) {
     case 15:
@@ -80,6 +83,22 @@ const finalPrice = (() => {
       return cleanup;
     }, [activeStep]);
 
+      // Function to handle navigation to the PaymentForm
+      const handleProceedToPayment = () => {
+        navigate('/payment', {
+          state: {
+            selectedDate,
+            selectedTime,
+            selectedDuration,
+            firstName,
+            lastName,
+            phone,
+            email,
+            finalPrice,
+          },
+        });
+      };
+
   return (
     <>
     <div className='time__confirmation'>
@@ -124,13 +143,13 @@ const finalPrice = (() => {
 
       {/* Proceed to Payment Button */}
       <button
-        type='button'
-        className='time__final-step-button time__final-step-button_active'
-        onClick={() => alert("Proceeding to Payment...")}
-        disabled={remainingTime === 0} // Disable if the timer reaches 0
-      >
-        Proceed to Payment
-      </button>
+      type='button'
+      className='time__final-step-button time__final-step-button_active'
+      onClick={handleProceedToPayment} // Navigate to step 3 for payment
+      disabled={remainingTime === 0} // Disable if the timer reaches 0
+    >
+      Proceed to Payment
+    </button>
     </div>
   </>
   );

@@ -1,5 +1,5 @@
 const { getNotionData } = require('../models/notionApi');
-const Notion = require('../models/notion'); // For FAQs
+const Notion = require('../models/notionFAQ'); // For FAQs
 const Profiles = require('../models/notionPhotos'); // For Profiles, if using separate collections
 
 // Function to extract the relevant FAQ data

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('./middlewares/cors');
 const bodyParser = require('body-parser'); 
 const dataRouter = require('./routes/notion');
+const stripeRouter = require('./routes/stripe');
 // const fetch = require('node-fetch');
 
 // Load environment variables from .env file
@@ -24,6 +25,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/notionFAQDB', {
 
 // Import the FAQ routes
 app.use('/', dataRouter);
+app.use('/', stripeRouter);
+
 
 app.listen(process.env.PORT, () => {
     console.log('Server link:');

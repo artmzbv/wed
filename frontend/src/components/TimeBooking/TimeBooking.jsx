@@ -40,7 +40,6 @@ const TimeBooking = () => {
   return (
     <section className='time' id="time">
       <h1 className='time__title'>RESERVATION</h1>
-      {/* Navigation Steps */}
       {/* Use StepNavigation component */}
       <BookingNavigation steps={steps} activeStep={activeStep} setActiveStep={setActiveStep} />
       {/* Step 1: Session Selection */}

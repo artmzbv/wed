@@ -248,7 +248,25 @@ const GiftBooking = () => {
       setActiveStep(0);
     }
   }, [location.pathname]);
-
+    // Proceed to Payment and pass data to the payment page
+    const handleProceedToPayment = () => {
+      const finalPrice = totalSum; // Use totalSum as finalPrice for now (it’s already calculated)
+      
+      // Navigate to the payment page and pass the selected details via state
+      navigate('/payment', {
+        state: {
+          selectedDuration,
+          firstName,
+          lastName,
+          phone,
+          email,
+          recipientFirstName,
+          recipientLastName,
+          finalPrice, // Pass finalPrice correctly to the payment page
+          userSelections // Pass the selected gifts
+        }
+      });
+    };
   return (
     <section className='gift-booking' id="gift-booking">
       <h1 className='gift-booking__title'>GIFT BOOKING</h1>
@@ -554,7 +572,7 @@ const GiftBooking = () => {
             <button
         type='button'
         className='time__final-step-button time__final-step-button_active'
-        onClick={() => alert("Proceeding to Payment...")}
+        onClick={handleProceedToPayment}
         disabled={remainingTime === 0} // Disable if the timer reaches 0
       >
         Proceed to Payment

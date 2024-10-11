@@ -52,58 +52,57 @@ const TimeBookingDate = ({
     }
   };
 
+  // Function to convert Date to custom format string (e.g., 'Thu Oct 24 2024 15:00:00')
+  const formatSelectedDate = (date, time) => {
+    const hours = time.split(':')[0];
+    const minutes = time.split(':')[1];
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    return date.toLocaleString('en-US', {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  };
+
   const handleNextStep = async () => {
     let hasError = false;
-
+  
     if (!selectedDuration) {
       setDurationError('Please select a session duration');
       hasError = true;
     }
-
+  
     if (!selectedDate || !isValidDate) {
       setDateError('Please select a valid date');
       hasError = true;
     }
-
+  
     if (!selectedTime) {
       setTimeError('Please select a time slot');
       hasError = true;
     }
-
+  
     // Validate if the selected time slot overlaps with any booked slots
     if (!hasError) {
       const overlapping = isOverlapping(selectedTime, selectedDuration);
       if (overlapping) {
-        setTimeError('Selected slot overlaps\nwith another reservation');
+        setTimeError('Selected slot overlaps with another reservation');
         hasError = true;
       }
     }
-
+  
     if (!hasError) {
       try {
-        const formattedDate = selectedDate.toISOString().split('T')[0];
-
-        const response = await fetch(`http://localhost:3000/api/reservations`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            date: formattedDate,
-            time: selectedTime,
-            duration: selectedDuration,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        console.log("Reservation created successfully:", data);
-
+        // Use the custom formatted date here
+        const formattedDate = formatSelectedDate(selectedDate, selectedTime);
+        console.log("Formatted Date:", formattedDate); // For debugging purposes
+  
         await fetchAllReservations();
-
         setActiveStep(1);
         setErrors({});
       } catch (error) {
@@ -112,6 +111,7 @@ const TimeBookingDate = ({
       }
     }
   };
+  
 
   const generateTimeSlots = () => {
     const slots = [];
@@ -139,7 +139,6 @@ const TimeBookingDate = ({
     return slots;
   };
 
-  // Check if a time slot is already booked or overlaps with another slot
   const isSlotBooked = (time) => {
     return reservations.some((res) => {
       const reservationDate = new Date(res.date).toISOString().split('T')[0];
@@ -150,7 +149,6 @@ const TimeBookingDate = ({
     });
   };
 
-  // Check if the selected time slot overlaps with existing reservations
   const isOverlapping = (time, duration) => {
     return reservations.some((res) => {
       const reservationDate = new Date(res.date).toISOString().split('T')[0];
@@ -164,8 +162,7 @@ const TimeBookingDate = ({
   };
 
   const isNextButtonDisabled = !isValidDate || !selectedDuration || !selectedTime || isOverlapping(selectedTime, selectedDuration);
-
-  return (
+return(
     <>
       <div className='time__container'>
         <div className='time__duration-buttons'>

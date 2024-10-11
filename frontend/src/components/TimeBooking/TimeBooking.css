@@ -6,15 +6,16 @@
   }
   
   .time__title {
-    font-size: 28px;
+    font-size: 22px;
     color: #918E8E;
-    margin: 2px auto;
+    margin: 3px 1px;
   }
   
   /* Number inside the Dot */
   .time__number {
     color: #fff;
     font-size: 1.2rem;
+    font-family: inherit;
     font-weight: bold;
   }
     
@@ -54,13 +55,13 @@
   }
 
   .time__final-step-button{
+    font-family: EuropaGroteskNo2SHRoman;
     width: 250px;
     height: 40px;
     border: 0;
     background-color: #ff9900;
     color: white;
     font-size: 18px;
-    font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -77,13 +78,13 @@
   }
   
   .time__next-step-button {
+    font-family: EuropaGroteskNo2SHRoman;
     width: 120px;
     height: 40px;
     margin-top: 20px;
     margin-right: 0;
     padding: 10px 20px;
     font-size: 18px;
-    font-weight: bold;
     background-color: #918E8E;
     color: white;
     border: none;
@@ -146,11 +147,11 @@
     margin-top: 20px;
     font-size: 18px;
     padding: 10px 20px;
+    font-family: EuropaGroteskNo2SHRoman;
     border: 1px solid #918E8E;
     border-radius: 5px;
     background-color: #2B2B2B;
     color: white;
-    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

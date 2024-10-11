@@ -23,7 +23,7 @@
     background-color: black;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .footer__link:hover {

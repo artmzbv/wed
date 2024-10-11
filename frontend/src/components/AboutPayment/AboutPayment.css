@@ -6,7 +6,7 @@
 
 .about-payment__subtitle{
     width: 90%;
-    margin: 0 5%;
+    margin: 0 5% 40px;
     font-size: 24px;
 }
 
@@ -45,7 +45,6 @@
 }
 
 .about-payment__description{
-    font-weight: bold;
     color: #918E8E;
 }
 

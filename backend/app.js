@@ -7,6 +7,7 @@ const dataRouter = require('./routes/notion');
 const stripeRouter = require('./routes/stripe');
 const reserveRouter = require('./routes/reservation');
 const adminRoutes = require('./routes/admin');
+const couponRoutes = require('./routes/coupon');
 // const webhookRouter = require('./routes/webhook');
 
 // const fetch = require('node-fetch');
@@ -32,6 +33,7 @@ app.use('/', dataRouter);
 app.use('/', stripeRouter);
 app.use('/api/reservations', reserveRouter); 
 app.use('/admin', adminRoutes);
+app.use('/api/coupons', couponRoutes);
 // app.use('/api/webhooks', webhookRouter); // Add webhook route
 
 

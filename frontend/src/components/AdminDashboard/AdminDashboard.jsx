@@ -6,14 +6,13 @@ const AdminDashboard = ({ token }) => {
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedDate, setSelectedDate] = useState(''); // State to store the selected date
+  const [selectedDate, setSelectedDate] = useState('');
 
   // New states for creating a reservation
   const [newDate, setNewDate] = useState('');
   const [newTime, setNewTime] = useState('');
   const [newDuration, setNewDuration] = useState('');
 
-  // Fetch reservations data from the backend
   useEffect(() => {
     const fetchReservations = async () => {
       try {
@@ -35,21 +34,18 @@ const AdminDashboard = ({ token }) => {
     fetchReservations();
   }, [token]);
 
-  // Filter and sort reservations based on the selected date
   useEffect(() => {
     if (selectedDate) {
       const filtered = reservations
         .filter((reservation) => reservation.date === selectedDate)
-        .sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time)); // Sort by date and time
+        .sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time)); 
       setFilteredReservations(filtered);
     } else {
-      // If no date is selected, sort all reservations by date and time
       const sortedReservations = [...reservations].sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
       setFilteredReservations(sortedReservations);
     }
   }, [selectedDate, reservations]);
 
-  // Handle new reservation creation
   const handleCreateReservation = async () => {
     try {
       const response = await fetch('http://localhost:3000/api/reservations', {
@@ -68,7 +64,6 @@ const AdminDashboard = ({ token }) => {
       const newReservation = await response.json();
       setReservations([...reservations, newReservation.newReservation]);
       setError('');
-      // Clear the form fields
       setNewDate('');
       setNewTime('');
       setNewDuration('');
@@ -77,7 +72,6 @@ const AdminDashboard = ({ token }) => {
     }
   };
 
-  // Delete a reservation
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/api/reservations/${id}`, {
@@ -141,7 +135,7 @@ const AdminDashboard = ({ token }) => {
         </button>
       </div>
 
-      {/* Display Loading Message */}
+      {/* Display Reservations */}
       {isLoading ? (
         <p>Loading reservations...</p>
       ) : (
@@ -151,6 +145,11 @@ const AdminDashboard = ({ token }) => {
               <th>Date</th>
               <th>Time</th>
               <th>Duration</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Final Price</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -161,6 +160,11 @@ const AdminDashboard = ({ token }) => {
                   <td>{reservation.date}</td>
                   <td>{reservation.time}</td>
                   <td>{reservation.duration} mins</td>
+                  <td>{reservation.firstName}</td>
+                  <td>{reservation.lastName}</td>
+                  <td>{reservation.email}</td>
+                  <td>{reservation.phone}</td>
+                  <td>£{reservation.finalPrice}</td>
                   <td>
                     <button className="admin-dashboard__button" onClick={() => handleDelete(reservation._id)}>Delete</button>
                   </td>
@@ -168,7 +172,7 @@ const AdminDashboard = ({ token }) => {
               ))
             ) : (
               <tr>
-                <td colSpan="4">No reservations found for the selected date.</td>
+                <td colSpan="9">No reservations found for the selected date.</td>
               </tr>
             )}
           </tbody>

@@ -10,10 +10,9 @@ const AdminRegister = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:3000/admin', {
         method: 'POST',
@@ -22,24 +21,28 @@ const AdminRegister = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (!response.ok) {
         const data = await response.json();
         throw new Error(data.message);
       }
-
+  
       const data = await response.json();
+  
+      // Save the token to localStorage
+      localStorage.setItem('adminToken', data.token);
+  
       setMessage(data.message);
       setError('');
-
-      // Redirect to admin dashboard if login is successful
+  
+      // Redirect to dashboard
       navigate('/dashboard');
     } catch (err) {
       setMessage('');
       setError(err.message);
     }
   };
-
+  
   return (
     <div className="admin-container">
       <div className="admin-form">

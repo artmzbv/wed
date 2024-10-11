@@ -1,40 +1,42 @@
-.payment{
+.about-payment{
     height: 40vh;
     width: 90%;
     margin: 10vh auto 30vh;
 }
 
-.payment__subtitle{
+.about-payment__subtitle{
+    width: 90%;
+    margin: 0 5%;
     font-size: 24px;
 }
 
-.payment__container{
+.about-payment__container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.payment__card{
+.about-payment__card{
     width: 20%;
     padding: 0 10px;
     /* border-radius: 10px; */
     border-bottom: 3px solid black;
 }
 
-.payment__block{
+.about-payment__block{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.payment__block-number{
+.about-payment__block-number{
     color: black;
     font-size: 90px;
     width: 30%;
     margin: 0;
 }
 
-.payment__block-title{
+.about-payment__block-title{
     color: black;
     font-size: 24px;
     width: 70%;
@@ -42,43 +44,47 @@
     margin: 0;
 }
 
-.payment__description{
+.about-payment__description{
     font-weight: bold;
     color: #918E8E;
 }
 
 
 @media screen and (max-width: 1200px) {
-    .payment{
+    .about-payment{
         height: 100%;
         width: 90%;
         margin: 70px auto;
     }
 
-    .payment__description{
+    .about-payment__description{
         font-size: 14px;    
     }
 }
 
 @media screen and (max-width: 1023px) {
-    .payment__block-number{
+    .about-payment{
+        min-height: 400px;
+        margin: 30px auto;
+    }
+    .about-payment__block-number{
         color: black;
         font-size: 68px;
         width: 30%;
         margin: 0;
     }
 
-    .payment__block-title{
+    .about-payment__block-title{
         color: black;
         font-size: 18px;
     }
-    .payment__description{
+    .about-payment__description{
         font-size: 12px;    
     }
 }
 
 @media screen and (max-width: 767px) {
-    .payment__card{
+    .about-payment__card{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -89,47 +95,48 @@
         padding: 0;
     }
     
-    .payment__block{
+    .about-payment__block{
         width: 30%;
     }
-    .payment__block-number{
+    
+    .about-payment__block-number{
 
     }
     
-    .payment__block-title{
+    .about-payment__block-title{
 
     }
 
-    .payment__container{
+    .about-payment__container{
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
     }
 
-    .payment__description{
+    .about-payment__description{
         width: 70%;
         font-size: 14px;    
     }
 }
 @media screen and (max-width: 500px) {
-    .payment__subtitle{
+    .about-payment__subtitle{
         /* white-space: pre-wrap; */
     }
-    .payment__block-number{
+    .about-payment__block-number{
         font-size: 60px;
         margin-right: 5px;
     }
     
-    .payment__block-title{
+    .about-payment__block-title{
         font-size: 16px
     }
 
-    .payment__description{
+    .about-payment__description{
         width: 60%;
         font-size: 12px;    
     }
     
-    .payment__card{
+    .about-payment__card{
         display: flex;
         flex-direction: row;
         justify-content: space-between;

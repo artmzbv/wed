@@ -18,6 +18,7 @@
 .footer__link{
     color: white;
     font-size: 14px;
+    font-family: inherit;
     text-decoration: none;
     background-color: black;
     border: none;
@@ -66,7 +67,7 @@
     color: white;
     text-decoration: none;
     margin-left: 30px;
-    font-weight: bold;
+    /* font-weight: bold; */
     white-space: pre-wrap;
 }
 

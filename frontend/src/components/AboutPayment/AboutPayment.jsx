@@ -15,17 +15,17 @@ const AboutPayment = () => {
 ]
 
     return (
-      <section className='payment' id="about">
-          <h2 className='payment__subtitle'>{`From booking to beautiful photos — \nmake it easy with us`}</h2>
-            <div className='payment__container'>
+      <section className='about-payment' id="about">
+          <h2 className='about-payment__subtitle'>{`From booking to beautiful photos — \nmake it easy with us`}</h2>
+            <div className='about-payment__container'>
             {items.map((item) => (
               <div key={item.title} 
-              className='payment__card'>
-                <div className='payment__block'>
-                <h3 className='payment__block-number'>{item.number}</h3>
-                <h3 className='payment__block-title'>{item.title}</h3>
+              className='about-payment__card'>
+                <div className='about-payment__block'>
+                <h3 className='about-payment__block-number'>{item.number}</h3>
+                <h3 className='about-payment__block-title'>{item.title}</h3>
                 </div>
-                <p className='payment__description'>{item.description}</p>
+                <p className='about-payment__description'>{item.description}</p>
               </div>
           ))}
         </div>

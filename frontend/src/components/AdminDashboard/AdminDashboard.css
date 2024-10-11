@@ -1,0 +1,88 @@
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 65px 20px 20px;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .admin-dashboard__table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    box-shadow: 0 2px 15px rgba(64, 64, 64, 0.1);
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .admin-dashboard__table thead {
+    background-color: #2B2B2B;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .admin-dashboard__table th,
+  .admin-dashboard__table td {
+    padding: 12px 15px;
+    text-align: center;
+  }
+  
+  .admin-dashboard__table th {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-dashboard__table tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .admin-dashboard__table tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .admin-dashboard__table tr:last-of-type {
+    border-bottom: 2px solid #2B2B2B;
+  }
+  
+  .admin-dashboard__table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  .admin-dashboard__button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-dashboard__button:hover {
+    background-color: #c0392b;
+  }
+  
+  .admin-dashboard__button:focus {
+    outline: none;
+  }
+  

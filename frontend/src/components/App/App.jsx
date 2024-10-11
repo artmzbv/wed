@@ -7,6 +7,9 @@ import Main from "../Main/Main"
 import TimeBooking from "../TimeBooking/TimeBooking"
 import GiftBooking from "../GiftBooking/GiftBooking"
 import PaymentForm from "../PaymentForm/PaymentForm"
+import AdminRegister from "../AdminRegister/AdminRegister"
+import AdminDashboard from "../AdminDashboard/AdminDashboard"
+import PageNotFound from "../PageNotFound/PageNotFound"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 // import GiftBookingDigital from "GiftBookingDigital/GiftBookingDigital"
@@ -15,6 +18,7 @@ import { Elements } from '@stripe/react-stripe-js';
 const stripePromise = loadStripe('pk_test_51PDMRwBywd3FX45Qm3j2qWBrf4c19Y9QWHev4gTvvWlpbJBAC9SN3TB4O62jqey4eK0YebxShcxptqo1LtEl9uJe00nUVpOy0Z');
 function App() {
   const [activeSection, setActiveSection] = useState("1");
+  const [token, setToken] = useState(localStorage.getItem('adminToken') || '');
 
   return (
     <div className="App">
@@ -32,8 +36,9 @@ function App() {
       <Route exact path="/book/gift" element={<GiftBooking/>} />
       <Route path="/book/gift/physical" element={<GiftBooking />} />
       <Route path="/book/gift/digital" element={<GiftBooking />} />
-      {/* <Route exact path="/book/gift/digital" element={<GiftBookingDigital/>} />
-      <Route exact path="/book/gift/physical" element={<GiftBookingPhysical/>} /> */}
+      <Route path="/admin" element={<AdminRegister setToken={setToken} />} />
+      <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer/>
     </div>

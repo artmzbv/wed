@@ -1,9 +1,5 @@
-  .time__slots-container {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 30px;
+.time__slots-container {
+    max-width: 100%;
   }
 
   /* Change the background color for active tiles on hover and focus */
@@ -71,11 +67,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 30px;
+    gap: 20px;
     margin-top: 50px;
   }
   
-
 
   /* Calendar Container */
   .time__calendar {
@@ -92,43 +87,28 @@
   .react-calendar{
     width: 100%;
   }
-  /* Container for Time Slots */
-  .time__slots-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 30px;
-  }
-  
+
   /* Time Slots Container */
   .time__slots {
     flex: 1;
-    max-width: 400px;
+    width: 100%;
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
   }
   
   .time__slots h2 {
-    font-size: 1.5rem;
+    font-size: 18px;
     margin-bottom: 15px;
     color: #2B2B2B;
-  }
-  
-  /* List of Time Slots */
-  .time__list {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    list-style-type: none;
-    padding: 0;
+    margin: 0;
   }
   
   .time__slot {
-    padding: 10px 15px;
+    padding: 5px 5px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -151,7 +131,8 @@
     /* List of Time Slots */
    .time__list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    position: relative;
+    grid-template-columns: repeat(8, 1fr);
     gap: 10px;
     list-style-type: none;
     padding: 0;
@@ -175,6 +156,14 @@
       width: 120px;
       height: 20px;
       text-wrap: wrap;
+    }
+
+    .time__error-message-time{
+      position: absolute;
+      white-space: pre-wrap;
+      color: red;
+      top: -60px;
+      right: 5%;
     }
 
       /* Duration Buttons Styling */
@@ -211,6 +200,12 @@
       background-color: #ff9900; /* Orange background when active */
       color: white; /* White text color when active */
       border-color: #ff9900; /* Border color matches background */
+    }
+
+    .time__slot_booked{
+      background-color: #2B2B2B;
+      color: white;
+      cursor:unset;
     }
 
 @media screen and (max-width: 1023px) {

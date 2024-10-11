@@ -1,0 +1,17 @@
+import {React} from "react";
+import { Link } from "react-router-dom";
+import './PageNotFound.css';
+
+export default function PageNotFound () {
+    return (
+      <section className="not-found">
+        <h1 className="not-found__title">{`Oops!\nPage Not Found`}</h1>
+        <img className="not-found__image" src={''} alt=""/>
+        <Link to="/portraits">
+            <button className="not-found__button">
+            Go to the Homepage
+            </button>
+        </Link>
+      </section>
+    )
+  }

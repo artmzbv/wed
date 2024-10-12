@@ -1,5 +1,15 @@
 const Coupon = require('../models/coupon');
 
+exports.getAllCoupons = async (req, res) => {
+    try {
+      const coupons = await Coupon.find(); // Get all coupons
+      res.status(200).json(coupons); // Send them to the client
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch coupons', error: error.message });
+    }
+  };
+
+  
 // Create a new coupon (admin use only)
 exports.createCoupon = async (req, res) => {
     const { 

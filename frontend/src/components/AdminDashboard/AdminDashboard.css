@@ -1,89 +1,147 @@
 .admin-dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 65px);
-    height: 100%;
-    padding: 65px 20px 20px;
-    background-color: #f4f7f6;
-  }
-  
-  h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .error-message {
-    color: #e74c3c;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .admin-dashboard__table {
-    width: 80%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    box-shadow: 0 2px 15px rgba(64, 64, 64, 0.1);
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    background-color: #fff;
-  }
-  
-  .admin-dashboard__table thead {
-    background-color: #2B2B2B;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  .admin-dashboard__table th,
-  .admin-dashboard__table td {
-    padding: 12px 15px;
-    text-align: center;
-  }
-  
-  .admin-dashboard__table th {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .admin-dashboard__table tr {
-    border-bottom: 1px solid #dddddd;
-  }
-  
-  .admin-dashboard__table tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .admin-dashboard__table tr:last-of-type {
-    border-bottom: 2px solid #2B2B2B;
-  }
-  
-  .admin-dashboard__table tbody tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-  }
-  
-  .admin-dashboard__button {
-    background-color: #e74c3c;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .admin-dashboard__button:hover {
-    background-color: #c0392b;
-  }
-  
-  .admin-dashboard__button:focus {
-    outline: none;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: calc(100vh - 65px);
+  height: 100%;
+  padding: 65px 0 20px;
+  background-color: #f4f7f6;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Styles for Tabs */
+.admin-dashboard__tabs {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between; /* Distribute tabs across full width */
+  padding-top: 20px;
+  margin-bottom: 20px;
+  width: 100%; /* Make tabs container take the full width */
+}
+
+.admin-dashboard__tab {
+  flex: 1; /* Each tab will take equal width */
+  text-align: center; /* Center text within each tab */
+  background-color: #ffff; /* Light background like browser tab */
+  color: #333; /* Dark text */
+  padding: 10px 0; /* Adjusted padding for full-width tabs */
+  border: 1px solid #ccc; /* Light border around tab */
+  border-bottom: none; /* Remove the bottom border to connect with content */
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  transition: background-color 0.3s ease;
+  margin-right: -1px; /* Overlap borders slightly for seamless connection */
+  margin-top: 0;
+}
+
+.admin-dashboard__tab:last-child {
+  margin-right: 0; /* Remove margin for the last tab */
+}
+
+.admin-dashboard__tab.active {
+  background-color: #f4f7f6; /* White background for active tab */
+  color: #2B2B2B; /* Darker text for active tab */
+  z-index: 1; /* Bring active tab in front of others */
+}
+
+.admin-dashboard__tab:hover {
+  background-color: #f4f7f6; /* Light hover effect */
+}
+
+.admin-dashboard__tab:focus {
+  outline: none;
+}
+
+.admin-dashboard__table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 16px;
+  box-shadow: 0 2px 15px rgba(64, 64, 64, 0.1);
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.admin-dashboard__table thead {
+  background-color: #2B2B2B;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.admin-dashboard__table th,
+.admin-dashboard__table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.admin-dashboard__table th {
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-dashboard__table tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.admin-dashboard__table tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.admin-dashboard__table tr:last-of-type {
+  border-bottom: 2px solid #2B2B2B;
+}
+
+.admin-dashboard__table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.admin-dashboard__button {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-dashboard__button:hover {
+  background-color: #c0392b;
+}
+
+.admin-dashboard__button:focus {
+  outline: none;
+}
+
+/* Loading and empty state styles */
+.loading-message, .empty-message {
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.admin-dashboard__title{
+  text-align: center;
+  margin: 20px;
+}

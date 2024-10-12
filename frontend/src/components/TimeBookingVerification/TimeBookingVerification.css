@@ -1,10 +1,12 @@
   /* Coupon Container */
   .time__coupon {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 10px;
+    width: 400px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 
 /* Coupon Input Field */
@@ -38,6 +40,22 @@
   font-size: 18px;
   color: black;
   margin: 20px 0;
+}
+
+.time__error-message{
+  position: absolute;
+  color: red;
+  margin: 0;
+  top:120%;
+  left:0;
+}
+
+.time__success-message{
+  position: absolute;
+  color: green;
+  margin: 0;
+  top:120%;
+  left:0;
 }
 
 @media screen and (max-width: 424px) {

@@ -19,10 +19,10 @@ const GiftBooking = () => {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [recipientFirstName, setRecipientFirstName] = useState("");
-  const [recipientLastName, setRecipientLastName] = useState("");
-  const [recipientPhone, setRecipientPhone] = useState("");
-  const [recipientEmail, setRecipientEmail] = useState("");
+  // const [recipientFirstName, setRecipientFirstName] = useState("");
+  // const [recipientLastName, setRecipientLastName] = useState("");
+  // const [recipientPhone, setRecipientPhone] = useState("");
+  // const [recipientEmail, setRecipientEmail] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [errors, setErrors] = useState({});
   const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
@@ -58,18 +58,25 @@ const GiftBooking = () => {
 
   // Move to the next step and save all selected details
   const handleNextStep = () => {
-    const selections = Object.entries(quantity)
+    let selections = [];
+  
+    Object.entries(quantity)
       .filter(([_, qty]) => qty > 0)
-      .map(([duration, qty]) => ({
-        duration,
-        quantity: qty,
-        pricePerItem: durationPrices[duration],
-        totalPrice: qty * durationPrices[duration]
-      }));
-
-    setUserSelections(selections); // Store all selected items and details in the state
+      .forEach(([duration, qty]) => {
+        for (let i = 0; i < qty; i++) {
+          selections.push({
+            duration,
+            quantity: 1, // Always set quantity as 1 for each individual selection
+            pricePerItem: durationPrices[duration],
+            totalPrice: durationPrices[duration], // Each selection will have the price of one unit
+          });
+        }
+      });
+  
+    setUserSelections(selections); // Store all selected items and details in the state as separate items
     setActiveStep(2);
   };
+  
 
 
     // Handle the "Back" button click behavior
@@ -100,20 +107,37 @@ const GiftBooking = () => {
       { number: 4, label: 'Done' }
     ];
 
+    console.log(userSelections)
       // Create a formatted sentence for the items chosen
       const generateSentence = () => {
         if (userSelections.length === 0) return "No items selected.";
+        
+        // Aggregate userSelections by duration to combine items with the same duration
+        const aggregatedSelections = userSelections.reduce((acc, item) => {
+          const existing = acc.find(selection => selection.duration === item.duration);
+          
+          if (existing) {
+            // If a selection with the same duration exists, aggregate quantities and total prices
+            existing.quantity += item.quantity;
+            existing.totalPrice += item.totalPrice;
+          } else {
+            // If it's the first entry for this duration, add it to the accumulator
+            acc.push({ ...item });
+          }
+          
+          return acc;
+        }, []);
       
-        // Calculate the total number of selected cards
-        const totalCards = userSelections.reduce((sum, item) => sum + item.quantity, 0);
+        // Calculate the total number of selected cards (from aggregated data)
+        const totalCards = aggregatedSelections.reduce((sum, item) => sum + item.quantity, 0);
       
         // Determine the correct wording for the card type
         const cardType = isDigital
           ? totalCards > 1 ? "Digital Cards" : "Digital Card"
           : totalCards > 1 ? "Physical Cards" : "Physical Card";
       
-        // Create a formatted sentence for the items chosen
-        const sentence = userSelections
+        // Create a formatted sentence for the aggregated items chosen
+        const sentence = aggregatedSelections
           .map((item) => (
             <span key={item.duration}>
               <strong>{item.quantity} gift{item.quantity > 1 ? 's' : ''}</strong> for <strong>{item.duration}</strong>
@@ -121,7 +145,7 @@ const GiftBooking = () => {
           ))
           .reduce((prev, curr) => [prev, ", ", curr]);
       
-        const total = userSelections.reduce((sum, item) => sum + item.totalPrice, 0);
+        const total = aggregatedSelections.reduce((sum, item) => sum + item.totalPrice, 0);
       
         return (
           <>
@@ -143,8 +167,8 @@ const GiftBooking = () => {
         else if (!isValidPhone(phone)) validationErrors.phone = "- phone number must have only digits";
         if (!email.trim()) validationErrors.email = "- email is required";
         else if (!isValidEmail(email)) validationErrors.email = "- invalid email format";
-        if (!recipientFirstName.trim()) validationErrors.recipientFirstName = "- recipient's first name is required";
-        if (!recipientLastName.trim()) validationErrors.recipientLastName = "- recipient's last name is required";
+        // if (!recipientFirstName.trim()) validationErrors.recipientFirstName = "- recipient's first name is required";
+        // if (!recipientLastName.trim()) validationErrors.recipientLastName = "- recipient's last name is required";
         // if (!recipientPhone.trim()) validationErrors.recipientPhone = "- recipient's phone number is required";
         // else if (!isValidPhone(recipientPhone)) validationErrors.recipientPhone = "- recipient's phone number must have only digits";
         // if (!recipientEmail.trim()) validationErrors.recipientEmail = "- recipient's email is required";
@@ -161,11 +185,12 @@ const GiftBooking = () => {
           lastName,
           phone,
           email,
-          recipientFirstName,
-          recipientLastName,
-          recipientPhone,
-          recipientEmail,
-          quantity
+          // recipientFirstName,
+          // recipientLastName,
+          // recipientPhone,
+          // recipientEmail,
+          quantity,
+          isDigital
         };
         try {
           const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -211,13 +236,14 @@ const GiftBooking = () => {
       firstName.trim() !== '' &&
       lastName.trim() !== '' &&
       phone.trim() !== '' &&
-      email.trim() !== '' &&
-      recipientFirstName.trim() !== '' &&
-      recipientLastName.trim() !== ''
+      email.trim() !== '' 
+      // && recipientFirstName.trim() !== '' &&
+      // recipientLastName.trim() !== ''
       //  && recipientPhone.trim() !== '' &&
       // recipientEmail.trim() !== ''
     );
-  }, [firstName, lastName, phone, email, recipientFirstName, recipientLastName
+  }, [firstName, lastName, phone, email
+    // , recipientFirstName, recipientLastName
     // , recipientPhone, recipientEmail
   ]);
 
@@ -227,11 +253,13 @@ const GiftBooking = () => {
     if (lastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, lastName: '' }));
     if (phone.trim() && isValidPhone(phone)) setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
     if (email.trim() && isValidEmail(email)) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
-    if (recipientFirstName.trim()) setErrors((prevErrors) => ({ ...prevErrors, recipientFirstName: '' }));
-    if (recipientLastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, recipientLastName: '' }));
+    // if (recipientFirstName.trim()) setErrors((prevErrors) => ({ ...prevErrors, recipientFirstName: '' }));
+    // if (recipientLastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, recipientLastName: '' }));
     // if (recipientPhone.trim() && isValidPhone(recipientPhone)) setErrors((prevErrors) => ({ ...prevErrors, recipientPhone: '' }));
     // if (recipientEmail.trim() && isValidEmail(recipientEmail)) setErrors((prevErrors) => ({ ...prevErrors, recipientEmail: '' }));
-  }, [firstName, lastName, phone, email, recipientFirstName, recipientLastName, recipientPhone, recipientEmail]);
+  }, [firstName, lastName, phone, email
+    // , recipientFirstName, recipientLastName, recipientPhone, recipientEmail
+  ]);
 
   useEffect(() => {
     const cleanup = transactionTimer(activeStep, setActiveStep, setRemainingTime)
@@ -249,24 +277,44 @@ const GiftBooking = () => {
     }
   }, [location.pathname]);
     // Proceed to Payment and pass data to the payment page
-    const handleProceedToPayment = () => {
-      const finalPrice = totalSum; // Use totalSum as finalPrice for now (it’s already calculated)
-      
-      // Navigate to the payment page and pass the selected details via state
-      navigate('/payment', {
-        state: {
-          selectedDuration,
-          firstName,
-          lastName,
-          phone,
-          email,
-          recipientFirstName,
-          recipientLastName,
-          finalPrice, // Pass finalPrice correctly to the payment page
-          userSelections // Pass the selected gifts
-        }
-      });
-    };
+const handleProceedToPayment = () => {
+  const finalPrice = totalSum; // Use totalSum as finalPrice for now (it’s already calculated)
+  
+  // Navigate to the payment page and pass the selected details via state
+  navigate('/payment', {
+    state: {
+      isCouponPurchase: true,
+      selectedDuration,
+      firstName,
+      lastName,
+      phone,
+      email,
+      // recipientFirstName,
+      // recipientLastName,
+      totalSum, // Pass finalPrice correctly to the payment page
+      userSelections, // Pass the selected gifts,
+    }
+  });
+};
+
+const generateAggregatedSelections = () => {
+  return userSelections.reduce((acc, item) => {
+    const existing = acc.find(selection => selection.duration === item.duration);
+    
+    if (existing) {
+      // If a selection with the same duration exists, aggregate quantities and total prices
+      existing.quantity += item.quantity;
+      existing.totalPrice += item.totalPrice;
+    } else {
+      // If it's the first entry for this duration, add it to the accumulator
+      acc.push({ ...item });
+    }
+    
+    return acc;
+  }, []);
+};
+
+
   return (
     <section className='gift-booking' id="gift-booking">
       <h1 className='gift-booking__title'>GIFT BOOKING</h1>
@@ -354,7 +402,7 @@ const GiftBooking = () => {
                   </div>
                   {/* Quantity Selection for each Duration */}
                   <div className='gift-booking__quantity-container'>
-                                        {/* <div className='gift-booking__quantity-buttons'> */}
+                  {/* <div className='gift-booking__quantity-buttons'> */}
                       <button
                         type='button'
                         className='gift-booking__quantity-button'
@@ -470,7 +518,7 @@ const GiftBooking = () => {
                 </div>
 
                 {/* Recipient's Information */}
-                <h3>Recipient's Information</h3>
+                {/* <h3>Recipient's Information</h3>
                 <div className='gift-booking__form-group'>
                   <label className='gift-booking__form-field' htmlFor='recipientFirstName'>Recipient's First Name&nbsp; {renderError('recipientFirstName')}</label>
                   <input
@@ -493,7 +541,7 @@ const GiftBooking = () => {
                     onChange={(e) => setRecipientLastName(e.target.value)}
                     required
                   />
-                </div>
+                </div> */}
 
                 {/* <div className='gift-booking__form-group'>
                   <label className='gift-booking__form-field' htmlFor='recipientPhone'>Recipient's Phone&nbsp; {renderError('recipientPhone')}</label>
@@ -545,27 +593,27 @@ const GiftBooking = () => {
       </p>
       <p className='time__confirmation-final-text'>
         <h2>Gift Details</h2>
-        {userSelections.length > 0 ? (
           <>
-            <strong>Selected Gifts:</strong>
-              {userSelections.map((item, index) => (
-                <p key={index}>
-                  {item.quantity} gift{item.quantity > 1 ? 's' : ''} for {item.duration} - £{item.pricePerItem} each (Total: £{item.totalPrice})
-                </p>
-              ))}
-          </>
-        ) : (
-          <p>No gifts selected.</p>
-        )}
+          <strong>Selected Gifts:</strong>
+          {generateAggregatedSelections().length > 0 ? (
+            generateAggregatedSelections().map((item, index) => (
+              <p key={index}>
+                {item.quantity} gift{item.quantity > 1 ? 's' : ''} for {item.duration} - £{item.pricePerItem} each (Total: £{item.totalPrice})
+              </p>
+            ))
+          ) : (
+            <p>No gifts selected.</p>
+          )}
+        </>
         <h2>Sender's Information</h2>
         <strong>First Name:</strong> {firstName} <br />
         <strong>Last Name:</strong> {lastName} <br />
         <strong>Phone:</strong> {phone} <br />
         <strong>Email:</strong> {email} <br />
-
+{/* 
         <h2>Recipient's Information</h2>
         <strong>Recipient's First Name:</strong> {recipientFirstName} <br />
-        <strong>Recipient's Last Name:</strong> {recipientLastName} <br />
+        <strong>Recipient's Last Name:</strong> {recipientLastName} <br /> */}
         <strong>Total Price:</strong> <strong>£{totalSum}</strong>
       </p>
             {/* Proceed to Payment Button */}

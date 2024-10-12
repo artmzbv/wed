@@ -26,13 +26,7 @@ function App() {
     <div className="App">
       <Header activeSection={activeSection} setActiveSection={setActiveSection}/>
       <Routes>
-      <Route
-          path="/payment"
-          element={
-            <Elements stripe={stripePromise}>
-              <PaymentForm/>
-            </Elements>
-          } />
+      <Route path="/payment" element={<Elements stripe={stripePromise}><PaymentForm/></Elements>} />
       <Route exact path="/portraits" element={<Main activeSection={activeSection} setActiveSection={setActiveSection} />}/>
       <Route exact path="/book/time" element={<TimeBooking/>} />
       <Route exact path="/book/gift" element={<GiftBooking/>} />

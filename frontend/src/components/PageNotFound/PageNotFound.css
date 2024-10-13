@@ -10,6 +10,7 @@
 }
 
 .not-found__title{
+    margin-top: 250px;
     font-size: 120px;
     color: black;
     white-space: pre-wrap;

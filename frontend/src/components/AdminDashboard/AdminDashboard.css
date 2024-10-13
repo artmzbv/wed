@@ -69,10 +69,8 @@ h2 {
   outline: none;
 }
 
-
-
 .admin-dashboard__table {
-  width: 500px;
+  max-width: 500px;
   border-collapse: collapse;
   font-size: 16px;
   box-shadow: 0 2px 15px rgba(64, 64, 64, 0.1);
@@ -162,7 +160,7 @@ h2 {
 
 .admin-dashboard__title{
   text-align: center;
-  margin: 20px;
+  margin: 0;
 }
 
 .admin-dashboard__container{
@@ -249,7 +247,6 @@ h2 {
 .admin-dashboard__new-reservation-input{
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
@@ -272,7 +269,87 @@ h2 {
   color: #333;
 }
 
-.admin-dashboard__table-container{
-    max-height: 350px; /* Set the height you want for the table body */
-    overflow-y: auto;  /* Enable vertical scrolling */
+.admin-dashboard__table-container_reservations{
+  max-height: 350px; /* Set the height you want for the table body */
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+/* admin-dashboard__table-container_reservations */
+
+@media screen and (max-width: 1023px) {
+  .admin-dashboard__container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+  .time__calendar-container{
+    margin-bottom: 50px;
+  }
+  .admin-dashboard__new-reservation{
+    max-width: 500px;
+  }
+
+  .admin-dashboard__table-container{
+    max-width: 700px;
+    overflow-x: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .admin-dashboard__new-reservation{
+    max-width: 350px;
+  }
+
+  .admin-dashboard__table-container{
+    max-width: 400px;
+    overflow-x: auto;
+  }
+  .admin-dashboard__table{
+    width: 100%;
+  }
+  .admin-dashboard__table th,
+  .admin-dashboard__table td {
+    padding: 20px 5px;
+    text-align: start;
+}
+  .admin-dashboard__button{
+    padding: 2px 4px;
+  }
+
+  .admin-dashboard__arrow{
+  margin-right: 10px;  
+  }
+.admin-dashboard__new-reservation-label{
+  margin-bottom: 0;
+}
+.admin-dashboard__option-time
+.admin-dashboard__new-reservation input{
+  padding: 6px;
+}
+}
+
+@media screen and (max-width: 424px) {
+  .admin-dashboard__new-reservation{
+    max-width: 300px;
+  }
+
+  .admin-dashboard__table-container{
+    width: 330px;
+  }
+
+  .admin-dashboard__table th,
+  .admin-dashboard__table td {
+    padding: 20px 2px;
+    text-align: start;
+    font-size: 14px;
+}
+}
+
+@media screen and (max-width: 374px) {
+  .admin-dashboard__new-reservation{
+    max-width: 250px;
+  }
+  .admin-dashboard__table-container{
+    width: 300px;
+  }
+}

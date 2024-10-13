@@ -266,7 +266,7 @@ const AdminDashboard = ({ token }) => {
               <p>Loading reservations...</p>
             ) : (
               <>
-              <div className="admin-dashboard__table-container">
+              <div className="admin-dashboard__table-container admin-dashboard__table-container_reservations">
               <table className="admin-dashboard__table">
                 <thead>
                   <tr>
@@ -427,6 +427,7 @@ const AdminDashboard = ({ token }) => {
           {isLoading ? (
             <p>Loading coupons...</p>
           ) : (
+            <div className="admin-dashboard__table-container admin-dashboard__table-container_coupons">
             <table className="admin-dashboard__table">
               <thead>
                 <tr>
@@ -472,6 +473,7 @@ const AdminDashboard = ({ token }) => {
                 )}
               </tbody>
             </table>
+            </div>
           )}
         </div>
       )}

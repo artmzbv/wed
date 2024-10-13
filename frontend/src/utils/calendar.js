@@ -29,7 +29,9 @@
   export const getOverlappingSlots = (startTime, duration) => {
     const slots = [];
     let current = new Date(`1970-01-01T${startTime}`);
+    const endTime = new Date('1970-01-01T20:00:00');
     for (let i = 0; i < duration; i += 15) {
+      if (current > endTime) break;  // Stop if time exceeds 20:00
       slots.push(current.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
       current.setMinutes(current.getMinutes() + 15);
     }
@@ -81,3 +83,27 @@
       { label: '30 mins', value: 30 },
       { label: '15 mins', value: 15 },
     ];
+
+    export const checkEndTimeBoundary = (startTime, duration) => {
+      // Define the end of the allowed time (20:00) in local time
+      const dayEndTime = new Date();
+      dayEndTime.setHours(20, 0, 0, 0); // 20:00 in local time
+    
+      // Calculate the start and end times of the new reservation
+      const [startHour, startMinute] = startTime.split(':');
+      const reservationStartTime = new Date();
+      reservationStartTime.setHours(parseInt(startHour), parseInt(startMinute), 0, 0); // Set the local start time
+    
+      const reservationEndTime = new Date(reservationStartTime); // Clone the start time
+      reservationEndTime.setMinutes(reservationStartTime.getMinutes() + duration); // Add the duration
+    
+      // Check if the reservation end time exceeds the allowed dayEndTime (20:00)
+      if (reservationEndTime > dayEndTime) {
+        console.log('Reservation exceeds the allowed end time of 20:00.');
+        return false; // Prevent the reservation if it exceeds the limit
+      }
+    
+      console.log('Reservation is within the allowed time.');
+      return true; // Allow reservation if it doesn't overlap with 20:00
+    };
+    

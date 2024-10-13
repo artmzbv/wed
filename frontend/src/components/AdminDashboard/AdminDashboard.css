@@ -43,8 +43,8 @@ h2 {
   font-weight: bold;
   cursor: pointer;
   margin: 0;
-  border-top-left-radius: 150px;
-  border-top-right-radius: 150px;
+  border-top-left-radius: 2% 50px;
+  border-top-right-radius: 2% 50px;
   transition: background-color 0.3s ease;
   margin-right: -1px; /* Overlap borders slightly for seamless connection */
   margin-top: 0;
@@ -68,6 +68,8 @@ h2 {
 .admin-dashboard__tab:focus {
   outline: none;
 }
+
+
 
 .admin-dashboard__table {
   width: 500px;
@@ -269,3 +271,8 @@ h2 {
   margin-bottom: 10px;
   color: #333;
 }
+
+.admin-dashboard__table-container{
+    max-height: 350px; /* Set the height you want for the table body */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }

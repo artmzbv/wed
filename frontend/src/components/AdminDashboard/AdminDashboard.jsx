@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import './AdminDashboard.css';
-import {formatSelectedDate, generateTimeSlots, durations, isOverlapping } from '../../utils/calendar';
+import {formatSelectedDate, generateTimeSlots, durations, isOverlapping, checkEndTimeBoundary } from '../../utils/calendar';
 // import moment from './moment'
 
 const AdminDashboard = ({ token }) => {
@@ -117,10 +117,17 @@ const AdminDashboard = ({ token }) => {
   }, [selectedDate, reservations, activeTab]);
 
   const handleCreateReservation = async () => {
+      // Check if the reservation exceeds the time boundary
+  // if (!checkEndTimeBoundary(newTime, newDuration)) {
+  //   window.alert('The selected time exceeds the allowed end time of 20:00.');
+  //   return; // Stop the reservation creation if it exceeds the boundary
+  // }
+    
     if (isOverlapping(newTime, newDuration, new Date(newDate), reservations)) {
       window.alert('Selected time slot overlaps with an existing reservation. Please choose a different time.');
       return;
     }
+
     try {
       const response = await fetch('http://localhost:3000/api/reservations', {
         method: 'POST',
@@ -259,7 +266,7 @@ const AdminDashboard = ({ token }) => {
               <p>Loading reservations...</p>
             ) : (
               <>
-              <div>
+              <div className="admin-dashboard__table-container">
               <table className="admin-dashboard__table">
                 <thead>
                   <tr>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './TimeBookingDate.css';
-import { fetchAllReservations, generateTimeSlots, isOverlapping,  isSlotBooked,  formatSelectedDate, durations } from '../../utils/calendar';
+import { fetchAllReservations, generateTimeSlots, isOverlapping,  isSlotBooked,  formatSelectedDate, durations, checkEndTimeBoundary } from '../../utils/calendar';
 
 const TimeBookingDate = ({
   setErrors,
@@ -60,6 +60,11 @@ const TimeBookingDate = ({
         setTimeError('Selected slot overlaps with another reservation');
         hasError = true;
       }
+
+      if (!checkEndTimeBoundary(selectedTime, selectedDuration)) {
+        setTimeError('The selected time slot exceeds the allowed limit of 20:00');
+        hasError = true;
+      }
     }
   
     if (!hasError) {
@@ -99,7 +104,7 @@ return(
 
         <div className='time__calendar'>
           {dateError && <p className='time__error-message'>{dateError}</p>}
-          <Calendar onChange={setSelectedDate} value={selectedDate} />
+          <Calendar onChange={setSelectedDate} value={selectedDate} minDate={today} />
         </div>
 
         <div className='time__slots-container'>

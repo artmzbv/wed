@@ -4,7 +4,7 @@ import './AdminRegister.css'; // Import the CSS file
 
 
 const AdminRegister = () => {
-  const [email, setEmail] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -19,7 +19,7 @@ const AdminRegister = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ login, password }),
       });
   
       if (!response.ok) {
@@ -49,11 +49,11 @@ const AdminRegister = () => {
         <h2>Admin Login</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Email: </label>
+            <label>Login: </label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
               required
             />
           </div>

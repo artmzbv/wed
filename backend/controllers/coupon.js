@@ -12,27 +12,9 @@ exports.getAllCoupons = async (req, res) => {
   
 // Create a new coupon (admin use only)
 exports.createCoupon = async (req, res) => {
-    const { 
-      code, 
-      discountType, 
-      discountValue, 
-      expirationDate, 
-      usageLimit, 
-      duration, 
-      quantity, 
-      pricePerItem, 
-      totalPrice,
-      firstName,
-      lastName,
-      recipientFirstName,
-      recipientLastName,
-      email,
-      phone,
-      isDigital
-    } = req.body;
-  
-    // Log the received data to ensure the backend is receiving everything
-    console.log('Received coupon creation data:', {
+  try {
+    // Extract data from request body
+    const {
       code,
       discountType,
       discountValue,
@@ -44,50 +26,72 @@ exports.createCoupon = async (req, res) => {
       totalPrice,
       firstName,
       lastName,
-      recipientFirstName,
-      recipientLastName,
       email,
       phone,
-      isDigital
-    });
-  
-    try {
-      // Ensure required fields are provided
-      if (!code || !discountType || !totalPrice) {
-        return res.status(400).json({ message: 'Missing required fields: code, discountType, or totalPrice' });
-      }
-  
-      // Create a new coupon object with all fields
-      const newCoupon = new Coupon({
-        code,
-        discountType,
-        discountValue: discountValue || 0, // Default to 0 if not provided
-        expirationDate,  // Optional
-        usageLimit: usageLimit || 1,  // Default to 1 if not provided
-        duration,        // Duration of the coupon
-        quantity,        // Number of coupons being issued
-        pricePerItem,    // Price per item that the coupon applies to
-        totalPrice,      // Total value/price of the coupon
-        firstName,       // Sender's first name
-        lastName,        // Sender's last name
-        // recipientFirstName, // Recipient's first name
-        // recipientLastName,  // Recipient's last name
-        email,           // Email of the user or recipient
-        phone,           // Phone number of the user or recipient
-        cardType: isDigital ? 'physical' : 'digital'  
-      });
-  
-      // Save the new coupon to the database
-      await newCoupon.save();
-  
-      // Send success response
-      res.status(201).json({ message: 'Coupon created successfully!', coupon: newCoupon });
-    } catch (error) {
-      // Send failure response in case of an error
-      res.status(400).json({ message: 'Failed to create coupon', error: error.message });
-    }
-  };
+      isDigital,
+      address,
+    } = req.body;
 
+    // Log the received data to ensure the backend is receiving everything
+    console.log('Received coupon creation data:', req.body);
+
+    // Validate required fields (code, discountType, and totalPrice are mandatory)
+    // if (!code || !discountType || typeof totalPrice !== 'number') {
+    //   return res.status(400).json({
+    //     message: 'Missing required fields: code, discountType, or totalPrice',
+    //     receivedData: { code, discountType, totalPrice },
+    //   });
+    // }
+
+    // Validate the address field for physical cards (isDigital === false)
+    if (!isDigital && (!address)) {
+      return res.status(400).json({
+        message: 'Address is required for physical cards.',
+        receivedData: { isDigital, address },
+      });
+    }
+
+    // Create a new coupon object with all the required and optional fields
+    const newCoupon = new Coupon({
+      code,
+      discountType,
+      discountValue: discountValue || 0, // Default to 0 if not provided
+      expirationDate: expirationDate || null, // Optional field
+      usageLimit: usageLimit || 1, // Default to 1 if not provided
+      duration: duration || null, // Optional field
+      quantity: quantity || 1, // Default to 1 if not provided
+      pricePerItem: pricePerItem || totalPrice, // Default to totalPrice if not provided
+      totalPrice, // Mandatory field
+      firstName: firstName || '', // Optional field
+      lastName: lastName || '', // Optional field
+      email: email || '', // Optional field
+      phone: phone || '', // Optional field
+      cardType: isDigital ? 'digital' : 'physical', // Determine card type
+      address: isDigital ? null : address, // Store address only for physical cards
+    });
+
+    // Save the new coupon to the database
+    await newCoupon.save();
+
+    // Send success response with status code 201 (Created)
+    return res.status(201).json({
+      message: 'Coupon created successfully!',
+      coupon: newCoupon,
+    });
+  } catch (error) {
+    // Log the error for debugging purposes
+    console.error('Error creating coupon:', error);
+
+    // Send failure response with status code 500 (Internal Server Error)
+    return res.status(500).json({
+      message: 'An error occurred while creating the coupon.',
+      error: error.message,
+    });
+  }
+};
+
+
+  
 // Apply a coupon during payment
 exports.applyCoupon = async (req, res) => {
     const { couponCode, originalPrice } = req.body;

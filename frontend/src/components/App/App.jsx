@@ -10,6 +10,7 @@ import PaymentForm from "../PaymentForm/PaymentForm"
 import AdminRegister from "../AdminRegister/AdminRegister"
 import AdminDashboard from "../AdminDashboard/AdminDashboard"
 import PageNotFound from "../PageNotFound/PageNotFound"
+import PaymentSuccess from "../PaymentSuccess/PaymentSuccess"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
@@ -34,6 +35,7 @@ function App() {
       <Route path="/book/gift/digital" element={<GiftBooking />} />
       <Route path="/admin" element={<AdminRegister setToken={setToken} />} />
       <Route path="/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+      <Route path="/payment/success" element={<PaymentSuccess />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer/>

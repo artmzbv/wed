@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const addressSchema = new mongoose.Schema({
+  line1: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String },
+  postal_code: { type: String, required: true },
+  country: { type: String, required: true }
+});
+
+
 const couponSchema = new mongoose.Schema({
   code: { type: String, required: true, unique: true },
   discountType: { type: String, enum: ['percentage', 'fixed'], required: true },
@@ -11,14 +20,17 @@ const couponSchema = new mongoose.Schema({
   quantity: { type: Number },
   pricePerItem: { type: Number },
   totalPrice: { type: Number },
-  firstName: { type: String },  // Sender's first name
-  lastName: { type: String },   // Sender's last name
-//   recipientFirstName: { type: String }, // Recipient's first name
-//   recipientLastName: { type: String },  // Recipient's last name
-  email: { type: String },      // Email of the user or recipient
-  phone: { type: String },      // Phone number of the user or recipient
-  cardType: { type: String, enum: ['physical', 'digital'], required: true }  // New field for card type
+  firstName: { type: String },  
+  lastName: { type: String },   
+  email: { type: String },      
+  phone: { type: String },      
+  cardType: { type: String, enum: ['physical', 'digital'], required: true },
+  address: {
+    type: addressSchema,
+    required: function() { return this.cardType === 'physical'; },  // Address is required for physical cards
+  }
 });
+
 
 module.exports = mongoose.model('Coupon', couponSchema);
 

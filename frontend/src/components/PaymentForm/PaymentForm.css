@@ -141,6 +141,11 @@
     margin-right: 0;
     padding: 10px;
   }
+
+  .payment-details p{
+    margin: 5px auto
+  } 
+
   .payment-form{
     padding: 10px; 
   }

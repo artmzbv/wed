@@ -293,6 +293,7 @@ const handleProceedToPayment = () => {
       // recipientLastName,
       totalSum, // Pass finalPrice correctly to the payment page
       userSelections, // Pass the selected gifts,
+      isDigital
     }
   });
 };

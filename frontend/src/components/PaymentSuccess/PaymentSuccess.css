@@ -1,0 +1,36 @@
+.payment-success__button{
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    font-family: inherit;
+    border-radius: 30px;
+    font-size: 16px;
+    min-width: 200px;
+    width: 100%;
+    height: 40px;
+    font-weight: bold;
+    color: black;
+    border:black 2px solid;
+    background-color: inherit;
+    text-align: center;
+}
+
+
+.payment-success__button:hover{
+    background-color: #ff9900;
+    color: white;
+    border: none;   
+}
+
+
+.payment-success__text{
+    margin: 0;
+}
+
+@media screen and (max-width: 767px) {   
+    .payment-success__button{
+        width: 200px;
+        height: 40px;
+        margin-bottom: 300px;
+    }
+}

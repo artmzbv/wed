@@ -14,8 +14,8 @@
 /* PaymentForm.css */
 
 .payment-container {
-    width: 60%;
-    max-width: 900px;
+    width: 70%;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background: #f9f9f9;
@@ -24,7 +24,9 @@
   
   .payment-content {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    /* width: 700px; */
   }
   
   .payment-details {
@@ -92,3 +94,59 @@
     padding: 40px;
   }
   
+
+  .payment-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .payment-footer p {
+    font-size: 0.9rem;
+  }
+  
+  .payment-footer .terms {
+    margin-top: 10px;
+  }
+  
+  .payment-footer .terms a {
+    font-size: 0.8rem;
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .payment-footer .terms a:hover {
+    text-decoration: underline;
+  }
+  
+  
+@media screen and (max-width: 1023px) {  
+  .payment-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 727px) { 
+  .payment-container {
+    width: 60%;
+    margin: 40px auto 80px; 
+  } 
+  .payment-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .payment-details{
+    margin-bottom: 60px;
+    margin-right: 0;
+    padding: 10px;
+  }
+  .payment-form{
+    padding: 10px; 
+  }
+}
+@media screen and (max-width: 424px) {
+  .payment-container {
+    width: 80%;
+  } 
+}

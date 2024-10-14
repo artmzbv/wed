@@ -305,6 +305,15 @@ const PaymentForm = () => {
                 {loading ? 'Processing...' : `Pay £${totalPrice}`}
               </button>
               {error && <div className='error-message'>{error}</div>}
+
+              {/* Powered by Stripe and Terms */}
+              <div className="payment-footer">
+                <p>Powered by Stripe</p>
+                <div className="terms">
+                  <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> | 
+                  <a href="https://stripe.com/legal" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+                </div>
+                </div>
             </form>
           </div>
         )}

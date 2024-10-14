@@ -5,7 +5,7 @@ import './PaymentSuccess.css';
 
 export default function PaymentSuccess () {
     return (
-      <section className="payment-success">
+      <section className="payment-success-container">
             <div className="payment-success">
             <h2>Payment Successful!</h2>
             <p>Thank you for your payment.</p>

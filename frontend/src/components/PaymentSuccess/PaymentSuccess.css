@@ -1,3 +1,17 @@
+.payment-success-container{
+    height: calc(100vh - 65px);
+    padding-top: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-success{
+    text-align: center;
+    padding: 40px;
+}
+
 .payment-success__button{
     border: none;
     cursor: pointer;
@@ -27,7 +41,16 @@
     margin: 0;
 }
 
-@media screen and (max-width: 767px) {   
+@media screen and (max-width: 767px) {  
+    .payment-success{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
     .payment-success__button{
         width: 200px;
         height: 40px;

@@ -14,8 +14,10 @@ const couponRoutes = require('./routes/coupon');
 
 // Load environment variables from .env file
 const app = express();
-app.use(bodyParser.json());
+
 app.use(cors);
+
+app.use(bodyParser.json());
 app.use(express.json());
 
 // Connect to MongoDB using Mongoose//

@@ -15,7 +15,7 @@ const Photo = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await fetch('http://localhost:3000/photos'); // Replace with your backend endpoint
+        const response = await fetch('http://api.self-made-portraits.com/photos'); // Replace with your backend endpoint
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }

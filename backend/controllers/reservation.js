@@ -51,41 +51,78 @@ const getReservations = async (req, res) => {
 // Controller function to create a new reservation and add it to Google Calendar
 const createReservation = async (req, res) => {
   try {
-    const { date, time, duration, firstName, lastName, email, phone, finalPrice } = req.body;
+    const { date, time, duration, firstName, lastName, phone, email, finalPrice } = req.body;
 
-    // Log incoming data for debugging
-    console.log("Received data to create a reservation:", { date, time, duration, firstName, lastName, email, phone, finalPrice });
+    // Check if there is a reservation with the same date and time
+    const existingReservation = await reservation.findOne({ date, time });
 
-    if (!date || !time || !duration || !firstName || !lastName || !email || !phone || !finalPrice) {
-      throw new Error('Missing required fields');
+    if (existingReservation) {
+      return res.status(400).json({ message: 'A reservation already exists for this time and date.' });
     }
 
-    // Create a new reservation object with the received data
+    // Create a new reservation if no conflict
     const newReservation = new reservation({
       date,
       time,
       duration,
       firstName,
       lastName,
-      email,
       phone,
+      email,
       finalPrice,
     });
 
-    // Save the new reservation to MongoDB
     await newReservation.save();
 
-    res.status(201).json(newReservation);
+    return res.status(201).json({
+      message: 'Reservation created successfully!',
+      reservation: newReservation,
+    });
   } catch (error) {
-    console.error('Error creating reservation:', error.message);
-    res.status(500).json({ error: error.message });
+    console.error('Error creating reservation:', error);
+    return res.status(500).json({ message: 'Failed to create reservation', error: error.message });
   }
 };
 
+const checkReservationAvailability = async (req, res) => {
+  const { date, time, duration } = req.body;
 
+  try {
+    console.log('Checking reservation for date:', date, 'time:', time, 'duration:', duration);
 
+    // Ensure all necessary fields are provided
+    if (!date || !time || !duration) {
+      return res.status(400).json({ message: 'Date, time, and duration are required.' });
+    }
 
+    // Convert the provided time and duration into start and end times
+    const requestedStartTime = new Date(`${date}T${time}:00.000Z`); // Assuming time is in "HH:mm" format
+    const requestedEndTime = new Date(requestedStartTime.getTime() + duration * 60000); // duration in minutes
 
+    console.log('Requested start time:', requestedStartTime, 'Requested end time:', requestedEndTime);
+
+    // Find reservations that overlap with the requested time
+    const overlappingReservation = await reservation.findOne({
+      date: date,
+      $or: [
+        {
+          // Condition 1: Existing reservation starts before requestedEndTime and ends after requestedStartTime
+          startTime: { $lt: requestedEndTime },
+          endTime: { $gt: requestedStartTime }
+        }
+      ]
+    });
+
+    if (overlappingReservation) {
+      return res.status(400).json({ message: 'This time slot overlaps with another reservation.' });
+    }
+
+    return res.status(200).json({ message: 'Time slot is available.' });
+  } catch (error) {
+    console.error('Error checking reservation availability:', error);
+    return res.status(500).json({ message: 'Internal server error while checking reservation', error: error.message });
+  }
+};
   // Controller function to delete a reservation by ID and remove it from Google Calendar
   const deleteReservation = async (req, res) => {
     const { id } = req.params;
@@ -137,5 +174,6 @@ const createReservation = async (req, res) => {
     getReservations,
     createReservation,
     deleteReservation,
-    getAllReservations
+    getAllReservations,
+    checkReservationAvailability
   };

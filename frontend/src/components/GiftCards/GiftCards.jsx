@@ -1,8 +1,8 @@
 import React from 'react';
 import './GiftCards.css'; 
 import Button from '../common/Button/Button';
-import digital from '../../images/certificates/digital.png'
-import physical from '../../images/certificates/physical.png'
+import digital from '../../images/404.jpg'
+import physical from '../../images/404.jpg'
 
 const GiftCards = () => {
     return (

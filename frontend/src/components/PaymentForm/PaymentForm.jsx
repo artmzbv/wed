@@ -74,8 +74,34 @@ const PaymentForm = () => {
       }
   
       for (const selection of userSelections) {
-        const generatedCouponCode = `COUPON-${Math.random().toString(36).substring(7).toUpperCase()}`;
+        let generatedCouponCode = '';
   
+        // Generate a unique coupon code by checking with the server
+        const generateUniqueCouponCode = async () => {
+          let isUnique = false;
+          
+          while (!isUnique) {
+            // Generate random coupon code
+            generatedCouponCode = `COUPON-${Math.random().toString(36).substring(7).toUpperCase()}`;
+  
+            // Check if the generated coupon code exists in the database
+            const response = await fetch('http://localhost:3000/api/coupons/check-unique', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ code: generatedCouponCode })
+            });
+  
+            const { isDuplicate } = await response.json();
+            if (!isDuplicate) {
+              isUnique = true;
+            }
+          }
+        };
+  
+        // Ensure the coupon code is unique
+        await generateUniqueCouponCode();
+  
+        // Log the data to be sent to the server
         console.log('Sending the following data to the server:', {
           code: generatedCouponCode,
           discountType: 'fixed',
@@ -83,7 +109,6 @@ const PaymentForm = () => {
           duration: selection.duration,
           quantity: selection.quantity,
           pricePerItem: selection.pricePerItem,
-          expirationDate: '2024-12-31',
           totalPrice: selection.totalPrice,
           usageLimit: selection.quantity || 1,
           firstName,
@@ -94,6 +119,7 @@ const PaymentForm = () => {
           address: isDigital ? null : shippingDetails.address 
         });
   
+        // Send the coupon to the server
         const response = await fetch('http://localhost:3000/api/coupons/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -104,7 +130,6 @@ const PaymentForm = () => {
             duration: selection.duration,
             quantity: selection.quantity,
             pricePerItem: selection.pricePerItem,
-            expirationDate: '2024-12-31',
             totalPrice: selection.totalPrice,
             usageLimit: selection.quantity || 1,
             firstName,
@@ -133,64 +158,97 @@ const PaymentForm = () => {
   };
   
 
-  // Handle form submission and Stripe payment processing
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    
+  
     if (!stripe || !elements) {
       setError('Stripe is not properly initialized.');
       setLoading(false);
       return;
     }
-    
+  
     const cardNumberElement = elements.getElement(CardNumberElement);
     const cardExpiryElement = elements.getElement(CardExpiryElement);
     const cardCvcElement = elements.getElement(CardCvcElement);
-    
+  
     const cardNumberValid = cardNumberElement._complete;
     const cardExpiryValid = cardExpiryElement._complete;
     const cardCvcValid = cardCvcElement._complete;
-    
+  
     if (!cardNumberValid || !cardExpiryValid || !cardCvcValid) {
       setError('Please complete the card details.');
       setLoading(false);
       return;
     }
   
-    // Create coupon if it's a coupon purchase
+    // Handle coupon purchase
     if (isCouponPurchase) {
       const couponCreated = await createCoupon();
       if (!couponCreated) {
-        setLoading(false); 
-        return; 
+        setLoading(false);
+        return;
+      }
+    } else {
+      // Handle reservation booking
+      try {
+        // Format date and time for reservation check
+        const formattedDate = selectedDate ? selectedDate.toISOString().split('T')[0] : '';  // Move this inside the reservation logic
+        const time = selectedTime; // Assuming selectedTime is in "HH:mm" format
+        const duration = selectedDuration; // Duration in minutes
+  
+        // Check if the reservation time is available on the server before proceeding with payment
+        const reservationCheckResponse = await fetch('http://localhost:3000/api/reservations/check', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            date: formattedDate,  // Ensure this field is sent
+            time: time,           // Ensure time is sent (in "HH:mm" format)
+            duration: duration,   // Ensure duration is sent (in minutes)
+          }),
+        });
+  
+        const reservationCheckData = await reservationCheckResponse.json();
+  
+        if (!reservationCheckResponse.ok) {
+          setError(reservationCheckData.message); // Display error if reservation overlaps
+          setLoading(false);
+          return;
+        }
+      } catch (error) {
+        setError('Error checking reservation availability.');
+        setLoading(false);
+        return;
       }
     }
-    
+  
+    // Proceed with payment intent creation
     try {
-      const response = await fetch('http://localhost:3000/create-payment-intent', {
+      const paymentIntentResponse = await fetch('http://localhost:3000/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: totalPrice * 100, currency: 'usd' }),
+        body: JSON.stringify({ amount: totalPrice * 100, currency: 'gbp' }),
       });
-    
-      const { clientSecret } = await response.json();
-    
+  
+      const { clientSecret } = await paymentIntentResponse.json();
+  
       const paymentResult = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: cardNumberElement,
           billing_details: { name: `${firstName} ${lastName}`, email, phone },
         },
         shipping: !isDigital && shippingDetails
-          ? { 
-              name: `${firstName} ${lastName}`, 
+          ? {
+              name: `${firstName} ${lastName}`,
               address: {
                 line1: shippingDetails.address.line1,
                 city: shippingDetails.address.city,
                 state: shippingDetails.address.state || '',
                 postal_code: shippingDetails.address.postal_code,
-                country: shippingDetails.address.country
-              } 
+                country: shippingDetails.address.country,
+              },
             }
           : undefined,
       });
@@ -202,19 +260,17 @@ const PaymentForm = () => {
         setError('');
         setLoading(false);
   
-        // If it's not a coupon purchase, create a reservation
         if (!isCouponPurchase) {
-          const formattedDate = selectedDate ? selectedDate.toISOString().split('T')[0] : ''; 
-      
-          const reservationResponse = await fetch(`http://localhost:3000/api/reservations`, {
+          // Create reservation after successful payment (if it's not a coupon purchase)
+          const reservationResponse = await fetch('http://localhost:3000/api/reservations', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              date: formattedDate,
-              time: selectedTime,
-              duration: selectedDuration,
+              date: selectedDate.toISOString().split('T')[0],   // Use formatted date for reservation
+              time: selectedTime,    // Send time field
+              duration: selectedDuration,  // Send duration field
               firstName,
               lastName,
               phone,
@@ -222,7 +278,7 @@ const PaymentForm = () => {
               finalPrice: totalPrice,
             }),
           });
-      
+  
           if (!reservationResponse.ok) {
             throw new Error(`Error: ${reservationResponse.status} ${reservationResponse.statusText}`);
           }
@@ -231,14 +287,18 @@ const PaymentForm = () => {
           console.log('Reservation created successfully:', reservationData);
         }
   
-        // After successful payment, navigate to the success page
+        // After successful payment and reservation creation (or coupon creation), navigate to the success page
         navigate('./success');
       }
     } catch (error) {
-      setError(`Error processing payment or reservation: ${error.message}`);
+      setError(`Error processing payment: ${error.message}`);
       setLoading(false);
     }
   };
+  
+  
+  
+  
   
 
   const generateAggregatedSelections = () => {

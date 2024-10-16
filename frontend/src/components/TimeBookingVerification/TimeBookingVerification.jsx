@@ -23,7 +23,7 @@ const TimeBookingVerification = ({
   activeStep,
   setActiveStep,
 }) => {
-  const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
+  // const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(0);
   const [couponError, setCouponError] = useState(''); // State to handle coupon errors
@@ -98,10 +98,10 @@ const TimeBookingVerification = ({
   };
 
   // Handle Timer for Step 3
-  useEffect(() => {
-    const cleanup = transactionTimer(activeStep, setActiveStep, setRemainingTime);
-    return cleanup;
-  }, [activeStep]);
+  // useEffect(() => {
+  //   const cleanup = transactionTimer(activeStep, setActiveStep, setRemainingTime);
+  //   return cleanup;
+  // }, [activeStep]);
 
   // Function to handle "Confirm Payment" when finalPrice is 0
   const handleConfirmPayment = async () => {
@@ -152,9 +152,9 @@ const TimeBookingVerification = ({
       </div>
       <div className='time__confirmation-final'>
         {/* Display the Timer */}
-        <p className='time__timer'>
+        {/* <p className='time__timer'>
           <strong>Time Remaining: {formatTime(remainingTime)}</strong>
-        </p>
+        </p> */}
         <p className='time__confirmation-final-text'>
           <strong>Date:</strong> {selectedDate?.toLocaleDateString()} <br />
           <strong>Time:</strong> {selectedTime} <br />
@@ -194,7 +194,7 @@ const TimeBookingVerification = ({
           type='button'
           className='time__final-step-button time__final-step-button_active'
           onClick={finalPrice === 0 ? handleConfirmPayment : handleProceedToPayment}
-          disabled={remainingTime === 0}
+          // disabled={remainingTime === 0}
         >
           {finalPrice === 0 ? 'Confirm Payment' : 'Proceed to Payment'}
         </button>

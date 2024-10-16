@@ -35,17 +35,17 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
   // Handle menu button click
   const handleNavigationClick = (e, sectionId) => {
     setActive(e.target.id);
-    if (location.pathname === "/portraits/") {
+    if (location.pathname === "/") {
       scrollToSection(sectionId); // If already on main page, scroll to the section
     } else {
       setTargetSection(sectionId); // Store the section ID to scroll after navigation
-      navigate("/portraits/"); // Redirect to main page
+      navigate("/"); // Redirect to main page
     }
   };
 
   // Effect to scroll to the target section after navigating to the main page
   useEffect(() => {
-    if (location.pathname === "/portraits/" && targetSection) {
+    if (location.pathname === "/" && targetSection) {
       scrollToSection(targetSection); // Scroll to the stored section
       setTargetSection(null); // Clear target section after scrolling
     }
@@ -53,7 +53,7 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
 
   // Effect to reset active state when navigating away from the main page
   useEffect(() => {
-    if (location.pathname !== "/portraits/") {
+    if (location.pathname !== "/") {
       setActive(""); // Reset active state
     }
   }, [location.pathname]);
@@ -62,35 +62,35 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
     <>
       <button
         id="1"
-        className={`navigation__link navigation__link_main ${activeSection === "about" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        className={`navigation__link navigation__link_main ${activeSection === "about" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "about")}
       >
         How it works?
       </button>
       <button
         id="2"
-        className={`navigation__link navigation__link_main ${activeSection === "photos" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        className={`navigation__link navigation__link_main ${activeSection === "photos" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "photos")}
       >
         Photo
       </button>
       <button
         id="3"
-        className={`navigation__link navigation__link_main ${activeSection === "gifts" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        className={`navigation__link navigation__link_main ${activeSection === "gifts" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "gifts")}
       >
         Gift Cards
       </button>
       <button
         id="4"
-        className={`navigation__link navigation__link_main ${activeSection === "faq" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        className={`navigation__link navigation__link_main ${activeSection === "faq" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "faq")}
       >
         FAQ
       </button>
       <button
         id="5"
-        className={`navigation__link navigation__link_main ${activeSection === "contact" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        className={`navigation__link navigation__link_main ${activeSection === "contact" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "contact")}
       >
         Contact Us

@@ -7,7 +7,7 @@ export default function PageNotFound () {
       <section className="not-found">
         <h1 className="not-found__title">{`Oops!\nPage Not Found`}</h1>
         <img className="not-found__image" src={''} alt=""/>
-        <Link to="/portraits">
+        <Link to="/">
             <button className="not-found__button">
             <p className="not-found__text">Go to the Homepage</p>
             </button>

@@ -440,6 +440,7 @@ const AdminDashboard = ({ token }) => {
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Card Type</th>
+                  <th>Address</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -456,6 +457,14 @@ const AdminDashboard = ({ token }) => {
                       <td>{coupon.email}</td>
                       <td>{coupon.phone}</td>
                       <td>{coupon.cardType}</td>
+                <td>
+                  {/* Conditionally display the address or "None" */}
+                  {coupon.cardType === 'physical' && coupon.address ? (
+                    <span>{`${coupon.address.country}, ${coupon.address.state}, ${coupon.address.city}, ${coupon.address.line1}, ${coupon.address.postal_code}`}</span>
+                  ) : (
+                    <span>None</span>
+                  )}
+                </td>
                       <td>
                         <button
                           className="admin-dashboard__button"
@@ -468,7 +477,7 @@ const AdminDashboard = ({ token }) => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="10">No coupons available.</td>
+              <td colSpan="11">No coupons available.</td>
                   </tr>
                 )}
               </tbody>
@@ -476,6 +485,7 @@ const AdminDashboard = ({ token }) => {
             </div>
           )}
         </div>
+
       )}
     </section>
   );

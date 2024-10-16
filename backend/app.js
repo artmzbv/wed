@@ -20,7 +20,7 @@ app.use(express.json());
 
 // Connect to MongoDB using Mongoose//
 // Connect to MongoDB using Mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/notionFAQDB', {
+mongoose.connect('mongodb://127.0.0.1:27017/mongodb', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

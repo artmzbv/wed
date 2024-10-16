@@ -9,6 +9,21 @@ exports.getAllCoupons = async (req, res) => {
     }
   };
 
+  exports.checkCoupons = async (req, res) => {
+    const { code } = req.body;
+
+    try {
+      const existingCoupon = await Coupon.findOne({ code });
+      if (existingCoupon) {
+        return res.json({ isDuplicate: true });
+      } else {
+        return res.json({ isDuplicate: false });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Error checking coupon code uniqueness', error: error.message });
+    }
+  }  
+
   
 // Create a new coupon (admin use only)
 exports.createCoupon = async (req, res) => {
@@ -18,7 +33,7 @@ exports.createCoupon = async (req, res) => {
       code,
       discountType,
       discountValue,
-      expirationDate,
+      // expirationDate,
       usageLimit,
       duration,
       quantity,
@@ -33,7 +48,7 @@ exports.createCoupon = async (req, res) => {
     } = req.body;
 
     // Log the received data to ensure the backend is receiving everything
-    console.log('Received coupon creation data:', req.body);
+    // console.log('Received coupon creation data:', req.body);
 
     // Validate required fields (code, discountType, and totalPrice are mandatory)
     // if (!code || !discountType || typeof totalPrice !== 'number') {
@@ -56,7 +71,7 @@ exports.createCoupon = async (req, res) => {
       code,
       discountType,
       discountValue: discountValue || 0, // Default to 0 if not provided
-      expirationDate: expirationDate || null, // Optional field
+      //expirationDate: expirationDate || null, // Optional field
       usageLimit: usageLimit || 1, // Default to 1 if not provided
       duration: duration || null, // Optional field
       quantity: quantity || 1, // Default to 1 if not provided

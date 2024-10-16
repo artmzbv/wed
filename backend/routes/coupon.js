@@ -11,4 +11,6 @@ router.post('/apply', couponController.applyCoupon);
 // Changed to POST for delete operation
 router.post('/delete', couponController.deleteCoupon); 
 
+router.post('/check-unique', couponController.checkCoupons)
+
 module.exports = router;

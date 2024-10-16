@@ -3,7 +3,7 @@
     flex-direction: center;
     padding-top: 65px;
     height: calc(100vh - 65px);
-    background-image: url(../../images/intro.png);
+    background-image: url(../../images/404.jpg);
     background-position: center;
     background-size: cover;
 }

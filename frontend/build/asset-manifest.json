@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/portraits/static/css/main.b4575d3f.css",
-    "main.js": "/portraits/static/js/main.465cf278.js",
-    "static/js/453.169f8a40.chunk.js": "/portraits/static/js/453.169f8a40.chunk.js",
-    "static/media/private.jpg": "/portraits/static/media/private.09922e47999ae67ad7d1.jpg",
-    "static/media/comfort.png": "/portraits/static/media/comfort.f35f09b905e0d3310621.png",
-    "static/media/smile.png": "/portraits/static/media/smile.bce200b56e069a602555.png",
-    "static/media/repeat.png": "/portraits/static/media/repeat.c7131333837d665fe9ea.png",
-    "static/media/door.png": "/portraits/static/media/door.85032c73b1b3d202be16.png",
-    "static/media/twitter.png": "/portraits/static/media/twitter.4d73a49285dbe9cac801.png",
-    "static/media/dress.png": "/portraits/static/media/dress.b834ec9ae79b9a29839a.png",
-    "static/media/click.png": "/portraits/static/media/click.3730ff8fe84f75634780.png",
-    "static/media/assurance.png": "/portraits/static/media/assurance.b3e982ac07c504808dd2.png",
-    "static/media/logo_new.jpg": "/portraits/static/media/logo_new.0816eb02fe21e24d1a6b.jpg",
-    "static/media/404.jpg": "/portraits/static/media/404.ef18081acbdf8817888d.jpg",
-    "static/media/font.woff": "/portraits/static/media/font.dc80ee6311e506051741.woff",
-    "index.html": "/portraits/index.html",
-    "static/media/burger.svg": "/portraits/static/media/burger.00878a777adbe56929a2.svg",
-    "static/media/close-button.svg": "/portraits/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.b4575d3f.css.map": "/portraits/static/css/main.b4575d3f.css.map",
-    "main.465cf278.js.map": "/portraits/static/js/main.465cf278.js.map",
-    "453.169f8a40.chunk.js.map": "/portraits/static/js/453.169f8a40.chunk.js.map"
+    "main.css": "/static/css/main.170ce382.css",
+    "main.js": "/static/js/main.982f899c.js",
+    "static/js/453.169f8a40.chunk.js": "/static/js/453.169f8a40.chunk.js",
+    "static/media/private.jpg": "/static/media/private.09922e47999ae67ad7d1.jpg",
+    "static/media/comfort.png": "/static/media/comfort.f35f09b905e0d3310621.png",
+    "static/media/smile.png": "/static/media/smile.bce200b56e069a602555.png",
+    "static/media/repeat.png": "/static/media/repeat.c7131333837d665fe9ea.png",
+    "static/media/door.png": "/static/media/door.85032c73b1b3d202be16.png",
+    "static/media/twitter.png": "/static/media/twitter.4d73a49285dbe9cac801.png",
+    "static/media/dress.png": "/static/media/dress.b834ec9ae79b9a29839a.png",
+    "static/media/click.png": "/static/media/click.3730ff8fe84f75634780.png",
+    "static/media/assurance.png": "/static/media/assurance.b3e982ac07c504808dd2.png",
+    "static/media/logo_new.jpg": "/static/media/logo_new.0816eb02fe21e24d1a6b.jpg",
+    "static/media/404.jpg": "/static/media/404.ef18081acbdf8817888d.jpg",
+    "static/media/font.woff": "/static/media/font.dc80ee6311e506051741.woff",
+    "index.html": "/index.html",
+    "static/media/burger.svg": "/static/media/burger.00878a777adbe56929a2.svg",
+    "static/media/close-button.svg": "/static/media/close-button.396f7157a69a3b7c66df.svg",
+    "main.170ce382.css.map": "/static/css/main.170ce382.css.map",
+    "main.982f899c.js.map": "/static/js/main.982f899c.js.map",
+    "453.169f8a40.chunk.js.map": "/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4575d3f.css",
-    "static/js/main.465cf278.js"
+    "static/css/main.170ce382.css",
+    "static/js/main.982f899c.js"
   ]
 }

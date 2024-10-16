@@ -33,7 +33,7 @@
   }
   
   .time__point_active {
-    background-color: #ff9900;
+    background-color: #F6C852;
   }
   
 
@@ -57,7 +57,7 @@
   }
   
   .time__label_active {
-    color: #ff9900;
+    color: #F6C852;
   }
 
     /* Line Styling */
@@ -69,7 +69,7 @@
     }
       
     .time__line_active {
-        background-color: #ff9900;
+        background-color: #F6C852;
     }
       
 

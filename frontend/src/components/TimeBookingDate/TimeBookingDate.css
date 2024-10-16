@@ -2,7 +2,7 @@
   /* Change the background color for active tiles on hover and focus */
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-    background-color: #ff9900; /* Your desired color */
+    background-color: #F6C852; /* Your desired color */
     color: #fff; /* Optional: Change text color for better contrast */
 }
 
@@ -40,8 +40,8 @@
 
 /* Custom styles for the active date tile */
 .react-calendar__tile--active {
-  background-color: #ff9900; /* Change to your desired background color */
-  color: white; /* Change to your desired text color */
+  background-color: #F6C852; /* Change to your desired background color */
+  color: black; /* Change to your desired text color */
   font-weight: bold; /* Optional: Emphasize the selected date */
 }
 
@@ -125,9 +125,9 @@
   }
    */
   .time__slot_selected {
-    background: #ff9900;
-    color: #fff;
-    border-color: #ff9900;
+    background: #F6C852;
+    color: black;
+    border-color: #F6C852;
   }
 
     /* List of Time Slots */
@@ -200,9 +200,9 @@
     } */
     
     .time__duration-button_active {
-      background-color: #ff9900; /* Orange background when active */
-      color: white; /* White text color when active */
-      border-color: #ff9900; /* Border color matches background */
+      background-color: #F6C852; /* Orange background when active */
+      color: black; /* White text color when active */
+      border-color: #F6C852; /* Border color matches background */
     }
 
     .time__slot_booked{

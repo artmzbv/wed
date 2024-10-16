@@ -87,7 +87,7 @@
 
 .gift-booking__quantity-button-up:hover,
 .gift-booking__quantity-button-down:hover {
-  background-color: #ff9900;
+  background-color: #F6C852;
   color: white;
 }
 
@@ -101,7 +101,7 @@
   .gift-booking-button {
     width: 25px; /* Smaller width */
     height: 25px; /* Smaller height */
-    background-color: #ff9900;
+    background-color: #F6C852;
     border: none;
     color: white;
     font-size: 18px;
@@ -197,7 +197,7 @@
     width: 250px;
     height: 40px;
     border: 0;
-    background-color: #ff9900;
+    background-color: #F6C852;
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -207,13 +207,13 @@
   }
 
   .gift-booking__final-step-button_active {
-    background-color: #ff9900;
+    background-color: #F6C852;
     color: #fff;
     cursor: pointer;
   }
   
   .gift-booking__final-step-button_active:hover {
-    background-color: #e68900;
+    background-color: #F6C852;
   }
   
   .gift-booking__next-step-button {
@@ -234,13 +234,13 @@
   
 
   .gift-booking__next-step-button_active {
-    background-color: #ff9900;
+    background-color: #F6C852;
     color: #fff;
     cursor: pointer;
   }
   
   .gift-booking__next-step-button_active:hover {
-    background-color: #e68900;
+    background-color: #ff9900;
   }
   .gift-booking__choice{
     margin: 50px auto 0;
@@ -276,7 +276,7 @@
   }
 
   .gift-booking__quantity-button:hover{
-    background-color: #e68900;
+    background-color: #ff9900;
   }
   
   .gift-booking__duration-label {

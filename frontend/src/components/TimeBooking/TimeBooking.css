@@ -59,7 +59,7 @@
     width: 250px;
     height: 40px;
     border: 0;
-    background-color: #ff9900;
+    background-color: #F6C852;
     color: white;
     font-size: 18px;
     border-radius: 5px;
@@ -68,13 +68,13 @@
   }
 
   .time__final-step-button_active {
-    background-color: #ff9900;
+    background-color: #F6C852;
     color: #fff;
     cursor: pointer;
   }
   
   .time__final-step-button_active:hover {
-    background-color: #e68900;
+    background-color: #F6C852;
   }
   
   .time__next-step-button {
@@ -95,8 +95,8 @@
   
 
   .time__next-step-button_active {
-    background-color: #ff9900;
-    color: #fff;
+    background-color: #F6C852;
+    color: black;
     cursor: pointer;
   }
   

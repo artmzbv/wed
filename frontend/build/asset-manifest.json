@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/portraits/static/css/main.65b79e13.css",
-    "main.js": "/portraits/static/js/main.600e078c.js",
+    "main.css": "/portraits/static/css/main.b4575d3f.css",
+    "main.js": "/portraits/static/js/main.465cf278.js",
     "static/js/453.169f8a40.chunk.js": "/portraits/static/js/453.169f8a40.chunk.js",
-    "static/media/intro.png": "/portraits/static/media/intro.9a7aa01e6167e22dc7d0.png",
     "static/media/private.jpg": "/portraits/static/media/private.09922e47999ae67ad7d1.jpg",
     "static/media/comfort.png": "/portraits/static/media/comfort.f35f09b905e0d3310621.png",
     "static/media/smile.png": "/portraits/static/media/smile.bce200b56e069a602555.png",
@@ -13,17 +12,18 @@
     "static/media/dress.png": "/portraits/static/media/dress.b834ec9ae79b9a29839a.png",
     "static/media/click.png": "/portraits/static/media/click.3730ff8fe84f75634780.png",
     "static/media/assurance.png": "/portraits/static/media/assurance.b3e982ac07c504808dd2.png",
-    "static/media/physical.png": "/portraits/static/media/physical.c1aeb199a9557cf4f03e.png",
-    "static/media/digital.png": "/portraits/static/media/digital.2720697c5225d210ef64.png",
+    "static/media/logo_new.jpg": "/portraits/static/media/logo_new.0816eb02fe21e24d1a6b.jpg",
+    "static/media/404.jpg": "/portraits/static/media/404.ef18081acbdf8817888d.jpg",
+    "static/media/font.woff": "/portraits/static/media/font.dc80ee6311e506051741.woff",
     "index.html": "/portraits/index.html",
     "static/media/burger.svg": "/portraits/static/media/burger.00878a777adbe56929a2.svg",
     "static/media/close-button.svg": "/portraits/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.65b79e13.css.map": "/portraits/static/css/main.65b79e13.css.map",
-    "main.600e078c.js.map": "/portraits/static/js/main.600e078c.js.map",
+    "main.b4575d3f.css.map": "/portraits/static/css/main.b4575d3f.css.map",
+    "main.465cf278.js.map": "/portraits/static/js/main.465cf278.js.map",
     "453.169f8a40.chunk.js.map": "/portraits/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.65b79e13.css",
-    "static/js/main.600e078c.js"
+    "static/css/main.b4575d3f.css",
+    "static/js/main.465cf278.js"
   ]
 }

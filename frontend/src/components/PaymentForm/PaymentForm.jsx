@@ -31,9 +31,12 @@ const PaymentForm = () => {
   const [loading, setLoading] = useState(false);
   const [shippingDetails, setShippingDetails] = useState(null); // For physical items
 
+  // Redirect to homepage if essential state data is missing (i.e., user accessed directly)
   useEffect(() => {
-    console.log('isDigital:', isDigital);  // Check if you are receiving the value correctly
-  }, [isDigital]);
+    if (!location.state || !selectedDate || !selectedTime || !selectedDuration) {
+      navigate('/'); // Redirect to home page if no state is passed
+    }
+  }, [location.state, selectedDate, selectedTime, selectedDuration, navigate]);
 
   // Calculate the total price based on userSelections if it's a coupon purchase
   useEffect(() => {

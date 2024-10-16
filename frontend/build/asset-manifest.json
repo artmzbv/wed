@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.55675fda.css",
-    "main.js": "/static/js/main.b96b9ace.js",
+    "main.css": "/static/css/main.20be75f6.css",
+    "main.js": "/static/js/main.09526ace.js",
     "static/js/453.169f8a40.chunk.js": "/static/js/453.169f8a40.chunk.js",
     "static/media/private.jpg": "/static/media/private.09922e47999ae67ad7d1.jpg",
+    "static/media/banner.png": "/static/media/banner.587a2a873f48453e9f77.png",
     "static/media/logo_colour.png": "/static/media/logo_colour.1789ce1c325fd39f4a58.png",
     "static/media/comfort.png": "/static/media/comfort.f35f09b905e0d3310621.png",
     "static/media/smile.png": "/static/media/smile.bce200b56e069a602555.png",
@@ -13,18 +14,17 @@
     "static/media/dress.png": "/static/media/dress.b834ec9ae79b9a29839a.png",
     "static/media/click.png": "/static/media/click.3730ff8fe84f75634780.png",
     "static/media/assurance.png": "/static/media/assurance.b3e982ac07c504808dd2.png",
-    "static/media/logo_new.jpg": "/static/media/logo_new.0816eb02fe21e24d1a6b.jpg",
     "static/media/404.jpg": "/static/media/404.ef18081acbdf8817888d.jpg",
     "static/media/font.woff": "/static/media/font.dc80ee6311e506051741.woff",
     "index.html": "/index.html",
     "static/media/burger.svg": "/static/media/burger.00878a777adbe56929a2.svg",
     "static/media/close-button.svg": "/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.55675fda.css.map": "/static/css/main.55675fda.css.map",
-    "main.b96b9ace.js.map": "/static/js/main.b96b9ace.js.map",
+    "main.20be75f6.css.map": "/static/css/main.20be75f6.css.map",
+    "main.09526ace.js.map": "/static/js/main.09526ace.js.map",
     "453.169f8a40.chunk.js.map": "/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.55675fda.css",
-    "static/js/main.b96b9ace.js"
+    "static/css/main.20be75f6.css",
+    "static/js/main.09526ace.js"
   ]
 }

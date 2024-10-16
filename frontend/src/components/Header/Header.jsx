@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import headerLogo from "../../images/logo/logo_new.jpg";
+// import headerLogo from "../../images/logo/logo_new.jpg";
+import headerLogo from "../../images/logo/banner.png";
 import "./Header.css";
 import BurgerMenu from "../Navigation/Navigation";
 

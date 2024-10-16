@@ -11,7 +11,7 @@ export default function PaymentSuccess () {
             <p>Thank you for your payment.</p>
             <p>Your reservation has been created successfully!</p>
             </div>
-        <Link to="/portraits">
+        <Link to="/">
             <button className="payment-success__button">
             <p className="payment-success__text">Go to the Homepage</p>
             </button>

@@ -11,6 +11,8 @@ const PaymentForm = () => {
 
   // Destructure the booking details from the location state
   const { 
+    fromGifts,   // Coming from gifts component
+    fromTime,    // Coming from time-based booking
     selectedDate, 
     selectedTime, 
     selectedDuration, 
@@ -33,10 +35,10 @@ const PaymentForm = () => {
 
   // Redirect to homepage if essential state data is missing (i.e., user accessed directly)
   useEffect(() => {
-    if (!location.state || !selectedDate || !selectedTime || !selectedDuration) {
-      navigate('/'); // Redirect to home page if no state is passed
+    if (!location.state || (!fromGifts && !fromTime)) {
+      navigate('/'); // Redirect to homepage if accessed directly
     }
-  }, [location.state, selectedDate, selectedTime, selectedDuration, navigate]);
+  }, [location.state, fromGifts, fromTime, navigate]);
 
   // Calculate the total price based on userSelections if it's a coupon purchase
   useEffect(() => {

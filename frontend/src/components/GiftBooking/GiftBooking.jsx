@@ -284,6 +284,7 @@ const handleProceedToPayment = () => {
   navigate('/payment', {
     state: {
       isCouponPurchase: true,
+      fromGifts: true,
       selectedDuration,
       firstName,
       lastName,

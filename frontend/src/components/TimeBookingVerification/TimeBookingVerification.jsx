@@ -130,6 +130,7 @@ const TimeBookingVerification = ({
   const handleProceedToPayment = () => {
     navigate('/payment', {
       state: {
+        fromTime: true,
         selectedDate,
         selectedTime,
         selectedDuration,

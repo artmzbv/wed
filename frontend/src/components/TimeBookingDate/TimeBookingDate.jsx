@@ -71,7 +71,7 @@ const TimeBookingDate = ({
       try {
         // Use the custom formatted date here
         const formattedDate = formatSelectedDate(selectedDate, selectedTime);
-        console.log("Formatted Date:", formattedDate); // For debugging purposes
+        // console.log("Formatted Date:", formattedDate); // For debugging purposes
   
         await fetchAllReservations();
         setActiveStep(1);

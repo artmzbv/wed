@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formatTime, transactionTimer } from '../../utils/constants';
+import { formatTime, transactionTimer } from '../../utils/constants/constants';
 import './TimeBookingVerification.css';
 
 const TimeBookingVerification = ({

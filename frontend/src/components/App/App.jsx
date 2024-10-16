@@ -13,6 +13,7 @@ import PageNotFound from "../PageNotFound/PageNotFound"
 import PaymentSuccess from "../PaymentSuccess/PaymentSuccess"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { usePageTracking } from "../../utils/tracking";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
 // ProtectedRoute component
 // import GiftBookingDigital from "GiftBookingDigital/GiftBookingDigital"
@@ -23,6 +24,8 @@ function App() {
   const [activeSection, setActiveSection] = useState("1");
   const [token, setToken] = useState(localStorage.getItem('adminToken') || '');
 
+  usePageTracking()
+  
   return (
     <div className="App">
       <Header activeSection={activeSection} setActiveSection={setActiveSection}/>

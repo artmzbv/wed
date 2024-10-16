@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation  } from 'react-router-dom'; // Import useNavigate
 import './GiftBooking.css'; 
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
-import { formatTime, transactionTimer } from '../../utils/constants';
+import { formatTime, transactionTimer } from '../../utils/constants/constants';
 
 const GiftBooking = () => {
   const [activeStep, setActiveStep] = useState(0);

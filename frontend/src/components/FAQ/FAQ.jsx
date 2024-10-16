@@ -28,7 +28,7 @@ const FAQ = () => {
     useEffect(() => {
       const fetchFAQs = async () => {
         try {
-          const response = await fetch('http://api.self-made-portraits.com/faqs'); // Update the URL to match your backend endpoint
+          const response = await fetch('https://api.self-made-portraits.com/faqs'); // Update the URL to match your backend endpoint
           if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
           }
@@ -42,7 +42,7 @@ const FAQ = () => {
 
       fetchFAQs(); // Call the fetch function on component mount
     }, []); // Empty dependency array means this useEffect runs only once
-  console.log(faqs)
+  // console.log(faqs)
 
   // Toggle function to open/close a question
   const toggleQuestion = (index) => {

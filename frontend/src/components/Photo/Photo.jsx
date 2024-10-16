@@ -15,7 +15,7 @@ const Photo = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await fetch('http://api.self-made-portraits.com/photos', {
+        const response = await fetch('https://api.self-made-portraits.com/photos', {
           method: 'GET',  // Make sure you're using the correct method
           headers: {
             'Content-Type': 'application/json',  // If necessary, add other headers

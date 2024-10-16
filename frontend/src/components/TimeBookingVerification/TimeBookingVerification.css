@@ -4,7 +4,7 @@
     position: relative;
     align-items: center;
     gap: 10px;
-    width: 400px;
+    max-width: 400px;
     margin-top: 20px;
     margin-bottom: 50px;
   }
@@ -69,7 +69,8 @@
 
 @media screen and (max-width: 424px) {
     .time__coupon-button{
-        padding: 2px 6px;
+        padding: 3px 12px;
+        min-height: 40px;
         font-size: 14px;
       }
     

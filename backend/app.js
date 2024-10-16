@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose'); 
-const enableCors = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 const bodyParser = require('body-parser'); 
 const dataRouter = require('./routes/notion');
 const stripeRouter = require('./routes/stripe');
@@ -15,7 +15,7 @@ const couponRoutes = require('./routes/coupon');
 // Load environment variables from .env file
 const app = express();
 
-app.use(enableCors);
+app.use(cors);
 
 app.use(bodyParser.json());
 app.use(express.json());

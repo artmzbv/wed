@@ -15,20 +15,27 @@ const Photo = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await fetch('http://api.self-made-portraits.com/photos'); // Replace with your backend endpoint
+        const response = await fetch('http://api.self-made-portraits.com/photos', {
+          method: 'GET',  // Make sure you're using the correct method
+          headers: {
+            'Content-Type': 'application/json',  // If necessary, add other headers
+          },
+        });
+  
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
+  
         const data = await response.json();
-        
-        setFetchedItems(data); // Set the fetched items
+        setFetchedItems(data);  // Set the fetched items
       } catch (error) {
         console.error('Failed to fetch photos:', error);
       }
     };
-
-    fetchPhotos(); // Fetch data on component mount
+  
+    fetchPhotos();  // Fetch data on component mount
   }, []);
+  
 
   // Monitor screen size changes and update state
   useEffect(() => {

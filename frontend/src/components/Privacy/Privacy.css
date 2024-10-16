@@ -107,6 +107,10 @@
     .privacy__card{
         margin: 0 0 40px;
     } 
+        
+    .privacy__subtitle{
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 630px) {

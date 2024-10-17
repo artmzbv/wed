@@ -48,7 +48,7 @@ const TimeBookingDate = ({
     fetchAllReservations();
   }, []);
 
-    console.log(reservations)
+  console.log(reservations)
   const handleNextStep = async () => {
     let hasError = false;
   
@@ -133,15 +133,20 @@ return(
                 {/* <h3>Available Time Slots</h3> */}
                   <ul className='time__list'>
               {timeError && <p className='time__error-message-time'>{timeError}</p>}
-              {timeSlots.map((time, index) => (
-                <li
-                  key={index}
-                  className={`time__slot ${isSlotBooked(reservations, selectedDate, time) ? 'time__slot_booked' : ''} ${selectedTime === time ? 'time__slot_selected' : ''}`}
-                  onClick={() => !isSlotBooked(reservations, selectedDate, time) && setSelectedTime(time)}
-                >
-                  {time}
-                </li>
-              ))}
+              {timeSlots.map((time, index) => {
+                  const booked = isSlotBooked(reservations, selectedDate, time);
+                  console.log(`Time Slot: ${time}, Booked: ${booked}`);
+                  
+                  return (
+                    <li
+                      key={index}
+                      className={`time__slot ${booked ? 'time__slot_booked' : ''} ${selectedTime === time ? 'time__slot_selected' : ''}`}
+                      onClick={() => !booked && setSelectedTime(time)}
+                    >
+                      {time}
+                    </li>);
+              }
+              )}
             </ul>
           </div>
         </div>

@@ -37,10 +37,23 @@
     });
   };
 
+  const formatDateToYYYYMMDD = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, so we add 1
+    const day = String(date.getDate()).padStart(2, '0'); // Ensure 2 digits for day
+  
+    return `${year}-${month}-${day}`;
+  };
+  
+
   export const isSlotBooked = (reservations,selectedDate, time) => {
     return reservations.some((res) => {
       const reservationDate = new Date(res.date).toISOString().split('T')[0];
-      const currentDate = selectedDate?.toISOString().split('T')[0];
+      console.log(reservationDate)
+       // Format current date to YYYY-MM-DD for consistency
+       const currentDate = formatDateToYYYYMMDD(new Date(selectedDate)); // Clicked date formatted as YYYY-MM-DD
+      //  console.log('Current Date:', currentDate);// date for click
+      console.log(currentDate)
       if (reservationDate !== currentDate) return false;
       const overlappingSlots = getOverlappingSlots(res.time, res.duration);
       return overlappingSlots.includes(time);

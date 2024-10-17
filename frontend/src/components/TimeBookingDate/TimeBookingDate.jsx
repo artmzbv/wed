@@ -73,7 +73,7 @@ const TimeBookingDate = ({
         const formattedDate = formatSelectedDate(selectedDate, selectedTime);
         // console.log("Formatted Date:", formattedDate); // For debugging purposes
   
-        await fetchAllReservations();
+        await fetchAllReservations(setReservations);
         setActiveStep(1);
         setErrors({});
       } catch (error) {

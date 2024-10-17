@@ -3,8 +3,8 @@ import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   return (
+    <div className="privacy-policy-container">
     <div className="privacy-policy">
-    <div className="privacy-policy__container">
       <h1>Privacy Policy</h1>
       <p><em>Last updated: 18.10.2024</em></p>
 
@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
         <p>
           Welcome to Self Made Portraits. We are committed to protecting your personal information and your right to privacy. 
           If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, 
-          please contact us at [Your Contact Email].
+          please contact us at info@self-made-portraits.com.
         </p>
       </section>
 
@@ -91,7 +91,7 @@ const PrivacyPolicy = () => {
 
       <section>
         <h2>11. Contact Us</h2>
-        <p>If you have questions or comments about this policy, you may contact us by email at [Your Contact Email].</p>
+        <p>If you have questions or comments about this policy, you may contact us by email at info@self-made-portraits.com.</p>
       </section>
     </div>
     </div>

@@ -8,9 +8,9 @@ const ContactUs = () => {
         <div className='contact__container'>
           <div className='contact__info'>
           <h2 className='contact__title'>HOW TO FIND US ?</h2>
-          <p className='contact__adress'>Fatboy Slim concert, Brighton</p>
-          <p className='contact__adress'>Beach</p>
-          <p className='contact__adress'>36</p>
+          <p className='contact__adress'>Brighton, UK</p>
+          <p className='contact__adress'>info@self-made-portraits.com</p>
+          {/* <p className='contact__adress'>36</p> */}
           </div>
           <div className='contact__maps'>
           <iframe

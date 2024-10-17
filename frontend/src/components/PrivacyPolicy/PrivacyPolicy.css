@@ -1,9 +1,9 @@
-.privacy-policy {
+.privacy-policy-container {
 padding-top: 65px;
 }
 
 /* Base styles */
-.privacy-policy__container {
+.privacy-policy {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;

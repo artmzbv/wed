@@ -10,7 +10,7 @@ return (
 <div class="cookie-policy-container">
 <div class="cookie-policy">
   <h1>Cookie Policy</h1>
-  <p>Last updated: 18.10.2024</p>
+  <p><em>Last updated: 18.10.2024</em></p>
 
   <section>
     <h2>1. What Are Cookies?</h2>
@@ -48,7 +48,7 @@ return (
 
   <section>
     <h2>6. Contact Us</h2>
-    <p>If you have any questions about our use of cookies, please contact us at [Your Contact Email].</p>
+    <p>If you have any questions about our use of cookies, please contact us at info@self-made-portraits.com.</p>
   </section>
 </div>
 </div>

@@ -89,6 +89,8 @@ const TimeBookingDate = ({
 return(
     <>
       <div className='time__container'>
+        <div className='time__block'>
+        <h2 className='time__subtitle'>Choose your session duration</h2>
         <div className='time__duration-buttons'>
           {durations.map((duration) => (
             <button
@@ -101,16 +103,21 @@ return(
           ))}
           {durationError && <p className='time__error-message-duration'>{durationError}</p>}
         </div>
-
+        </div>
+        <div className='time__block'>
+        <h2 className='time__subtitle'>Choose your session date</h2>
         <div className='time__calendar'>
-          {dateError && <p className='time__error-message'>{dateError}</p>}
+          {dateError && <p className='time__error-message-date'>{dateError}</p>}
           <Calendar onChange={setSelectedDate} value={selectedDate} minDate={today} />
         </div>
+        </div>
 {/* ds */}
-        <div className='time__slots-container'>
-          <div className='time__slots'>
-            <h2>Available Time Slots</h2>
-            <ul className='time__list'>
+      <div className='time__block'>
+          <div className='time__slots-container'>
+          <h2 className='time__subtitle'>Choose your session time slot</h2>
+              <div className='time__slots'>
+                {/* <h3>Available Time Slots</h3> */}
+                  <ul className='time__list'>
               {timeError && <p className='time__error-message-time'>{timeError}</p>}
               {timeSlots.map((time, index) => (
                 <li
@@ -123,6 +130,7 @@ return(
               ))}
             </ul>
           </div>
+        </div>
         </div>
       </div>
 

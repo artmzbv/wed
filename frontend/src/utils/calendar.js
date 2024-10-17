@@ -1,6 +1,6 @@
   export const fetchAllReservations = async (setReservations) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/reservations/all`);
+      const response = await fetch(`https://api.self-made-portraits.com/api/reservations/all`);
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }

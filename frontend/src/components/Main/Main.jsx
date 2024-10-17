@@ -11,7 +11,6 @@ import GiftCards from "../GiftCards/GiftCards";
 import ContactUs from "../ContactUs/ContactUs";
 import Intro from "../Intro/Intro";
 import logo from "../../images/logo/logo_colour.png"
-import Navigation from "../Navigation/Navigation"; // Import your Navigation component
 import { organizationSchema } from "../../utils/constants/schema";
 
 gsap.registerPlugin(ScrollTrigger);

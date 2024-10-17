@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CookiePolicy.css";
 
 const CookiePolicy = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+return (
+<div class="cookie-policy-container">
 <div class="cookie-policy">
   <h1>Cookie Policy</h1>
   <p>Last updated: 18.10.2024</p>
@@ -45,6 +51,7 @@ const CookiePolicy = () => {
     <p>If you have any questions about our use of cookies, please contact us at [Your Contact Email].</p>
   </section>
 </div>
-}
+</div>
+)}
 
 export default CookiePolicy;

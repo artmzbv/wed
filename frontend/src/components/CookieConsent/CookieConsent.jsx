@@ -18,6 +18,12 @@ const getCookie = (name) => {
 
 // Cookie Consent Component
 const CookieConsent = () => {
+  
+  // Scroll to the top every time the active step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {

@@ -90,7 +90,7 @@ const PaymentForm = () => {
             generatedCouponCode = `COUPON-${Math.random().toString(36).substring(7).toUpperCase()}`;
   
             // Check if the generated coupon code exists in the database
-            const response = await fetch('http://localhost:3000/api/coupons/check-unique', {
+            const response = await fetch('https://api.self-made-portraits.com/api/coupons/check-unique', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ code: generatedCouponCode })
@@ -125,7 +125,7 @@ const PaymentForm = () => {
         });
   
         // Send the coupon to the server
-        const response = await fetch('http://localhost:3000/api/coupons/create', {
+        const response = await fetch('https://api.self-made-portraits.com/api/coupons/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -203,7 +203,7 @@ const PaymentForm = () => {
         const duration = selectedDuration; // Duration in minutes
   
         // Check if the reservation time is available on the server before proceeding with payment
-        const reservationCheckResponse = await fetch('http://localhost:3000/api/reservations/check', {
+        const reservationCheckResponse = await fetch('https://api.self-made-portraits.com/api/reservations/check', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ const PaymentForm = () => {
   
     // Proceed with payment intent creation
     try {
-      const paymentIntentResponse = await fetch('http://localhost:3000/create-payment-intent', {
+      const paymentIntentResponse = await fetch('https://api.self-made-portraits.com/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalPrice * 100, currency: 'gbp' }),
@@ -267,7 +267,7 @@ const PaymentForm = () => {
   
         if (!isCouponPurchase) {
           // Create reservation after successful payment (if it's not a coupon purchase)
-          const reservationResponse = await fetch('http://localhost:3000/api/reservations', {
+          const reservationResponse = await fetch('https://api.self-made-portraits.com/api/reservations', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

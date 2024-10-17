@@ -14,7 +14,7 @@ const AdminRegister = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:3000/admin', {
+      const response = await fetch('https://api.self-made-portraits.com/admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

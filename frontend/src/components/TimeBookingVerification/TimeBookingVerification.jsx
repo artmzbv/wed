@@ -60,7 +60,7 @@ const TimeBookingVerification = ({
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/coupons/apply', {
+      const response = await fetch('https://api.self-made-portraits.com/api/coupons/apply', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const TimeBookingVerification = ({
   // Function to handle "Confirm Payment" when finalPrice is 0
   const handleConfirmPayment = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/coupons/delete', {
+      const response = await fetch('https://api.self-made-portraits.com/api/coupons/delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

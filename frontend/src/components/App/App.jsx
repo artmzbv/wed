@@ -11,15 +11,17 @@ import AdminRegister from "../AdminRegister/AdminRegister"
 import AdminDashboard from "../AdminDashboard/AdminDashboard"
 import PageNotFound from "../PageNotFound/PageNotFound"
 import PaymentSuccess from "../PaymentSuccess/PaymentSuccess"
+import CookieConsent from "../CookieConsent/CookieConsent";
+import PrivacyPolicy from "../PrivacyPolicy/PrivacyPolicy";
+import CookiePolicy from "../CookiePolicy/CookiePolicy";
+import TermsOfUse from "../TermsOfUse/TermsOfUse";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { usePageTracking } from "../../utils/tracking";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
-// ProtectedRoute component
-// import GiftBookingDigital from "GiftBookingDigital/GiftBookingDigital"
-// import GiftBookingPhysical from "GiftBookingPhysical/GiftBookingPhysical"
 
 const stripePromise = loadStripe('pk_test_51PDMRwBywd3FX45Qm3j2qWBrf4c19Y9QWHev4gTvvWlpbJBAC9SN3TB4O62jqey4eK0YebxShcxptqo1LtEl9uJe00nUVpOy0Z');
+
 function App() {
   const [activeSection, setActiveSection] = useState("1");
   const [token, setToken] = useState(localStorage.getItem('adminToken') || '');
@@ -28,6 +30,7 @@ function App() {
   
   return (
     <div className="App">
+      <CookieConsent />
       <Header activeSection={activeSection} setActiveSection={setActiveSection}/>
       <Routes>
       <Route exact path="/" element={<Main activeSection={activeSection} setActiveSection={setActiveSection} />}/>
@@ -40,6 +43,9 @@ function App() {
       <Route path="/payment" element={<Elements stripe={stripePromise}><PaymentForm/></Elements>} />
       <Route path="/payment/success" element={<PaymentSuccess />}/>
       <Route path="*" element={<PageNotFound />} />
+      <Route path="/cookie-policy" element={<CookiePolicy />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Routes>
       <Footer/>
     </div>

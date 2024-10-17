@@ -28,17 +28,17 @@ export default function Footer() {
   // Handle navigation button click
   const handleNavigationClick = (e, sectionId) => {
     setActive(e.target.id);
-    if (location.pathname === "/portraits/") {
+    if (location.pathname === "/") {
       scrollToSection(sectionId); // Scroll to the section if on the main page
     } else {
       setTargetSection(sectionId); // Store the section ID for scrolling after navigation
-      navigate("/portraits/"); // Redirect to the main page
+      navigate("/"); // Redirect to the main page
     }
   };
 
   // Scroll to the section if targetSection is set and we are on the main page
   useEffect(() => {
-    if (location.pathname === "/portraits/" && targetSection) {
+    if (location.pathname === "/" && targetSection) {
       scrollToSection(targetSection);
       setTargetSection(null); // Clear the target section after scrolling
     }
@@ -46,7 +46,7 @@ export default function Footer() {
 
   // Reset active state on page change
   useEffect(() => {
-    if (location.pathname !== "/portraits/") {
+    if (location.pathname !== "/") {
       setActive(""); // Reset active state when navigating away from the main page
     }
   }, [location.pathname]);
@@ -93,14 +93,13 @@ export default function Footer() {
         </div>
         <div className='footer__reg'>
           <div className='footer__reg-container'>
-            <Link className="footer__reg-link" to="./legal-notice">{'Studio Rules\n& Rental Agreement'}</Link>
-            <Link className="footer__reg-link" to="./cancellation-refund-policy">{`Cancellation\n& Refund Policy`}</Link>
+            <Link className="footer__reg-link" to="./cookie-policy">{`Cookie Policy`}</Link>
             <Link className="footer__reg-link" to="./terms-of-use">{`Terms of Use`}</Link>
-            <Link className="footer__reg-link" to="./priavte-policy">{`Privacy Policy`}</Link>
-            <Link className="footer__reg-link" to="./pet-policy">{`Pet Policy`}</Link>
-            <Link target="_blank">
+            <Link className="footer__reg-link" to="./privacy-policy">{`Privacy Policy`}</Link>
+            {/* <Link className="footer__reg-link" to="./pet-policy">{`Pet Policy`}</Link> */}
+            {/* <Link target="_blank">
               <img className="footer__reg-logo footer__reg-logo_x" src={twitter} alt="Twitter" />
-            </Link>
+            </Link> */}
           </div>
           <p className="footer__reg-copyright">© Self Made Portraits 2024</p>
         </div>

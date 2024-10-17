@@ -1,0 +1,87 @@
+/* Base styles */
+.cookie-policy {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cookie-policy h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .cookie-policy em {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .cookie-policy h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .cookie-policy p,
+  .cookie-policy ul {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .cookie-policy ul {
+    padding-left: 20px;
+  }
+  
+  .cookie-policy li {
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .cookie-policy {
+      padding: 15px;
+    }
+  
+    .cookie-policy h1 {
+      font-size: 1.75rem;
+    }
+  
+    .cookie-policy h2 {
+      font-size: 1.25rem;
+    }
+  
+    .cookie-policy p,
+    .cookie-policy ul {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cookie-policy {
+      padding: 10px;
+    }
+  
+    .cookie-policy h1 {
+      font-size: 1.5rem;
+    }
+  
+    .cookie-policy h2 {
+      font-size: 1.1rem;
+    }
+  
+    .cookie-policy p,
+    .cookie-policy ul {
+      font-size: 0.9rem;
+    }
+  }
+  

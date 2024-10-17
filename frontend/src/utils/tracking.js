@@ -1,16 +1,29 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+// Helper function to get cookie
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
+
 export const usePageTracking = () => {
   const location = useLocation();
   // console.log(location)
 
   useEffect(() => {
+        // Check if user accepted cookies
+    const cookieConsent = getCookie('cookieConsent');
+    
+    if (cookieConsent === 'accepted') {
     window.gtag("event", "page_view", {
       page_path: location.pathname + location.search + location.hash,
       page_search: location.search,
       page_hash: location.hash,
     });
+  }
   }, [location]);
 };
 

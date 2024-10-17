@@ -5,7 +5,7 @@
     align-items: center;
     gap: 10px;
     max-width: 400px;
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 50px;
   }
 
@@ -16,6 +16,7 @@
   border: 1px solid #918E8E;
   border-radius: 4px;
   width: 200px;
+  margin-right: 10px;
 }
 
 /* Coupon Apply Button */
@@ -67,6 +68,14 @@
   left:0;
 }
 
+.time__enter-text{
+text-align: center;
+color:#2B2B2B;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 0;
+}
+
 @media screen and (max-width: 424px) {
     .time__coupon-button{
         padding: 3px 12px;
@@ -77,6 +86,7 @@
     .time__coupon-input {
         font-size: 14px;
         padding: 10px 10px;
+        margin-right: 0;
     }
     .time__remaining-balance{
       font-size: 14px;
@@ -85,6 +95,14 @@
 }
 
 @media screen and (max-width: 374px) {
+  .time__coupon-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 140px
+  }
+
     .time__coupon-input {
       width: 180px;
     }

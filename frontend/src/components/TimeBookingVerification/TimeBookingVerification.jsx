@@ -169,16 +169,19 @@ const TimeBookingVerification = ({
 
         {/* Coupon Input Section */}
         <div className='time__coupon'>
+          <div className='time__coupon-container'>
+          <p className='time__enter-text'>Enter coupon code</p>
           <input
             type='text'
             className='time__coupon-input'
-            placeholder='Enter coupon code'
+            placeholder='COUPON-XXXXX'
             value={coupon}
             onChange={(e) => setCoupon(e.target.value)}
           />
           <button type='button' className='time__coupon-button' onClick={handleApplyCoupon}>
             Apply Coupon
           </button>
+          </div>
           {couponError && <p className="time__error-message">{couponError}</p>} {/* Display coupon error if present */}
                  {/* Success Message for Payment */}
           {couponSuccess && <p className="time__success-message">{couponSuccess}</p>} {/* Display payment success if present */}

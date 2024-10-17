@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './TimeBookingDate.css';
-import { fetchAllReservations, generateTimeSlots, isOverlapping,  isSlotBooked,  formatSelectedDate, durations, checkEndTimeBoundary } from '../../utils/calendar';
+import { generateTimeSlots, isOverlapping,  isSlotBooked,  formatSelectedDate, durations, checkEndTimeBoundary } from '../../utils/calendar';
 
 const TimeBookingDate = ({
   setErrors,
@@ -30,11 +30,25 @@ const TimeBookingDate = ({
   }, [selectedDuration, selectedDate, selectedTime]);
 
 
+  const fetchAllReservations = async () => {
+    try {
+      const response = await fetch(`https://api.self-made-portraits.com/api/reservations/all`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      const data = await response.json();
+      setReservations(data);
+    } catch (error) {
+      console.error('Failed to fetch reservations:', error);
+    }
+  };
+
+
   useEffect(() => {
-    fetchAllReservations(setReservations);
+    fetchAllReservations();
   }, []);
 
-
+    console.log(reservations)
   const handleNextStep = async () => {
     let hasError = false;
   
@@ -73,7 +87,7 @@ const TimeBookingDate = ({
         const formattedDate = formatSelectedDate(selectedDate, selectedTime);
         // console.log("Formatted Date:", formattedDate); // For debugging purposes
   
-        await fetchAllReservations(setReservations);
+        await fetchAllReservations();
         setActiveStep(1);
         setErrors({});
       } catch (error) {

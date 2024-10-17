@@ -57,7 +57,7 @@ const AdminDashboard = ({ token }) => {
     if (activeTab === 'bookings') {
       const fetchReservations = async () => {
         try {
-          const response = await fetch('http://localhost:3000/api/reservations/all', {
+          const response = await fetch('https://api.self-made-portraits.com/api/reservations/all', {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (!response.ok) {
@@ -81,7 +81,7 @@ const AdminDashboard = ({ token }) => {
     if (activeTab === 'coupons') {
       const fetchCoupons = async () => {
         try {
-          const response = await fetch('http://localhost:3000/api/coupons/all', {
+          const response = await fetch('https://api.self-made-portraits.com/api/reservations/api/coupons/all', {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (!response.ok) {
@@ -129,7 +129,7 @@ const AdminDashboard = ({ token }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/reservations', {
+      const response = await fetch('https://api.self-made-portraits.com/api//api/reservations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ const AdminDashboard = ({ token }) => {
     }
   
     try {
-      const response = await fetch(`http://localhost:3000/api/reservations/${id}`, {
+      const response = await fetch(`https://api.self-made-portraits.com/api/reservations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -205,7 +205,7 @@ const AdminDashboard = ({ token }) => {
     }
   
     try {
-      const response = await fetch('http://localhost:3000/api/coupons/delete', {
+      const response = await fetch('https://api.self-made-portraits.com/api/coupons/delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

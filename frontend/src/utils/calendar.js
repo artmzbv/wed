@@ -1,16 +1,3 @@
-  export const fetchAllReservations = async (setReservations) => {
-    try {
-      const response = await fetch(`https://api.self-made-portraits.com/api/reservations/all`);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
-      }
-      const data = await response.json();
-      setReservations(data);
-    } catch (error) {
-      console.error('Failed to fetch reservations:', error);
-    }
-  };
-
   export const generateTimeSlots = () => {
     const slots = [];
     let startTime = new Date();

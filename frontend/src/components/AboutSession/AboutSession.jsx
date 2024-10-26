@@ -8,14 +8,14 @@ import repeat from '../../images/about/repeat.png'
 const AboutSession = () => {
 
   const options = [
-    {title:'Get Ready', src: dress, 
-    description: 'For your convenience, we have a dressing room and makeup area inside the studio.', alt: 'ready'},
-    {title:'Say cheese', src: smile,
-    description: 'Capture professional photos of yourself and your loved ones by simply looking at your reflection and using a small clicker, where you can be both the photographer and the model.', alt: 'cheese'},
+    {title:'Get Excited!', src: dress, 
+    description: 'For your convenience, we have a mirrored changing area to prepare your best looks.', alt: 'ready'},
+    {title:'Strike That Pose', src: smile,
+    description: 'Take stunning professional photos of yourself and your loved ones by simply looking in a large mirror and using a small remote control clicker, allowing you to be both the photographer and the model.', alt: 'cheese'},
     {title:'Click', src: click, 
-    description: 'Our studio offers a minimalist space with a professional studio lighting , magic mirror and a variety of backgrounds, allowing you to have complete creative control over your shoot with a small clicker' ,alt: 'click'},
-    {title:'Repeat', src: repeat,
-      description: `You can take as many pictures as you'd like`, alt: 'repeat'},
+    description: 'Our studio features a minimalist design equipped with professional lighting, a magic mirror, lighter or darker background. This setup gives you full creative control over your shoot, all with the ease of a simple click.' ,alt: 'click'},
+    {title:'Shoot/Repeat', src: repeat,
+      description: `Your session is yours to take as many photos as you like.`, alt: 'repeat'},
 ]
 
     return (

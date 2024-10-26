@@ -51,25 +51,25 @@ const Photo = () => {
   const items = [
     {
       images: [], // Placeholder for dynamic images
-      alt: 'explore',
-      subtitle: 'EXPLORE YOURSELF',
-      text: "Taking your own photos in a self-portrait studio allows for a unique experience of self-discovery through photography. With complete privacy, you have the space to truly explore and express yourself. It's just you and your reflection.",
+      alt: 'journey',
+      subtitle: 'TRULY SEE YOURSELF',
+      text: "Self-Made Portraits studio offers a distinctive journey of self-discovery through photography. With total privacy, you can fully delve into your creative expression. It’s just you reflecting you.",
       position: 'left',
       blockId: 1,
     },
     {
       images: [], // Placeholder for dynamic images
-      alt: 'explore',
-      subtitle: 'CREATE A PHOTOSHOOT WITH LOVED ONES',
-      text: 'Taking photos with a partner, friends, co-workers or family members, such a fun experience, even with those who are typically shy or hesitant to take part. Self-portrait studio allows you to create photoshoot that truly represent your unique relationships and personalities.',
+      alt: 'experience',
+      subtitle: 'A UNIQUE CREATIVE EXPERIENCE',
+      text: 'Capturing photos with partners, friends, coworkers, or family members is such a delightful experience, even for those who may be a bit shy about participating. At Self-Made Portraits we offer the perfect setting to create a photoshoot that genuinely reflects your unique relationships and personalities.',
       position: 'right',
       blockId: 2,
     },
     {
       images: [], // Placeholder for dynamic images
-      alt: 'explore',
-      subtitle: 'CAPTURE YOUR SPECIAL MOMENTS',
-      text: 'We offer a perfect space where you can capturing the beauty of pregnancy, birthday, graduation or any other private shoots, which can be sensitive and personal. It allows to express yourself and your unique beauty.',
+      alt: 'moments',
+      subtitle: 'SPECIAL MOMENTS TO CAPTURE IN LIFE',
+      text: 'We provide an ideal space for capturing the beauty of pregnancy, birthdays, graduations, and other intimate moments. Our setting allows you to express yourself and showcase your unique beauty in a sensitive and personal way. Privacy is our utmost guarantee in this safe and secure studio.',
       position: 'left',
       blockId: 3,
     },

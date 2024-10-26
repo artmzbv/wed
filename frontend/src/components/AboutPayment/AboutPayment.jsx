@@ -5,12 +5,12 @@ const AboutPayment = () => {
 
   const items = [
     {number: '1', title:`Online\nBooking`,
-    description: 'For your convenience, we have a dressing room and makeup area inside the studio'},
+    description: 'Select and pay for your perfect photoshoot via our quick and easy booking platform'},
     {number: '2', title: `Pay per\nsession`,
-    description: 'Capture professional photos of yourself and your loved ones by simply looking at your reflection and using a small clicker, where you can be both the photographer and the model'},
+    description: `Pick and choose what works for you: whether it's 15 minutes for headshots or capturing memories with a visiting friend, or a full hour that allows for themes and costume changes, catering to family, friends, professionals, and creatives alike to explore.`},
     {number: '3', title:`Same day \nresults`,
-    description: 'Our studio offers a minimalist space with a professional studio lighting , magic mirror and a variety of backgrounds, allowing you to have complete creative control over your shoot with a small clicker'},
-    {number: '4', title:`Get all\nphotos`,
+    description: 'Receive a secure link to download your photoshoot.'},
+    {number: '4', title:`Pick &\nChoose`,
       description: `You can take as many pictures as you'd like`},
 ]
 

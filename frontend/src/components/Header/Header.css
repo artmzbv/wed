@@ -40,9 +40,9 @@
 
 
 .header__logo{
-    height: 72px;
-    /* width: 200px; */
-    object-fit: cover;
+    height: 60px;
+    width: 100px;
+    object-fit:fill;
 }
 
 /* .header__linkedin-logo{

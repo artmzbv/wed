@@ -60,7 +60,7 @@ export default function Main({ setActiveSection }) {
     <>
       <Helmet>
         <title>Self Made Portraits</title>
-        <meta name="description" content="" />
+        <meta name="description" content="Self-Made Portraits: Automated, high-quality studio photography for everyone. Effortlessly capture moments with full control—perfect for solo, group, or pet portraits" />
         <meta property="og:url" content={`https://self-made-portraits.com/`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Self Made Portraits" />

@@ -55,8 +55,8 @@ const CookieConsent = () => {
       Do you accept cookies?
       </p>
       <div className="cookie-buttons">
-        <button onClick={acceptCookies}>Accept</button>
-        <button onClick={rejectCookies}>Reject</button>
+        <button className="cookie-button" onClick={acceptCookies}>Accept</button>
+        <button className="cookie-button" onClick={rejectCookies}>Reject</button>
       </div>
     </div>
   );

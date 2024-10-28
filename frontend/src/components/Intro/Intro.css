@@ -41,4 +41,18 @@
     width: 100%; 
     height: 100px;
     }
+
+    .intro__container{
+    display:flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    margin-top: 50px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    }
+    
+    .intro__subtitle{
+    text-align: center;
+    }
 }

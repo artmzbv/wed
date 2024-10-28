@@ -25,7 +25,7 @@
 }
 
 /* Style for the buttons */
-.cookie-consent-banner button {
+.cookie-button {
   background-color: white;
   color:#333;
   font-weight: bold;
@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.cookie-consent-banner button:hover {
+.cookie-button:hover {
   background-color: #0056b3;
 }
 
@@ -53,16 +53,24 @@
 
   .cookie-buttons {
     margin-top: 10px;
+    width: 90%;
+    justify-content: space-between;
   }
 
-  .cookie-consent-banner button {
+  .cookie-button{
+    width: 150px;
     margin-left: 0;
     margin-top: 5px;
-    width: 100%; /* Full-width buttons on mobile */
   }
 }
 
 /* Add margin to the bottom of the main content to prevent overlap with the cookie banner */
 .main-content {
   margin-bottom: 80px; /* Adjust this value based on the height of the cookie banner */
+}
+
+@media (max-width: 320px) {
+  .cookie-button{
+  width: 120px;
+  }
 }

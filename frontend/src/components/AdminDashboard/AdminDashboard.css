@@ -144,6 +144,7 @@ h2 {
   width: 100%;
   padding: 10px; /* Optional for spacing */
   box-sizing: border-box; /* Ensures padding does not affect width */
+  text-align: start;
 }
 
 /* Optional styling to remove any gap */

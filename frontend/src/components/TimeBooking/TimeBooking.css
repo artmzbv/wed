@@ -75,7 +75,8 @@
   }
   
   .time__final-step-button_active:hover {
-    background-color: #F6C852;
+    background-color: #e68900;
+    color: white;
   }
   
   .time__next-step-button {
@@ -103,6 +104,7 @@
   
   .time__next-step-button_active:hover {
     background-color: #e68900;
+    color: white;
   }
   
   /* Confirmation Layer Styling */

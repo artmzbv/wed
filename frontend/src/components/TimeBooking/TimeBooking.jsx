@@ -16,7 +16,7 @@ const TimeBooking = () => {
   const [email, setEmail] = useState("");
   const [willComeWithPets, setWillComeWithPets] = useState(null);
   const [errors, setErrors] = useState({});
-
+console.log(willComeWithPets)
   // Scroll to the top every time the active step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -35,7 +35,6 @@ const TimeBooking = () => {
     { number: 2, label: 'Details' },
     { number: 3, label: 'Done' }
   ];
-
 
   return (
     <section className='time' id="time">
@@ -100,7 +99,8 @@ const TimeBooking = () => {
           setPhone={setPhone}
           email={email}
           setEmail={setEmail}
-          setWillComeWithPets={setWillComeWithPets} 
+          setWillComeWithPets={setWillComeWithPets}
+          willComeWithPets={willComeWithPets} 
           handleBackStep={handleBackStep}
           activeStep={activeStep}
           setActiveStep={setActiveStep}

@@ -13,6 +13,7 @@ const reservationSchema = new mongoose.Schema({
   lastName: { type: String, required: true }, // Customer's last name
   email: { type: String, required: true }, // Customer's email
   phone: { type: String, required: true }, // Customer's phone number
+  willComeWithPets: { type: String, required: true }, // Add this field
   finalPrice: { type: Number, required: true }, // Final price of the booking (e.g., 50.00)
   
   eventId: { type: String }, // Optional Google Calendar Event ID

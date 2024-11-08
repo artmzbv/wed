@@ -41,7 +41,7 @@ const extractPhotos = (notionData) => {
   if (!notionData || !notionData.results) return [];
 
   // Log the structure of each page to see what is being returned (optional, for debugging)
-  console.log("Inspecting each page's properties...");
+  // console.log("Inspecting each page's properties...");
   notionData.results.forEach((page, index) => {
     // console.log(`Page ${index} Properties:`, JSON.stringify(page.properties, null, 2));
   });

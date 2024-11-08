@@ -93,6 +93,8 @@ h2 {
 .admin-dashboard__table td {
   padding: 12px 15px;
   text-align: center;
+  width: 100%;
+  margin: 0;
 }
 
 .admin-dashboard__table th {
@@ -128,15 +130,30 @@ h2 {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.reservation-details {
+
+.reservation__table {
+  width: 100%;
   padding: 10px;
-  background-color: #f9f9f9;
-  text-align: left;
+  border-top: 3px solid #2B2B2B;
+  border-bottom: 3px solid #2B2B2B;
+}
+
+
+.reservation-details {
+  display: table-row; /* Ensures it behaves like a row */
+  width: 100%;
+  padding: 10px; /* Optional for spacing */
+  box-sizing: border-box; /* Ensures padding does not affect width */
+}
+
+/* Optional styling to remove any gap */
+.reservation__table td {
+  padding: 0;
 }
 
 
 .admin-dashboard__arrow{
-  margin-right: 30px;
+  /* margin-right: 30px; */
   border: none;
   background-color: inherit;
   cursor: pointer
@@ -270,9 +287,10 @@ h2 {
 }
 
 .admin-dashboard__table-container_reservations{
-  max-height: 350px; /* Set the height you want for the table body */
+  max-height: 280px; /* Set the height you want for the table body */
   overflow-y: auto;  /* Enable vertical scrolling */
 }
+
 
 /* admin-dashboard__table-container_reservations */
 

@@ -17,38 +17,38 @@ const getNotionData = (databaseId, apiToken) => {
       },
     };
 
-    console.log("Connecting to Notion API...");
-    console.log("Request options:", options);
+    // console.log("Connecting to Notion API...");
+    // console.log("Request options:", options);
 
     const req = https.request(options, (res) => {
       let responseBody = '';
 
-      console.log(`Status Code: ${res.statusCode}`);
-      console.log(`Response Headers: ${JSON.stringify(res.headers, null, 2)}`);
+      // console.log(`Status Code: ${res.statusCode}`);
+      // console.log(`Response Headers: ${JSON.stringify(res.headers, null, 2)}`);
 
       // Gather data as it comes in
       res.on('data', (chunk) => {
-        console.log("Receiving data chunk...");
+        // console.log("Receiving data chunk...");
         responseBody += chunk;
       });
 
       // On end, parse the response and resolve the promise
       res.on('end', () => {
-        console.log("Full response received.");
-        console.log("Raw response body:", responseBody); // Log raw response body to see what was received
+        // console.log("Full response received.");
+        // console.log("Raw response body:", responseBody); // Log raw response body to see what was received
 
         if (res.statusCode === 200) {
           try {
             const responseData = JSON.parse(responseBody);
-            console.log("Parsed JSON response:", JSON.stringify(responseData, null, 2));
+            // console.log("Parsed JSON response:", JSON.stringify(responseData, null, 2));
             resolve(responseData);
           } catch (error) {
             console.error("Failed to parse JSON response:", error.message);
             reject(new Error('Failed to parse response from Notion API'));
           }
         } else {
-          console.error(`Error from Notion API: ${res.statusCode} - ${res.statusMessage}`);
-          console.error("Response Body:", responseBody); // Log the full response body to see the error details
+          // console.error(`Error from Notion API: ${res.statusCode} - ${res.statusMessage}`);
+          // console.error("Response Body:", responseBody); // Log the full response body to see the error details
           reject(new Error(`Failed to fetch data from Notion. Status: ${res.statusCode}, Message: ${res.statusMessage}, Body: ${responseBody}`));
         }
       });

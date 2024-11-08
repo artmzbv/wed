@@ -18,71 +18,73 @@
     }
   };
 
-// Controller function to get reservations with additional parameters
-const getReservations = async (req, res) => {
-  const { date, time, duration, firstName, lastName, email, phone } = req.query;
+  // Controller function to get reservations with additional parameters
+  const getReservations = async (req, res) => {
+    const { date, time, duration, firstName, lastName, email, phone, willComeWithPets } = req.query;
 
-  console.log("Received query params - Date:", date, "Time:", time, "Duration:", duration, "First Name:", firstName, "Last Name:", lastName);
+    console.log("Received query params - Date:", date, "Time:", time, "Duration:", duration, "First Name:", firstName, "Last Name:", lastName, "Will Come With Pets:", willComeWithPets);
 
-  try {
-    if (!date) {
-      return res.status(400).json({ error: 'Date is required' });
+    try {
+      if (!date) {
+        return res.status(400).json({ error: 'Date is required' });
+      }
+
+      // Fetch reservations based on provided parameters
+      const reservations = await reservation.find({
+        date, // Treat date as a plain string
+        ...(time && { time }), // Add 'time' condition only if provided
+        ...(duration && { duration }), // Add 'duration' condition only if provided
+        ...(firstName && { firstName }),
+        ...(lastName && { lastName }),
+        ...(email && { email }),
+        ...(phone && { phone }),
+        ...(willComeWithPets && { willComeWithPets }),
+      });
+
+      console.log('Reservations found:', reservations);
+      res.status(200).json(reservations);
+    } catch (error) {
+      console.error('Error fetching reservations:', error.message);
+      res.status(500).json({ error: error.message });
     }
+  };
 
-    // Fetch reservations based on provided parameters
-    const reservations = await reservation.find({
-      date, // Treat date as a plain string
-      ...(time && { time }), // Add 'time' condition only if provided
-      ...(duration && { duration }), // Add 'duration' condition only if provided
-      ...(firstName && { firstName }),
-      ...(lastName && { lastName }),
-      ...(email && { email }),
-      ...(phone && { phone }),
-    });
+  // Controller function to create a new reservation and add it to Google Calendar
+  const createReservation = async (req, res) => {
+    try {
+      const { date, time, duration, firstName, lastName, phone, email, willComeWithPets, finalPrice } = req.body;
 
-    console.log('Reservations found:', reservations);
-    res.status(200).json(reservations);
-  } catch (error) {
-    console.error('Error fetching reservations:', error.message);
-    res.status(500).json({ error: error.message });
-  }
-};
+      // Check if there is a reservation with the same date and time
+      const existingReservation = await reservation.findOne({ date, time });
 
-// Controller function to create a new reservation and add it to Google Calendar
-const createReservation = async (req, res) => {
-  try {
-    const { date, time, duration, firstName, lastName, phone, email, finalPrice } = req.body;
+      if (existingReservation) {
+        return res.status(400).json({ message: 'A reservation already exists for this time and date.' });
+      }
 
-    // Check if there is a reservation with the same date and time
-    const existingReservation = await reservation.findOne({ date, time });
+      // Create a new reservation if no conflict
+      const newReservation = new reservation({
+        date,
+        time,
+        duration,
+        firstName,
+        lastName,
+        phone,
+        email,
+        willComeWithPets, // Add willComeWithPets field here
+        finalPrice,
+      });
 
-    if (existingReservation) {
-      return res.status(400).json({ message: 'A reservation already exists for this time and date.' });
+      await newReservation.save();
+
+      return res.status(201).json({
+        message: 'Reservation created successfully!',
+        reservation: newReservation,
+      });
+    } catch (error) {
+      console.error('Error creating reservation:', error);
+      return res.status(500).json({ message: 'Failed to create reservation', error: error.message });
     }
-
-    // Create a new reservation if no conflict
-    const newReservation = new reservation({
-      date,
-      time,
-      duration,
-      firstName,
-      lastName,
-      phone,
-      email,
-      finalPrice,
-    });
-
-    await newReservation.save();
-
-    return res.status(201).json({
-      message: 'Reservation created successfully!',
-      reservation: newReservation,
-    });
-  } catch (error) {
-    console.error('Error creating reservation:', error);
-    return res.status(500).json({ message: 'Failed to create reservation', error: error.message });
-  }
-};
+  };
 
 const checkReservationAvailability = async (req, res) => {
   const { date, time, duration } = req.body;

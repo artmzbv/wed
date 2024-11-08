@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { URL } from '../../utils/constants/constants';
 import { formatTime, transactionTimer } from '../../utils/constants/constants';
 import './TimeBookingVerification.css';
 
@@ -19,6 +20,7 @@ const TimeBookingVerification = ({
   email,
   setEmail,
   setWillComeWithPets,
+  willComeWithPets,
   handleBackStep,
   activeStep,
   setActiveStep,
@@ -31,19 +33,26 @@ const TimeBookingVerification = ({
   const [paymentSuccess, setPaymentSuccess] = useState(''); // State to track payment success message
   const navigate = useNavigate(); // Initialize useNavigate
 
+  console.log(willComeWithPets)
   const originalPrice = (() => {
+    let basePrice;
     switch (selectedDuration) {
       case 15:
-        return 30; // 30 pounds for 15 minutes
+        basePrice = 30;
+        break;
       case 30:
-        return 40; // 40 pounds for 30 minutes
+        basePrice = 40;
+        break;
       case 45:
-        return 60; // 60 pounds for 45 minutes
+        basePrice = 60;
+        break;
       case 60:
-        return 75; // 75 pounds for 60 minutes
+        basePrice = 75;
+        break;
       default:
-        return 0; // Fallback in case no duration is selected
+        basePrice = 0;
     }
+    return basePrice + (willComeWithPets === "Yes" ? 10 : 0); // Add £10 if pets are coming
   })();
 
   const finalPrice = Math.max(0, originalPrice - discount);
@@ -60,7 +69,7 @@ const TimeBookingVerification = ({
     }
 
     try {
-      const response = await fetch('https://api.self-made-portraits.com/api/coupons/apply', {
+      const response = await fetch(`${URL}/api/coupons/apply`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +115,7 @@ const TimeBookingVerification = ({
   // Function to handle "Confirm Payment" when finalPrice is 0
   const handleConfirmPayment = async () => {
     try {
-      const response = await fetch('https://api.self-made-portraits.com/api/coupons/delete', {
+      const response = await fetch(`${URL}/api/coupons/delete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,6 +148,7 @@ const TimeBookingVerification = ({
         phone,
         email,
         finalPrice,
+        willComeWithPets: willComeWithPets, 
       },
     });
   };
@@ -164,6 +174,7 @@ const TimeBookingVerification = ({
           <strong>Last Name:</strong> {lastName} <br />
           <strong>Phone:</strong> {phone} <br />
           <strong>Email:</strong> {email} <br />
+          <strong>With Pets:</strong> {willComeWithPets} <br />
           <strong>Total Price:</strong> £{finalPrice}
         </p>
 

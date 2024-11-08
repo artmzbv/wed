@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
+import { URL } from '../../utils/constants/constants';
 import './AdminRegister.css'; // Import the CSS file
 
 
@@ -14,7 +15,7 @@ const AdminRegister = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('https://api.self-made-portraits.com/admin', {
+      const response = await fetch(`${URL}/admin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

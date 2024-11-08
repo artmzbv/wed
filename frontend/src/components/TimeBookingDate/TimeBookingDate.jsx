@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
+import { URL } from '../../utils/constants/constants';
 import 'react-calendar/dist/Calendar.css';
 import './TimeBookingDate.css';
 import { generateTimeSlots, isOverlapping,  isSlotBooked,  formatSelectedDate, durations, checkEndTimeBoundary } from '../../utils/calendar';
@@ -32,7 +33,7 @@ const TimeBookingDate = ({
 
   const fetchAllReservations = async () => {
     try {
-      const response = await fetch(`https://api.self-made-portraits.com/api/reservations/all`);
+      const response = await fetch(`${URL}/api/reservations/all`);
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }

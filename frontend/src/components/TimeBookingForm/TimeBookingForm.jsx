@@ -152,7 +152,7 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
 
         {/* Will you come with pets? */}
         <div className='time__form-group'>
-          <label className='time__form-field'>Will you come with pets?&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willComeWithPets')}</div></label>
+          <label className='time__form-field'>Will you come with pets? (+ 10 £)&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willComeWithPets')}</div></label>
           <span className='time__form-field-pets-mobile'>
           {renderError('willComeWithPets')}
         </span>

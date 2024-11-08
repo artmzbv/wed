@@ -17,7 +17,7 @@
     const slots = [];
     let current = new Date(`1970-01-01T${startTime}`);
     const endTime = new Date('1970-01-01T20:00:00');
-    for (let i = 0; i < duration; i += 15) {
+    for (let i = 0; i < duration + 15; i += 15) {
       if (current > endTime) break;  // Stop if time exceeds 20:00
       slots.push(current.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
       current.setMinutes(current.getMinutes() + 15);
@@ -31,7 +31,7 @@
       const currentDate = selectedDate?.toISOString().split('T')[0];
       if (reservationDate !== currentDate) return false;
 
-      const selectedSlots = getOverlappingSlots(time, duration);
+      const selectedSlots = getOverlappingSlots(time, duration + 15);
       const reservedSlots = getOverlappingSlots(res.time, res.duration);
       return selectedSlots.some((slot) => reservedSlots.includes(slot));
     });

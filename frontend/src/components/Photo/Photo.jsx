@@ -4,6 +4,7 @@ import Button from '../common/Button/Button';
 import smile from '../../images/about/smile.png';
 import click from '../../images/about/click.png';
 import repeat from '../../images/about/repeat.png';
+import { URL } from '../../utils/constants/constants';
 import PhotosCarousel from '../PhotosCarusel/PhotosCarusel';
 import Privacy from '../Privacy/Privacy';
 
@@ -15,10 +16,10 @@ const Photo = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await fetch('https://api.self-made-portraits.com/photos', {
+        const response = await fetch(`${URL}/photos`, {
           method: 'GET',  // Make sure you're using the correct method
           headers: {
-            'Content-Type': 'application/json',  // If necessary, add other headers
+            'Content-Type': 'aplication/json',  // If necessary, add other headers
           },
         });
   

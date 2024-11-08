@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCvcElement, AddressElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { URL } from '../../utils/constants/constants';
 import './PaymentForm.css';
 
 const PaymentForm = () => {
@@ -21,6 +22,7 @@ const PaymentForm = () => {
     lastName, 
     phone, 
     email, 
+    willComeWithPets,
     finalPrice = 0, // Default value if finalPrice is undefined
     isCouponPurchase = false, // Add a flag to indicate if it's a coupon purchase
     isDigital
@@ -33,6 +35,7 @@ const PaymentForm = () => {
   const [loading, setLoading] = useState(false);
   const [shippingDetails, setShippingDetails] = useState(null); // For physical items
 
+  console.log(willComeWithPets)
   // Redirect to homepage if essential state data is missing (i.e., user accessed directly)
   useEffect(() => {
     if (!location.state || (!fromGifts && !fromTime)) {
@@ -90,7 +93,7 @@ const PaymentForm = () => {
             generatedCouponCode = `COUPON-${Math.random().toString(36).substring(7).toUpperCase()}`;
   
             // Check if the generated coupon code exists in the database
-            const response = await fetch('https://api.self-made-portraits.com/api/coupons/check-unique', {
+            const response = await fetch(`${URL}/api/coupons/check-unique`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ code: generatedCouponCode })
@@ -105,7 +108,6 @@ const PaymentForm = () => {
   
         // Ensure the coupon code is unique
         await generateUniqueCouponCode();
-  
         // Log the data to be sent to the server
         console.log('Sending the following data to the server:', {
           code: generatedCouponCode,
@@ -125,7 +127,7 @@ const PaymentForm = () => {
         });
   
         // Send the coupon to the server
-        const response = await fetch('https://api.self-made-portraits.com/api/coupons/create', {
+        const response = await fetch(`${URL}/api/coupons/create`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -203,7 +205,7 @@ const PaymentForm = () => {
         const duration = selectedDuration; // Duration in minutes
   
         // Check if the reservation time is available on the server before proceeding with payment
-        const reservationCheckResponse = await fetch('https://api.self-made-portraits.com/api/reservations/check', {
+        const reservationCheckResponse = await fetch(`${URL}/api/reservations/check`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -231,7 +233,7 @@ const PaymentForm = () => {
   
     // Proceed with payment intent creation
     try {
-      const paymentIntentResponse = await fetch('https://api.self-made-portraits.com/create-payment-intent', {
+      const paymentIntentResponse = await fetch(`${URL}/create-payment-intent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalPrice * 100, currency: 'gbp' }),
@@ -246,15 +248,15 @@ const PaymentForm = () => {
         },
         shipping: !isDigital && shippingDetails
           ? {
-              name: `${firstName} ${lastName}`,
-              address: {
-                line1: shippingDetails.address.line1,
-                city: shippingDetails.address.city,
-                state: shippingDetails.address.state || '',
-                postal_code: shippingDetails.address.postal_code,
-                country: shippingDetails.address.country,
-              },
-            }
+        name: `${firstName} ${lastName}`,
+        address: {
+        line1: shippingDetails.address.line1,
+        city: shippingDetails.address.city,
+        state: shippingDetails.address.state || '',
+        postal_code: shippingDetails.address.postal_code,
+        country: shippingDetails.address.country,
+          },
+        }
           : undefined,
       });
   
@@ -267,7 +269,7 @@ const PaymentForm = () => {
   
         if (!isCouponPurchase) {
           // Create reservation after successful payment (if it's not a coupon purchase)
-          const reservationResponse = await fetch('https://api.self-made-portraits.com/api/reservations', {
+          const reservationResponse = await fetch(`${URL}/api/reservations`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -278,8 +280,9 @@ const PaymentForm = () => {
               duration: selectedDuration,  // Send duration field
               firstName,
               lastName,
-              phone,
               email,
+              phone,
+              willComeWithPets,
               finalPrice: totalPrice,
             }),
           });
@@ -301,11 +304,6 @@ const PaymentForm = () => {
     }
   };
   
-  
-  
-  
-  
-
   const generateAggregatedSelections = () => {
     return userSelections.reduce((acc, item) => {
       const existing = acc.find(selection => selection.duration === item.duration);
@@ -354,6 +352,7 @@ const PaymentForm = () => {
                 <p><strong>Date:</strong> {selectedDate?.toLocaleDateString()}</p>
                 <p><strong>Time:</strong> {selectedTime}</p>
                 <p><strong>Duration:</strong> {selectedDuration} minutes</p>
+                <p><strong>With Pets:</strong> {willComeWithPets}</p>
                 <p><strong>First Name:</strong> {firstName}</p>
                 <p><strong>Last Name:</strong> {lastName}</p>
                 <p><strong>Phone:</strong> {phone}</p>

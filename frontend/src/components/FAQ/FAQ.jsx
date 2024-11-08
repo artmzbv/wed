@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { URL } from '../../utils/constants/constants';
 import './FAQ.css'; // Import the CSS file for styling
 
 const FAQ = () => {
@@ -28,7 +29,7 @@ const FAQ = () => {
     useEffect(() => {
       const fetchFAQs = async () => {
         try {
-          const response = await fetch('https://api.self-made-portraits.com/faqs'); // Update the URL to match your backend endpoint
+          const response = await fetch(`${URL}/faqs`); // Update the URL to match your backend endpoint
           if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
           }

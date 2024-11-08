@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import './AdminDashboard.css';
+import { URL } from '../../utils/constants/constants';
 import {formatSelectedDate, generateTimeSlots, durations, isOverlapping, checkEndTimeBoundary } from '../../utils/calendar';
 // import moment from './moment'
 
@@ -13,15 +14,16 @@ const AdminDashboard = ({ token }) => {
   const [selectedDate, setSelectedDate] = useState(''); // Calendar selected date
   const [activeTab, setActiveTab] = useState('bookings'); // State to track active tab
   const [expandedRows, setExpandedRows] = useState([]); // Track which rows are expanded
+  
 
     // Helper function to get today's date in YYYY-MM-DD format
-    const getCurrentDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0'); // Ensure two digits for month
-      const day = String(today.getDate()).padStart(2, '0'); // Ensure two digits for day
-      return `${year}-${month}-${day}`;
-    };
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Ensure two digits for month
+    const day = String(today.getDate()).padStart(2, '0'); // Ensure two digits for day
+    return `${year}-${month}-${day}`;
+  };
 
   // New states for creating a reservation
   const [newDate, setNewDate] = useState(getCurrentDate())
@@ -31,6 +33,7 @@ const AdminDashboard = ({ token }) => {
   const [newLastName, setNewLastName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newPhone, setNewPhone] = useState('');
+  const [newWillComeWithPets, setNewWillComeWithPets] = useState(false); // New state for pets option
   const [finalPrice, setFinalPrice] = useState(0);
 
   const formatDate = (date) => {
@@ -57,7 +60,7 @@ const AdminDashboard = ({ token }) => {
     if (activeTab === 'bookings') {
       const fetchReservations = async () => {
         try {
-          const response = await fetch('https://api.self-made-portraits.com/api/reservations/all', {
+          const response = await fetch(`${URL}/api/reservations/all`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (!response.ok) {
@@ -81,7 +84,7 @@ const AdminDashboard = ({ token }) => {
     if (activeTab === 'coupons') {
       const fetchCoupons = async () => {
         try {
-          const response = await fetch('https://api.self-made-portraits.com/api/reservations/api/coupons/all', {
+          const response = await fetch(`${URL}/api/coupons/all`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (!response.ok) {
@@ -117,19 +120,13 @@ const AdminDashboard = ({ token }) => {
   }, [selectedDate, reservations, activeTab]);
 
   const handleCreateReservation = async () => {
-      // Check if the reservation exceeds the time boundary
-  // if (!checkEndTimeBoundary(newTime, newDuration)) {
-  //   window.alert('The selected time exceeds the allowed end time of 20:00.');
-  //   return; // Stop the reservation creation if it exceeds the boundary
-  // }
-    
     if (isOverlapping(newTime, newDuration, new Date(newDate), reservations)) {
       window.alert('Selected time slot overlaps with an existing reservation. Please choose a different time.');
       return;
     }
 
     try {
-      const response = await fetch('https://api.self-made-portraits.com/api//api/reservations', {
+      const response = await fetch(`${URL}/api/reservations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -144,11 +141,11 @@ const AdminDashboard = ({ token }) => {
           email: newEmail,
           phone: newPhone,
           finalPrice: finalPrice > 0 ? finalPrice : 1, // Ensure finalPrice is greater than 0
+          willComeWithPets: newWillComeWithPets, // Include pets option
         }),
       });
   
       const data = await response.json();
-  
       if (response.ok) {
         // Display success alert
         window.alert('Reservation created successfully!');
@@ -162,9 +159,7 @@ const AdminDashboard = ({ token }) => {
         setNewEmail('');
         setNewPhone('');
         setFinalPrice(0);
-        // setReservations([...reservations, data.newReservation]);
-        // Optionally, set a success message in state if you want to display it in the UI
-        // setSuccessMessage('Reservation created successfully!');
+        setNewWillComeWithPets(false); // Reset pets option
       } else {
         throw new Error(`Error: ${data.message}`);
       }
@@ -181,7 +176,7 @@ const AdminDashboard = ({ token }) => {
     }
   
     try {
-      const response = await fetch(`https://api.self-made-portraits.com/api/reservations/${id}`, {
+      const response = await fetch(`${URL}/api/reservations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -205,7 +200,7 @@ const AdminDashboard = ({ token }) => {
     }
   
     try {
-      const response = await fetch('https://api.self-made-portraits.com/api/coupons/delete', {
+      const response = await fetch(`${URL}/api/coupons/delete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -268,64 +263,70 @@ const AdminDashboard = ({ token }) => {
               <>
               <div className="admin-dashboard__table-container admin-dashboard__table-container_reservations">
               <table className="admin-dashboard__table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Duration</th>
-                    <th>Price</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredReservations.length > 0 ? (
-                    filteredReservations.sort((a, b) => {
-                      const dateA = new Date(`${a.date}T${a.time}`);
-                      const dateB = new Date(`${b.date}T${b.time}`);
-                      return dateA - dateB;
-                    }).map((reservation) => (
-                      <React.Fragment key={reservation._id}>
-                      <tr>
-                        <td>{new Date(reservation.date).toLocaleDateString()}</td>
-                        <td>{reservation.time}</td>
-                        <td>{reservation.duration} mins</td>
-                        <td>£{reservation.finalPrice}</td>
-                        <td>
-                          <button
-                            className="admin-dashboard__arrow"
-                            onClick={() => toggleRow(reservation._id)}
-                          >
-                            {expandedRows.includes(reservation._id) ? '▲' : '▼'}
-                          </button>
-                          <button
-                            className="admin-dashboard__button"
-                            onClick={() => handleDeleteReservation(reservation._id)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                      {expandedRows.includes(reservation._id) && (
-                        <tr>
-                          <td colSpan="5">
-                            <div className="reservation-details">
-                              <p><strong>First Name:</strong> {reservation.firstName}</p>
-                              <p><strong>Last Name:</strong> {reservation.lastName}</p>
-                              <p><strong>Email:</strong> {reservation.email}</p>
-                              <p><strong>Phone:</strong> {reservation.phone}</p>
-                            </div>
-                          </td>
-                        </tr>
-                      )}
-                    </React.Fragment>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="5">No reservations found for the selected date.</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Duration</th>
+      <th>Price</th>
+      <th>With Pets</th>
+      <th>Details</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredReservations.length > 0 ? (
+      filteredReservations.sort((a, b) => {
+        const dateA = new Date(`${a.date}T${a.time}`);
+        const dateB = new Date(`${b.date}T${b.time}`);
+        return dateA - dateB;
+      }).map((reservation) => (
+        <React.Fragment key={reservation._id}>
+          <tr>
+            <td>{new Date(reservation.date).toLocaleDateString()}</td>
+            <td>{reservation.time}</td>
+            <td>{reservation.duration} mins</td>
+            <td>£{reservation.finalPrice}</td>
+            <td>{reservation.willComeWithPets}</td>
+            <td>
+              <button
+                className="admin-dashboard__arrow"
+                onClick={() => toggleRow(reservation._id)}
+              >
+                {expandedRows.includes(reservation._id) ? '▲' : '▼'}
+              </button>
+            </td>
+            <td>
+              <button
+                className="admin-dashboard__button"
+                onClick={() => handleDeleteReservation(reservation._id)}
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          {expandedRows.includes(reservation._id) && (
+            <tr>
+              <td className='reservation__table' colSpan="7">
+                <div className="reservation-details">
+                  <p><strong>First Name:</strong> {reservation.firstName}</p>
+                  <p><strong>Last Name:</strong> {reservation.lastName}</p>
+                  <p><strong>Email:</strong> {reservation.email}</p>
+                  <p><strong>Phone:</strong> {reservation.phone}</p>
+                </div>
+              </td>
+            </tr>
+          )}
+        </React.Fragment>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="7">No reservations found for the selected date.</td>
+      </tr>
+    )}
+  </tbody>
+</table>
+
                   {/* Add Reservation Form */}
             </div>
               </>
@@ -415,6 +416,14 @@ const AdminDashboard = ({ token }) => {
                   onChange={(e) => setNewPhone(e.target.value)}
                   required
                 />
+              </label>
+              <label className="admin-dashboard__new-reservation-label">
+                  Will Come with Pets:
+                  <input
+                    type="checkbox"
+                    checked={newWillComeWithPets}
+                    onChange={(e) => setNewWillComeWithPets(e.target.checked)}
+                  />
               </label>
               <button className="admin-dashboard__create-button" onClick={handleCreateReservation}>
                 Create Reservation

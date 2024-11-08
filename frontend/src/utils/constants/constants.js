@@ -1,3 +1,7 @@
+export const URL = 'https://api.self-made-portraits.com'
+
+// export const URL = 'http://localhost:3000'
+
 // constants.js (in utils folder)
 export const formatTime = (time) => {
     const minutes = Math.floor(time / 60);

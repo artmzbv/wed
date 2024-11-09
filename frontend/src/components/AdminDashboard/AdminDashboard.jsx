@@ -418,12 +418,27 @@ const AdminDashboard = ({ token }) => {
                 />
               </label>
               <label className="admin-dashboard__new-reservation-label">
-                  Will Come with Pets:
-                  <input
-                    type="checkbox"
-                    checked={newWillComeWithPets}
-                    onChange={(e) => setNewWillComeWithPets(e.target.checked)}
-                  />
+                Will Come with Pets:
+                <div className="admin-dashboard__radio-group">
+                  <label className="admin-dashboard__radio-group-label">
+                    <input
+                      type="radio"
+                      value="Yes"
+                      checked={newWillComeWithPets === 'Yes'}
+                      onChange={() => setNewWillComeWithPets('Yes')}
+                    />
+                    Yes
+                  </label>
+                  <label className="admin-dashboard__radio-group-label">
+                    <input
+                      type="radio"
+                      value="No"
+                      checked={newWillComeWithPets === 'No'}
+                      onChange={() => setNewWillComeWithPets('No')}
+                    />
+                    No
+                  </label>
+                </div>
               </label>
               <button className="admin-dashboard__create-button" onClick={handleCreateReservation}>
                 Create Reservation

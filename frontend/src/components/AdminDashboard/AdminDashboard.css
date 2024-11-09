@@ -292,7 +292,19 @@ h2 {
   overflow-y: auto;  /* Enable vertical scrolling */
 }
 
+.admin-dashboard__radio-group {
+  display: flex;
+  gap: 10px;
+}
 
+.admin-dashboard__radio-group-label{
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-dashboard__radio-group-label input{
+  cursor: pointer;
+}
 /* admin-dashboard__table-container_reservations */
 
 @media screen and (max-width: 1023px) {

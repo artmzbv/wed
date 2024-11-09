@@ -101,7 +101,7 @@ const checkReservationAvailability = async (req, res) => {
     }
 
     // Convert the provided time and duration into start and end times
-    const requestedStartTime = new Date(`${date}T${time}:00.000Z`); // Assuming time is in "HH:mm" format
+    const requestedStartTime = new Date(`${date}T${time}:00`); // Assuming time is in "HH:mm" format
     const requestedEndTime = new Date(requestedStartTime.getTime() + duration * 60000); // duration in minutes
 
     console.log('Requested start time:', requestedStartTime, 'Requested end time:', requestedEndTime);

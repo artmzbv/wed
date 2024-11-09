@@ -1,7 +1,8 @@
   const reservation = require('../models/reservation');
   const { google } = require('googleapis');
   const moment = require('moment');
-  const { oauth2Client } = require('./auth');
+  const { oauth2Client } = require('./sheets');
+  const { writeReservationToGoogleSheets } = require('./sheets');
 
   // Setup Google Calendar API client
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
@@ -75,7 +76,9 @@
       });
 
       await newReservation.save();
-
+      
+      // Write to Google Sheets
+      await writeReservationToGoogleSheets(newReservation);
       return res.status(201).json({
         message: 'Reservation created successfully!',
         reservation: newReservation,

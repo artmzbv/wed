@@ -1,4 +1,5 @@
 const Coupon = require('../models/coupon');
+const { writeCouponToGoogleSheets } = require('./sheets');
 
 exports.getAllCoupons = async (req, res) => {
     try {
@@ -87,6 +88,8 @@ exports.createCoupon = async (req, res) => {
 
     // Save the new coupon to the database
     await newCoupon.save();
+
+    await writeCouponToGoogleSheets(newCoupon);
 
     // Send success response with status code 201 (Created)
     return res.status(201).json({

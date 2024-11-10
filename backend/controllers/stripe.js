@@ -15,8 +15,12 @@ const createPaymentIntent = async (req, res) => {
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
     });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    } catch (error) {
+    if (error.type === 'StripeInvalidRequestError') {
+      res.status(400).json({ error: 'Invalid payment details.' });
+    } else {
+      res.status(500).json({ error: error.message });
+    }
   }
 };
 

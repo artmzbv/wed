@@ -20,7 +20,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { usePageTracking } from "../../utils/tracking";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
 
-const stripePromise = loadStripe('pk_test_51PDMRwBywd3FX45Qm3j2qWBrf4c19Y9QWHev4gTvvWlpbJBAC9SN3TB4O62jqey4eK0YebxShcxptqo1LtEl9uJe00nUVpOy0Z');
+const stripePromise = loadStripe('pk_test_51QFvDQGSMfY1zPhDCHBX0QpMZosKduI2EDkwV3SId4qUKqwiEEpB15TnbjyU0zqK987IlEFTaAF74ft3m0UoTXt000chVUytMn');
 
 function App() {
   const [activeSection, setActiveSection] = useState("1");

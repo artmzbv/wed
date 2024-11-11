@@ -4,6 +4,7 @@
   const { oauth2Client } = require('./sheets');
   const { writeReservationToGoogleSheets } = require('./sheets');
 
+  
   // Setup Google Calendar API client
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 

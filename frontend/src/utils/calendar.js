@@ -84,6 +84,15 @@
       { label: '15 mins', value: 15 },
     ];
 
+    export const adminDurations = [
+      { label: '15 mins', value: 15 },
+      { label: '30 mins', value: 30 },
+      { label: '45 mins', value: 45 },
+      { label: '60 mins', value: 60 },
+      { label: 'entire day', value: 660 },      
+    ];
+
+
     export const checkEndTimeBoundary = (startTime, duration) => {
       // Define the end of the allowed time (20:00) in local time
       const dayEndTime = new Date();

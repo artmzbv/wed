@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import './AdminDashboard.css';
 import { URL } from '../../utils/constants/constants';
-import {formatSelectedDate, generateTimeSlots, durations, isOverlapping, checkEndTimeBoundary } from '../../utils/calendar';
+import {formatSelectedDate, generateTimeSlots, adminDurations, isOverlapping, checkEndTimeBoundary } from '../../utils/calendar';
 // import moment from './moment'
 
 const AdminDashboard = ({ token }) => {
@@ -14,7 +14,6 @@ const AdminDashboard = ({ token }) => {
   const [selectedDate, setSelectedDate] = useState(''); // Calendar selected date
   const [activeTab, setActiveTab] = useState('bookings'); // State to track active tab
   const [expandedRows, setExpandedRows] = useState([]); // Track which rows are expanded
-  
 
     // Helper function to get today's date in YYYY-MM-DD format
   const getCurrentDate = () => {
@@ -136,12 +135,12 @@ const AdminDashboard = ({ token }) => {
           date: newDate,
           time: newTime,
           duration: parseInt(newDuration),
-          firstName: newFirstName,
-          lastName: newLastName,
-          email: newEmail,
-          phone: newPhone,
+          firstName: newFirstName || " ",
+          lastName: newLastName || " ",
+          email: newEmail || " ",
+          phone: newPhone || " ",
           finalPrice: finalPrice > 0 ? finalPrice : 1, // Ensure finalPrice is greater than 0
-          willComeWithPets: newWillComeWithPets, // Include pets option
+          willComeWithPets: newWillComeWithPets || " ", // Include pets option
         }),
       });
   
@@ -149,7 +148,6 @@ const AdminDashboard = ({ token }) => {
       if (response.ok) {
         // Display success alert
         window.alert('Reservation created successfully!');
-  
         // Clear the form inputs by resetting state
         setNewDate('');
         setNewTime('');
@@ -255,191 +253,194 @@ const AdminDashboard = ({ token }) => {
               />
             </div>
             </div>
-            {/* </div> */}
-
             {isLoading ? (
               <p>Loading reservations...</p>
             ) : (
               <>
               <div className="admin-dashboard__table-container admin-dashboard__table-container_reservations">
               <table className="admin-dashboard__table">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Duration</th>
-      <th>Price</th>
-      <th>With Pets</th>
-      <th>Details</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    {filteredReservations.length > 0 ? (
-      filteredReservations.sort((a, b) => {
-        const dateA = new Date(`${a.date}T${a.time}`);
-        const dateB = new Date(`${b.date}T${b.time}`);
-        return dateA - dateB;
-      }).map((reservation) => (
-        <React.Fragment key={reservation._id}>
-          <tr>
-            <td>{new Date(reservation.date).toLocaleDateString()}</td>
-            <td>{reservation.time}</td>
-            <td>{reservation.duration} mins</td>
-            <td>£{reservation.finalPrice}</td>
-            <td>{reservation.willComeWithPets}</td>
-            <td>
-              <button
-                className="admin-dashboard__arrow"
-                onClick={() => toggleRow(reservation._id)}
-              >
-                {expandedRows.includes(reservation._id) ? '▲' : '▼'}
-              </button>
-            </td>
-            <td>
-              <button
-                className="admin-dashboard__button"
-                onClick={() => handleDeleteReservation(reservation._id)}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-          {expandedRows.includes(reservation._id) && (
-            <tr>
-              <td className='reservation__table' colSpan="7">
-                <div className="reservation-details">
-                  <p><strong>First Name:</strong> {reservation.firstName}</p>
-                  <p><strong>Last Name:</strong> {reservation.lastName}</p>
-                  <p><strong>Email:</strong> {reservation.email}</p>
-                  <p><strong>Phone:</strong> {reservation.phone}</p>
-                </div>
-              </td>
-            </tr>
-          )}
-        </React.Fragment>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="7">No reservations found for the selected date.</td>
-      </tr>
-    )}
-  </tbody>
-</table>
-
-                  {/* Add Reservation Form */}
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>With Pets</th>
+                    <th>Details</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredReservations.length > 0 ? (
+                    filteredReservations.sort((a, b) => {
+                      const dateA = new Date(`${a.date}T${a.time}`);
+                      const dateB = new Date(`${b.date}T${b.time}`);
+                      return dateA - dateB;
+                    }).map((reservation) => (
+                      <React.Fragment key={reservation._id}>
+                        <tr>
+                          <td>{new Date(reservation.date).toLocaleDateString()}</td>
+                          <td>{reservation.time}</td>
+                          <td>
+                            {reservation.duration > 60 
+                              ? `${(reservation.duration / 60).toFixed(0)} hours` 
+                              : `${reservation.duration} mins`
+                            }
+                          </td>
+                          <td>£{reservation.finalPrice}</td>
+                          <td>{reservation.willComeWithPets}</td>
+                          <td>
+                            <button
+                              className="admin-dashboard__arrow"
+                              onClick={() => toggleRow(reservation._id)}
+                            >
+                              {expandedRows.includes(reservation._id) ? '▲' : '▼'}
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="admin-dashboard__button"
+                              onClick={() => handleDeleteReservation(reservation._id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                        {expandedRows.includes(reservation._id) && (
+                          <tr>
+                            <td className='reservation__table' colSpan="7">
+                              <div className="reservation-details">
+                                <p><strong>First Name:</strong> {reservation.firstName}</p>
+                                <p><strong>Last Name:</strong> {reservation.lastName}</p>
+                                <p><strong>Email:</strong> {reservation.email}</p>
+                                <p><strong>Phone:</strong> {reservation.phone}</p>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="7">No reservations found for the selected date.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
               </>
             )}
           </div>
           <div className="admin-dashboard__new-reservation">
-              <h3 className="admin-dashboard__title">Add New Reservation</h3>
-              <label className="admin-dashboard__new-reservation-label">
-                Date:
+          <h3 className="admin-dashboard__title">Add New Reservation</h3>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            Date:
+            <input
+              className="admin-dashboard__new-reservation-input"
+              type="date"
+              value={newDate || ""}
+              onChange={(e) => setNewDate(e.target.value || "")}
+              required
+            />
+          </label>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            Time:
+            <select
+              value={newTime || ""}
+              onChange={(e) => setNewTime(e.target.value || "")}
+              className="admin-dashboard__new-reservation-input" 
+              required
+            >
+              <option className="admin-dashboard__option-time" value="">Select Time</option>
+              {generateTimeSlots().map((slot, index) => (
+                <option key={index} value={slot}>
+                  {slot}
+                </option>
+              ))}
+            </select>
+          </label>  
+          <label className="admin-dashboard__new-reservation-label">
+            Duration (minutes):
+            <select
+              value={newDuration || ""}
+              onChange={(e) => setNewDuration(e.target.value || "")}
+              className="admin-dashboard__new-reservation-input" 
+              required
+            >
+              <option value="" className="admin-dashboard__option-time">Select Duration</option>
+              {adminDurations.map((duration) => (
+                <option key={duration.value} value={duration.value}>
+                  {duration.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            First Name:
+            <input
+              type="text"
+              className="admin-dashboard__new-reservation-input"
+              value={newFirstName || ""}
+              onChange={(e) => setNewFirstName(e.target.value || "")}
+            />
+          </label>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            Last Name:
+            <input
+              type="text"
+              className="admin-dashboard__new-reservation-input"
+              value={newLastName || ""}
+              onChange={(e) => setNewLastName(e.target.value || "")}
+            />
+          </label>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            Email:
+            <input
+              type="email"
+              className="admin-dashboard__new-reservation-input"
+              value={newEmail || ""}
+              onChange={(e) => setNewEmail(e.target.value || "")}
+            />
+          </label>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            Phone:
+            <input
+              type="text"
+              className="admin-dashboard__new-reservation-input"
+              value={newPhone || ""}
+              onChange={(e) => setNewPhone(e.target.value || "")}
+            />
+          </label>
+          
+          <label className="admin-dashboard__new-reservation-label">
+            Will Come with Pets:
+            <div className="admin-dashboard__radio-group">
+              <label className="admin-dashboard__radio-group-label">
                 <input
-                className="admin-dashboard__new-reservation-input"
-                  type="date"
-                  value={newDate}
-                  onChange={(e) => setNewDate(e.target.value)}
-                  required
+                  type="radio"
+                  value="Yes"
+                  checked={newWillComeWithPets === 'Yes'}
+                  onChange={() => setNewWillComeWithPets('Yes')}
                 />
+                Yes
               </label>
-              <label className="admin-dashboard__new-reservation-label">
-                Time:
-                <select
-                  value={newTime}
-                  onChange={(e) => setNewTime(e.target.value)}
-                  className=" admin-dashboard__new-reservation-input" 
-                  required
-                >
-                  <option className="admin-dashboard__option-time" value="">Select Time</option>
-                  {generateTimeSlots().map((slot, index) => (
-                    <option key={index} value={slot}>
-                      {slot}
-                    </option>
-                  ))}
-                </select>
-
-              </label>
-              <label className="admin-dashboard__new-reservation-label">
-              Duration (minutes):
-              <select
-                value={newDuration}
-                onChange={(e) => setNewDuration(e.target.value)}
-                className=" admin-dashboard__new-reservation-input" 
-                required
-              >
-                <option value="" className="admin-dashboard__option-time">Select Duration</option>
-                {durations.map((duration) => (
-                  <option key={duration.value} value={duration.value}>
-                    {duration.label}
-                  </option>
-                ))}
-              </select>
-              </label>
-              <label className="admin-dashboard__new-reservation-label">
-                First Name:
+              <label className="admin-dashboard__radio-group-label">
                 <input
-                  type="text"
-                  className="admin-dashboard__new-reservation-input"
-                  value={newFirstName}
-                  onChange={(e) => setNewFirstName(e.target.value)}
-                  required
+                  type="radio"
+                  value="No"
+                  checked={newWillComeWithPets === 'No'}
+                  onChange={() => setNewWillComeWithPets('No')}
                 />
+                No
               </label>
-              <label className="admin-dashboard__new-reservation-label">
-                Last Name:
-                <input
-                  type="text"
-                  className="admin-dashboard__new-reservation-input"
-                  value={newLastName}
-                  onChange={(e) => setNewLastName(e.target.value)}
-                  required
-                />
-              </label>
-              <label className="admin-dashboard__new-reservation-label">
-                Email:
-                <input
-                  type="email"
-                  className="admin-dashboard__new-reservation-input"
-                  value={newEmail}
-                  onChange={(e) => setNewEmail(e.target.value)}
-                  required
-                />
-              </label>
-              <label className="admin-dashboard__new-reservation-label">
-                Phone:
-                <input
-                  type="text"
-                  className="admin-dashboard__new-reservation-input"
-                  value={newPhone}
-                  onChange={(e) => setNewPhone(e.target.value)}
-                  required
-                />
-              </label>
-              <label className="admin-dashboard__new-reservation-label">
-                Will Come with Pets:
-                <div className="admin-dashboard__radio-group">
-                  <label className="admin-dashboard__radio-group-label">
-                    <input
-                      type="radio"
-                      value="Yes"
-                      checked={newWillComeWithPets === 'Yes'}
-                      onChange={() => setNewWillComeWithPets('Yes')}
-                    />
-                    Yes
-                  </label>
-                  <label className="admin-dashboard__radio-group-label">
-                    <input
-                      type="radio"
-                      value="No"
-                      checked={newWillComeWithPets === 'No'}
-                      onChange={() => setNewWillComeWithPets('No')}
-                    />
-                    No
-                  </label>
-                </div>
-              </label>
+            </div>
+          </label>
               <button className="admin-dashboard__create-button" onClick={handleCreateReservation}>
                 Create Reservation
               </button>

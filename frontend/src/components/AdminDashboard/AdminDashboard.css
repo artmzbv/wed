@@ -305,7 +305,6 @@ h2 {
 .admin-dashboard__radio-group-label input{
   cursor: pointer;
 }
-/* admin-dashboard__table-container_reservations */
 
 @media screen and (max-width: 1023px) {
   .admin-dashboard__container{

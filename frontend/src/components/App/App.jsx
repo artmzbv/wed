@@ -30,7 +30,7 @@ function App() {
   
   return (
     <div className="App">
-      <CookieConsent />
+      {/* <CookieConsent />
       <Header activeSection={activeSection} setActiveSection={setActiveSection}/>
       <Routes>
       <Route exact path="/" element={<Main activeSection={activeSection} setActiveSection={setActiveSection} />}/>
@@ -47,7 +47,7 @@ function App() {
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Routes>
-      <Footer/>
+      <Footer/> */}
     </div>
   );
 }

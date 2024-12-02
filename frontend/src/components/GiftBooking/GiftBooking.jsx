@@ -328,7 +328,8 @@ const generateAggregatedSelections = () => {
         <meta property="og:url" content={`https://self-made-portraits.com/`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Self Made Portraits" />
-        <meta property="og:description" content="" />
+        <meta property="og:description" content="Create your own masterpiece in our secure, private studio! Whether it’s a solo fashion shoot, capturing memories with family, friends, or pets, our space allows you to take professional-quality photos without the need for third-party intervention. Perfect for those who want control over their photos from start to finish.
+✨ No photographer? No problem! Just Click & Shoot" />
         <meta property="og:image" content={logo} />
         <link rel="canonical" href="https://self-made-portraits.com/"></link>
         {/* <script type="application/ld+json">

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate, useLocation  } from 'react-router-dom'; // Import useNavigate
 import './GiftBooking.css'; 
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
+import logo from "../../images/logo/logo.png"
 import { formatTime, transactionTimer } from '../../utils/constants/constants';
 
 const GiftBooking = () => {
@@ -318,6 +320,21 @@ const generateAggregatedSelections = () => {
 
 
   return (
+    <>
+      <Helmet>
+        <title>Self Made Portraits</title>
+        <meta name="description" content="Create your own masterpiece in our secure, private studio! Whether it’s a solo fashion shoot, capturing memories with family, friends, or pets, our space allows you to take professional-quality photos without the need for third-party intervention. Perfect for those who want control over their photos from start to finish.
+✨ No photographer? No problem! Just Click & Shoot" />
+        <meta property="og:url" content={`https://self-made-portraits.com/`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Self Made Portraits" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content={logo} />
+        <link rel="canonical" href="https://self-made-portraits.com/"></link>
+        {/* <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script> */}
+      </Helmet>
     <section className='gift-booking' id="gift-booking">
       <h1 className='gift-booking__title'>GIFT BOOKING</h1>
       <BookingNavigation steps={steps} activeStep={activeStep} setActiveStep={setActiveStep} />
@@ -631,6 +648,7 @@ const generateAggregatedSelections = () => {
         </>
       )}
     </section>
+    </>
   );
 };
 

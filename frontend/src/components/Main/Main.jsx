@@ -10,7 +10,7 @@ import Photo from "../Photo/Photo";
 import GiftCards from "../GiftCards/GiftCards";
 import ContactUs from "../ContactUs/ContactUs";
 import Intro from "../Intro/Intro";
-import logo from "../../images/logo/logo_colour.png"
+import logo from "../../images/logo/logo.png"
 import { organizationSchema } from "../../utils/constants/schema";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -60,7 +60,8 @@ export default function Main({ setActiveSection }) {
     <>
       <Helmet>
         <title>Self Made Portraits</title>
-        <meta name="description" content="Self-Made Portraits: Automated, high-quality studio photography for everyone. Effortlessly capture moments with full control—perfect for solo, group, or pet portraits" />
+        <meta name="description" content="Create your own masterpiece in our secure, private studio! Whether it’s a solo fashion shoot, capturing memories with family, friends, or pets, our space allows you to take professional-quality photos without the need for third-party intervention. Perfect for those who want control over their photos from start to finish.
+✨ No photographer? No problem! Just Click & Shoot" />
         <meta property="og:url" content={`https://self-made-portraits.com/`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Self Made Portraits" />

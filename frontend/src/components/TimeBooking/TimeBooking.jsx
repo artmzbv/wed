@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import './TimeBooking.css';
 import TimeBookingDate from '../TimeBookingDate/TimeBookingDate';
 import TimeBookingForm from '../TimeBookingForm/TimeBookingForm';
 import TimeBookingVerification from '../TimeBookingVerification/TimeBookingVerification';
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
+import logo from "../../images/logo/logo.png"
 
 const TimeBooking = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -37,6 +39,21 @@ console.log(willComeWithPets)
   ];
 
   return (
+    <>
+      <Helmet>
+      <title>Self Made Portraits</title>
+      <meta name="description" content="Create your own masterpiece in our secure, private studio! Whether it’s a solo fashion shoot, capturing memories with family, friends, or pets, our space allows you to take professional-quality photos without the need for third-party intervention. Perfect for those who want control over their photos from start to finish.
+  ✨ No photographer? No problem! Just Click & Shoot" />
+      <meta property="og:url" content={`https://self-made-portraits.com/`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Self Made Portraits" />
+      <meta property="og:description" content="" />
+      <meta property="og:image" content={logo} />
+      <link rel="canonical" href="https://self-made-portraits.com/"></link>
+      {/* <script type="application/ld+json">
+        {JSON.stringify(organizationSchema)}
+      </script> */}
+    </Helmet>
     <section className='time' id="time">
       <h1 className='time__title'>RESERVATION</h1>
       {/* Use StepNavigation component */}
@@ -107,6 +124,7 @@ console.log(willComeWithPets)
         />
       )}
     </section>
+    </>
   );
 };
 

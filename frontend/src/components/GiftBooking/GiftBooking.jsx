@@ -461,8 +461,6 @@ const generateAggregatedSelections = () => {
             </div>
           </div>
         </div>
-
-        {/* Next Button for Step 1 */}
         <div className='gift-booking__button-container'>
           <button
             type='button'
@@ -475,7 +473,6 @@ const generateAggregatedSelections = () => {
         </div>
         </>
       )}
-
       {activeStep === 2 && (
               <>
               <div className='time__confirmation'>

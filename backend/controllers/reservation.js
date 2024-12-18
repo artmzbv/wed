@@ -1,4 +1,5 @@
   const reservation = require('../models/reservation');
+  // const createTransporter = require('../controllers/emailTransporter');
   const { google } = require('googleapis');
   const moment = require('moment');
   const { oauth2Client } = require('./sheets');
@@ -6,7 +7,7 @@
 
   
   // Setup Google Calendar API client
-  const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+  // const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 
   // Controller function to get all reservations from MongoDB
   const getAllReservations = async (req, res) => {
@@ -22,9 +23,9 @@
 
   // Controller function to get reservations with additional parameters
   const getReservations = async (req, res) => {
-    const { date, time, duration, firstName, lastName, email, phone, willComeWithPets } = req.query;
+    const { date, time, duration, firstName, lastName, email, phone, willComeWithPets, willBeRaw } = req.query;
 
-    console.log("Received query params - Date:", date, "Time:", time, "Duration:", duration, "First Name:", firstName, "Last Name:", lastName, "Will Come With Pets:", willComeWithPets);
+    console.log("Received query params - Date:", date, "Time:", time, "Duration:", duration, "First Name:", firstName, "Last Name:", lastName, "Will Come With Pets:", willComeWithPets, "Will Be In RAW format:", willBeRaw);
 
     try {
       if (!date) {
@@ -41,6 +42,7 @@
         ...(email && { email }),
         ...(phone && { phone }),
         ...(willComeWithPets && { willComeWithPets }),
+        ...(willBeRaw && { willBeRaw }),
       });
 
       console.log('Reservations found:', reservations);
@@ -54,7 +56,7 @@
   // Controller function to create a new reservation and add it to Google Calendar
   const createReservation = async (req, res) => {
     try {
-      const { date, time, duration, firstName, lastName, phone, email, willComeWithPets, finalPrice } = req.body;
+      const { date, time, duration, firstName, lastName, phone, email, willComeWithPets, willBeRaw, finalPrice } = req.body;
 
       // Check if there is a reservation with the same date and time
       const existingReservation = await reservation.findOne({ date, time });
@@ -73,6 +75,7 @@
         phone,
         email,
         willComeWithPets, // Add willComeWithPets field here
+        willBeRaw,
         finalPrice,
       });
 
@@ -80,14 +83,33 @@
       
       // Write to Google Sheets
       await writeReservationToGoogleSheets(newReservation);
-      return res.status(201).json({
+      
+      res.status(201).json({
         message: 'Reservation created successfully!',
         reservation: newReservation,
-      });
-    } catch (error) {
-      console.error('Error creating reservation:', error);
-      return res.status(500).json({ message: 'Failed to create reservation', error: error.message });
-    }
+        });
+
+      // Send confirmation email in the background
+      // const transporter = await createTransporter();
+      // const mailOptions = {
+      //   from: 'info@self-made-portraits.com',
+      //   to: email,
+      //   subject: 'Reservation Confirmation',
+      //   text: `Dear ${firstName} ${lastName},\n\nYour reservation is confirmed.\n\nDetails:\n- Date: ${date}\n- Time: ${time}\n- Duration: ${duration} minutes\n- Pets: ${willComeWithPets ? 'Yes' : 'No'}\n- Pets: ${willBeRaw ? 'Yes' : 'No'}\n\nTotal Price: ${finalPrice} USD\n\nThank you for choosing us!`,
+      // };
+
+      // transporter.sendMail(mailOptions)
+      //   .then(() => {
+      //     console.log(`Confirmation email sent to ${email}`);
+      //   })
+      //   .catch((error) => {
+      //     console.error('Error sending confirmation email:', error.message);
+      //   });
+
+      } catch (error) {
+        console.error('Error creating reservation:', error);
+        return res.status(500).json({ message: 'Failed to create reservation', error: error.message });
+      }
   };
 
 const checkReservationAvailability = async (req, res) => {
@@ -145,31 +167,31 @@ const checkReservationAvailability = async (req, res) => {
       console.log(`Deleted reservation from MongoDB: ${JSON.stringify(deletedReservation)}`);
 
       // Step 2: If there is a corresponding Google Calendar event, delete it
-      if (deletedReservation.eventId) {
-        try {
-          await calendar.events.delete({
-            calendarId: 'primary',
-            eventId: deletedReservation.eventId,
-          });
+      // if (deletedReservation.eventId) {
+      //   try {
+      //     await calendar.events.delete({
+      //       calendarId: 'primary',
+      //       eventId: deletedReservation.eventId,
+      //     });
 
-          console.log(`Google Calendar event with ID ${deletedReservation.eventId} deleted successfully.`);
-          return res.status(200).json({
-            message: 'Reservation and Google Calendar event cancelled successfully.',
-            deletedReservation,
-          });
-        } catch (err) {
-          console.error(`Error deleting Google Calendar event: ${err.message}`);
-          return res.status(500).json({
-            error: `Failed to delete Google Calendar event: ${err.message}`,
-            deletedReservation,
-          });
-        }
-      } else {
-        return res.status(200).json({
-          message: 'Reservation cancelled successfully, but no corresponding Google Calendar event was found.',
-          deletedReservation,
-        });
-      }
+      //     console.log(`Google Calendar event with ID ${deletedReservation.eventId} deleted successfully.`);
+      //     return res.status(200).json({
+      //       message: 'Reservation and Google Calendar event cancelled successfully.',
+      //       deletedReservation,
+      //     });
+      //   } catch (err) {
+      //     console.error(`Error deleting Google Calendar event: ${err.message}`);
+      //     return res.status(500).json({
+      //       error: `Failed to delete Google Calendar event: ${err.message}`,
+      //       deletedReservation,
+      //     });
+      //   }
+      // } else {
+      //   return res.status(200).json({
+      //     message: 'Reservation cancelled successfully, but no corresponding Google Calendar event was found.',
+      //     deletedReservation,
+      //   });
+      // }
     } catch (error) {
       console.error(`Error deleting reservation: ${error.message}`);
       res.status(500).json({ error: `Error deleting reservation: ${error.message}` });

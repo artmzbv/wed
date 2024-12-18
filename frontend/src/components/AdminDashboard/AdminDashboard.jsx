@@ -32,7 +32,8 @@ const AdminDashboard = ({ token }) => {
   const [newLastName, setNewLastName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newPhone, setNewPhone] = useState('');
-  const [newWillComeWithPets, setNewWillComeWithPets] = useState(false); // New state for pets option
+  const [newWillComeWithPets, setNewWillComeWithPets] = useState(false);
+  const [newWillBeRaw, setNewWillBeRaw] = useState(false);
   const [finalPrice, setFinalPrice] = useState(0);
 
   const formatDate = (date) => {
@@ -141,6 +142,7 @@ const AdminDashboard = ({ token }) => {
           phone: newPhone || " ",
           finalPrice: finalPrice > 0 ? finalPrice : 1, // Ensure finalPrice is greater than 0
           willComeWithPets: newWillComeWithPets || " ", // Include pets option
+          willBeRaw: newWillBeRaw || " ", // Include pets option
         }),
       });
   
@@ -158,6 +160,7 @@ const AdminDashboard = ({ token }) => {
         setNewPhone('');
         setFinalPrice(0);
         setNewWillComeWithPets(false); // Reset pets option
+        setNewWillBeRaw(false); // Reset pets option
       } else {
         throw new Error(`Error: ${data.message}`);
       }
@@ -266,6 +269,7 @@ const AdminDashboard = ({ token }) => {
                     <th>Duration</th>
                     <th>Price</th>
                     <th>With Pets</th>
+                    <th>RAW format</th>
                     <th>Details</th>
                     <th>Delete</th>
                   </tr>
@@ -289,6 +293,7 @@ const AdminDashboard = ({ token }) => {
                           </td>
                           <td>£{reservation.finalPrice}</td>
                           <td>{reservation.willComeWithPets}</td>
+                          <td>{reservation.willBeRaw}</td>
                           <td>
                             <button
                               className="admin-dashboard__arrow"
@@ -436,6 +441,29 @@ const AdminDashboard = ({ token }) => {
                   value="No"
                   checked={newWillComeWithPets === 'No'}
                   onChange={() => setNewWillComeWithPets('No')}
+                />
+                No
+              </label>
+            </div>
+          </label>
+          <label className="admin-dashboard__new-reservation-label">
+            Will Be RAW:
+            <div className="admin-dashboard__radio-group">
+              <label className="admin-dashboard__radio-group-label">
+                <input
+                  type="radio"
+                  value="Yes"
+                  checked={newWillBeRaw === 'Yes'}
+                  onChange={() => setNewWillBeRaw('Yes')}
+                />
+                Yes
+              </label>
+              <label className="admin-dashboard__radio-group-label">
+                <input
+                  type="radio"
+                  value="No"
+                  checked={newWillBeRaw === 'No'}
+                  onChange={() => setNewWillBeRaw('No')}
                 />
                 No
               </label>

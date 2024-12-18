@@ -28,6 +28,7 @@ async function writeReservationToGoogleSheets(reservation) {
       reservation.email,
       reservation.phone,
       reservation.willComeWithPets,
+      reservation.willBeRaw,
       reservation.finalPrice,
       reservation.startTime.toISOString(),
       reservation.endTime.toISOString()

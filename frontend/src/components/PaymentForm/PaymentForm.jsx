@@ -23,6 +23,7 @@ const PaymentForm = () => {
     phone, 
     email, 
     willComeWithPets,
+    willBeRaw,
     finalPrice = 0, // Default value if finalPrice is undefined
     isCouponPurchase = false, // Add a flag to indicate if it's a coupon purchase
     isDigital
@@ -36,6 +37,7 @@ const PaymentForm = () => {
   const [shippingDetails, setShippingDetails] = useState(null); // For physical items
 
   console.log(willComeWithPets)
+  console.log(willBeRaw)
   // Redirect to homepage if essential state data is missing (i.e., user accessed directly)
   useEffect(() => {
     if (!location.state || (!fromGifts && !fromTime)) {
@@ -276,13 +278,14 @@ const PaymentForm = () => {
             },
             body: JSON.stringify({
               date: selectedDate.toISOString().split('T')[0],   // Use formatted date for reservation
-              time: selectedTime,    // Send time field
+              time: selectedTime, // Send time field
               duration: selectedDuration,  // Send duration field
               firstName,
               lastName,
               email,
               phone,
               willComeWithPets,
+              willBeRaw,
               finalPrice: totalPrice,
             }),
           });
@@ -353,6 +356,7 @@ const PaymentForm = () => {
                 <p><strong>Time:</strong> {selectedTime}</p>
                 <p><strong>Duration:</strong> {selectedDuration} minutes</p>
                 <p><strong>With Pets:</strong> {willComeWithPets}</p>
+                <p><strong>Raw Photos:</strong> {willBeRaw}</p>
                 <p><strong>First Name:</strong> {firstName}</p>
                 <p><strong>Last Name:</strong> {lastName}</p>
                 <p><strong>Phone:</strong> {phone}</p>

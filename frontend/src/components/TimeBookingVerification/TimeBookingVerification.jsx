@@ -21,6 +21,8 @@ const TimeBookingVerification = ({
   setEmail,
   setWillComeWithPets,
   willComeWithPets,
+  setWillBeRaw,
+  willBeRaw,
   handleBackStep,
   activeStep,
   setActiveStep,
@@ -34,6 +36,7 @@ const TimeBookingVerification = ({
   const navigate = useNavigate(); // Initialize useNavigate
 
   console.log(willComeWithPets)
+  console.log(willBeRaw)
   const originalPrice = (() => {
     let basePrice;
     switch (selectedDuration) {
@@ -52,7 +55,7 @@ const TimeBookingVerification = ({
       default:
         basePrice = 0;
     }
-    return basePrice + (willComeWithPets === "Yes" ? 10 : 0); // Add £10 if pets are coming
+    return basePrice + (willComeWithPets === "Yes" ? 10 : 0) + (willBeRaw === "Yes" ? 10 : 0); // Add £10 if pets are coming
   })();
 
   const finalPrice = Math.max(0, originalPrice - discount);
@@ -102,6 +105,7 @@ const TimeBookingVerification = ({
     setPhone('');
     setEmail('');
     setWillComeWithPets(null);
+    setWillBeRaw(null);
     setCoupon('');
     setDiscount(0);
   };
@@ -149,6 +153,7 @@ const TimeBookingVerification = ({
         email,
         finalPrice,
         willComeWithPets: willComeWithPets, 
+        willBeRaw: willBeRaw, 
       },
     });
   };
@@ -175,6 +180,7 @@ const TimeBookingVerification = ({
           <strong>Phone:</strong> {phone} <br />
           <strong>Email:</strong> {email} <br />
           <strong>With Pets:</strong> {willComeWithPets} <br />
+          <strong>With RAW format:</strong> {willBeRaw} <br />
           <strong>Total Price:</strong> £{finalPrice}
         </p>
 

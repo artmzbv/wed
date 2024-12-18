@@ -136,6 +136,7 @@ h2 {
   padding: 10px;
   border-top: 3px solid #2B2B2B;
   border-bottom: 3px solid #2B2B2B;
+  border-right: 3px solid #2B2B2B;
 }
 
 
@@ -358,7 +359,7 @@ h2 {
 }
 }
 
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 426px) {
   .admin-dashboard__new-reservation{
     max-width: 300px;
   }
@@ -371,7 +372,7 @@ h2 {
   .admin-dashboard__table td {
     padding: 20px 2px;
     text-align: start;
-    font-size: 14px;
+    font-size: 12px;
 }
 }
 

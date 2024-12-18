@@ -17,8 +17,10 @@ const TimeBooking = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [willComeWithPets, setWillComeWithPets] = useState(null);
+  const [willBeRaw, setWillBeRaw] = useState(null);
   const [errors, setErrors] = useState({});
 console.log(willComeWithPets)
+console.log(willBeRaw)
   // Scroll to the top every time the active step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -93,6 +95,8 @@ console.log(willComeWithPets)
           setEmail={setEmail}
           willComeWithPets={willComeWithPets}
           setWillComeWithPets={setWillComeWithPets}
+          willBeRaw={willBeRaw}
+          setWillBeRaw={setWillBeRaw}
           handleBackStep={handleBackStep}
           errors={errors}
           setErrors={setErrors}
@@ -119,6 +123,8 @@ console.log(willComeWithPets)
           setEmail={setEmail}
           setWillComeWithPets={setWillComeWithPets}
           willComeWithPets={willComeWithPets} 
+          setWillBeRaw={setWillBeRaw}
+          willBeRaw={willBeRaw}
           handleBackStep={handleBackStep}
           activeStep={activeStep}
           setActiveStep={setActiveStep}

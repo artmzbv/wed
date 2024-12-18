@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './TimeBookingForm.css';
 
-const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime, selectedDuration, renderError, firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail, willComeWithPets, setWillComeWithPets, handleBackStep }) => {
+const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime, selectedDuration, renderError, firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail, willComeWithPets, setWillComeWithPets, willBeRaw, setWillBeRaw, handleBackStep }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   // Function to validate email format
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -20,6 +20,7 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
     if (!email.trim()) validationErrors.email = "- email is required";
     else if (!isValidEmail(email)) validationErrors.email = "- invalid email format";
     if (willComeWithPets === null) validationErrors.willComeWithPets = "- select an option";
+    if (willBeRaw === null) validationErrors.willBeRaw = "- select an option";
 
     setErrors(validationErrors);
     return Object.keys(validationErrors).length === 0;
@@ -36,7 +37,8 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
           lastName,
           phone,
           email,
-          willComeWithPets
+          willComeWithPets,
+          willBeRaw
         };
   
         try {
@@ -63,9 +65,10 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
       lastName.trim() !== '' &&
       phone.trim() !== '' &&
       email.trim() !== '' &&
-      willComeWithPets !== null
+      willComeWithPets !== null &&
+      willBeRaw !== null
     );
-  }, [firstName, lastName, phone, email, willComeWithPets]);
+  }, [firstName, lastName, phone, email, willComeWithPets, willBeRaw]);
   
     
     // Handle form field changes to clear specific error messages
@@ -75,7 +78,8 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
       if (phone.trim() && isValidPhone(phone)) setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
       if (email.trim() && isValidEmail(email)) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
       if (willComeWithPets !== null) setErrors((prevErrors) => ({ ...prevErrors, willComeWithPets: '' }));
-    }, [firstName, lastName, phone, email, willComeWithPets]);
+      if (willBeRaw !== null) setErrors((prevErrors) => ({ ...prevErrors, willBeRaw: '' }));
+    }, [firstName, lastName, phone, email, willComeWithPets, willBeRaw]);
 
     // Handle form field changes to clear specific error messages
     useEffect(() => {
@@ -87,7 +91,8 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
       if (email.trim()) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
       else if (!isValidEmail(email)) validationErrors.email = "Invalid email format";
       if (willComeWithPets !== null) setErrors((prevErrors) => ({ ...prevErrors, willComeWithPets: '' }));
-      }, [firstName, lastName, phone, email, willComeWithPets])
+      if (willBeRaw !== null) setErrors((prevErrors) => ({ ...prevErrors, willBeRaw: '' }));
+      }, [firstName, lastName, phone, email, willComeWithPets, willBeRaw])
   
   return (
       <>
@@ -177,6 +182,39 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
                 value='No'
                 onChange={(e) => setWillComeWithPets(e.target.value)}
                 checked={willComeWithPets === 'No'}
+                required
+              />
+              No
+            </label>
+          </div>
+        </div>
+        {/* Will be .RAW format? */}
+          <div className='time__form-group'>
+          <label className='time__form-field'>Will be in RAW format? (+ 10 £)&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willBeRaw')}</div></label>
+          <span className='time__form-field-pets-mobile'>
+          {renderError('willBeRaw')}
+        </span>
+          <div className='time__form-options'>
+            <label className='time__form-field'>
+              <input
+                type='radio'
+                className='time__radio'
+                name='raw'
+                value='Yes'
+                onChange={(e) => setWillBeRaw(e.target.value)}
+                checked={willBeRaw === 'Yes'}
+                required
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type='radio'
+                className='time__radio'
+                name='raw'
+                value='No'
+                onChange={(e) => setWillBeRaw(e.target.value)}
+                checked={willBeRaw === 'No'}
                 required
               />
               No

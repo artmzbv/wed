@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './WhatsAppChatWidget.css';
 import whatsapp from '../../images/whatsapp-icon.svg';
 import profile from '../../images/whatsapp-profile.png';
@@ -6,6 +6,9 @@ import profile from '../../images/whatsapp-profile.png';
 const WhatsAppChatWidget = () => {
   const [message, setMessage] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false); // State to toggle chat window visibility
+
+  // Ref to track the chat window container
+  const chatWindowRef = useRef(null);
 
   // Function to handle input changes
   const handleMessageChange = (event) => {
@@ -16,7 +19,7 @@ const WhatsAppChatWidget = () => {
   const handleSendMessage = () => {
     if (message.trim()) {
       const encodedMessage = encodeURIComponent(message); // Encode message to make it URL-safe
-      const phoneNumber = '+33767379569'; // Replace with your phone number (with country code, no '+' sign)
+      const phoneNumber = '+441273011626'; // Replace with your phone number (with country code, no '+' sign)
       const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
       window.open(url, '_blank'); // Opens WhatsApp in a new tab
       setMessage(''); // Clear the message input
@@ -28,6 +31,24 @@ const WhatsAppChatWidget = () => {
     setIsChatOpen(!isChatOpen);
   };
 
+  // Close chat window if clicked outside
+  useEffect(() => {
+    // Function to detect click outside of the chat window
+    const handleClickOutside = (event) => {
+      if (chatWindowRef.current && !chatWindowRef.current.contains(event.target)) {
+        setIsChatOpen(false);
+      }
+    };
+
+    // Add event listener for clicks outside
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="whatsapp-chat-widget">
       {/* WhatsApp logo that opens the chat window */}
@@ -36,7 +57,7 @@ const WhatsAppChatWidget = () => {
           <img src={whatsapp} alt="WhatsApp" className="whatsapp-icon" />
         </div>
       ) : (
-        <div className="whatsapp-chat">
+        <div className="whatsapp-chat" ref={chatWindowRef}>
           <div className="whatsapp-header">
             <img
               src={profile}

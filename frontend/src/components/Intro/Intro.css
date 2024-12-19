@@ -87,10 +87,10 @@
 
 @media screen and (max-width: 500px) {
     .intro {
-    background-size: 100% 90%;
+    background-size: 100% 85%;
    }
    .intro__buttons{
-    margin-top: 220px;
+    margin-top: 230px;
     }
 }
 

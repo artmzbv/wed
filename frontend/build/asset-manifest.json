@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9cbc2ded.css",
-    "main.js": "/static/js/main.5c002bc7.js",
+    "main.css": "/static/css/main.0cad1351.css",
+    "main.js": "/static/js/main.69838366.js",
     "static/js/453.169f8a40.chunk.js": "/static/js/453.169f8a40.chunk.js",
     "static/media/webp-test.webp": "/static/media/webp-test.e730f34d8749e177716e.webp",
     "static/media/private.jpg": "/static/media/private.09922e47999ae67ad7d1.jpg",
@@ -11,21 +11,23 @@
     "static/media/repeat.png": "/static/media/repeat.c7131333837d665fe9ea.png",
     "static/media/door.png": "/static/media/door.85032c73b1b3d202be16.png",
     "static/media/logo.png": "/static/media/logo.eb6defb17e198b507ae4.png",
+    "static/media/whatsapp-profile.png": "/static/media/whatsapp-profile.0307757aea5116a94cfb.png",
     "static/media/twitter.png": "/static/media/twitter.4d73a49285dbe9cac801.png",
     "static/media/dress.png": "/static/media/dress.b834ec9ae79b9a29839a.png",
     "static/media/click.png": "/static/media/click.3730ff8fe84f75634780.png",
     "static/media/assurance.png": "/static/media/assurance.b3e982ac07c504808dd2.png",
     "static/media/404.jpg": "/static/media/404.ef18081acbdf8817888d.jpg",
     "static/media/font.woff": "/static/media/font.dc80ee6311e506051741.woff",
+    "static/media/whatsapp-icon.svg": "/static/media/whatsapp-icon.79d21ee9bebe98a3c55beb31cbd2c9ed.svg",
     "index.html": "/index.html",
     "static/media/burger.svg": "/static/media/burger.00878a777adbe56929a2.svg",
     "static/media/close-button.svg": "/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.9cbc2ded.css.map": "/static/css/main.9cbc2ded.css.map",
-    "main.5c002bc7.js.map": "/static/js/main.5c002bc7.js.map",
+    "main.0cad1351.css.map": "/static/css/main.0cad1351.css.map",
+    "main.69838366.js.map": "/static/js/main.69838366.js.map",
     "453.169f8a40.chunk.js.map": "/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9cbc2ded.css",
-    "static/js/main.5c002bc7.js"
+    "static/css/main.0cad1351.css",
+    "static/js/main.69838366.js"
   ]
 }

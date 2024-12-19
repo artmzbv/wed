@@ -1,0 +1,106 @@
+/* Style for the WhatsApp logo */
+.whatsapp-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  
+  .whatsapp-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Adds shadow effect */
+  }
+  
+  /* Chat window style */
+  .whatsapp-chat {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    width: 300px;
+    height: 250px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .whatsapp-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #111B21; /* WhatsApp green color */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    justify-content: space-between;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .header-info {
+    color: white;
+  }
+  
+  .name {
+    font-weight: bold;
+  }
+  
+  .response-time {
+    font-size: 12px;
+  }
+  
+  .close-chat {
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .message {
+    padding: 10px;
+  }
+  
+  .message-input {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  textarea {
+    width: 90%;
+    margin: 0 auto 10px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .send-button {
+    background-color: #128C7E;
+    width: 95%;
+    margin: auto;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .send-button:hover {
+    background-color: #128C7E; /* Darker green */
+  }
+  
+  @media screen and (max-width: 770px) {
+  .whatsapp-icon {
+    width: 50px;
+    height: 50px;
+  }
+}

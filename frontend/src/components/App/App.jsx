@@ -19,6 +19,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { usePageTracking } from "../../utils/tracking";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
+import WhatsAppChatWidget from '../WhatsAppChatWidget/WhatsAppChatWidget';
 
 const stripePromise = loadStripe('pk_test_51QFvDQGSMfY1zPhDCHBX0QpMZosKduI2EDkwV3SId4qUKqwiEEpB15TnbjyU0zqK987IlEFTaAF74ft3m0UoTXt000chVUytMn');
 
@@ -47,6 +48,7 @@ function App() {
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Routes>
+      <WhatsAppChatWidget />
       <Footer/>
     </div>
   );

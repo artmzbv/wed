@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.5e1cadb3.css",
-    "main.js": "/static/js/main.be915415.js",
+    "main.css": "/static/css/main.53fd0612.css",
+    "main.js": "/static/js/main.36c7526d.js",
     "static/js/453.169f8a40.chunk.js": "/static/js/453.169f8a40.chunk.js",
     "static/media/webp-test.webp": "/static/media/webp-test.e730f34d8749e177716e.webp",
     "static/media/private.jpg": "/static/media/private.09922e47999ae67ad7d1.jpg",
@@ -11,7 +11,6 @@
     "static/media/repeat.png": "/static/media/repeat.c7131333837d665fe9ea.png",
     "static/media/door.png": "/static/media/door.85032c73b1b3d202be16.png",
     "static/media/logo.png": "/static/media/logo.eb6defb17e198b507ae4.png",
-    "static/media/whatsapp-profile.png": "/static/media/whatsapp-profile.0307757aea5116a94cfb.png",
     "static/media/twitter.png": "/static/media/twitter.4d73a49285dbe9cac801.png",
     "static/media/dress.png": "/static/media/dress.b834ec9ae79b9a29839a.png",
     "static/media/click.png": "/static/media/click.3730ff8fe84f75634780.png",
@@ -22,12 +21,12 @@
     "index.html": "/index.html",
     "static/media/burger.svg": "/static/media/burger.00878a777adbe56929a2.svg",
     "static/media/close-button.svg": "/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.5e1cadb3.css.map": "/static/css/main.5e1cadb3.css.map",
-    "main.be915415.js.map": "/static/js/main.be915415.js.map",
+    "main.53fd0612.css.map": "/static/css/main.53fd0612.css.map",
+    "main.36c7526d.js.map": "/static/js/main.36c7526d.js.map",
     "453.169f8a40.chunk.js.map": "/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5e1cadb3.css",
-    "static/js/main.be915415.js"
+    "static/css/main.53fd0612.css",
+    "static/js/main.36c7526d.js"
   ]
 }

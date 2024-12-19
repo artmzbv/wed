@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './WhatsAppChatWidget.css';
 import whatsapp from '../../images/whatsapp-icon.svg';
-import profile from '../../images/whatsapp-profile.png';
+import profile from '../../images/logo/logo.png';
 
 const WhatsAppChatWidget = () => {
   const [message, setMessage] = useState('');
@@ -61,18 +61,18 @@ const WhatsAppChatWidget = () => {
           <div className="whatsapp-header">
             <img
               src={profile}
-              alt="Robin"
+              alt="Service"
               className="avatar"
             />
             <div className="header-info">
-              <div className="name">Robin</div>
+              <div className="name">Self-Made Portraits</div>
               <div className="response-time">Response time: 2 minutes</div>
             </div>
             <div className="close-chat" onClick={toggleChatWindow}>X</div>
           </div>
 
           <div className="message">
-            <span className="sender">Robin: </span>
+            <span className="sender">      </span>
             <span className="text">Hello, how can I help you? </span>
           </div>
 

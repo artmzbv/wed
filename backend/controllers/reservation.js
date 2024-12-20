@@ -83,10 +83,6 @@
   
       await newReservation.save();
       // Respond to the client
-      res.status(201).json({
-          message: 'Reservation created successfully!',
-          reservation: newReservation,
-      });
       // Write to Google Sheets
       await writeReservationToGoogleSheets(newReservation);
 
@@ -142,6 +138,11 @@
       // Send the confirmation email
       await transporter.sendMail(mailOptions);
       console.log(`Confirmation email sent to ${email}`);
+      
+      res.status(201).json({
+        message: 'Reservation created successfully!',
+        reservation: newReservation,
+    });
     } catch (error) {
       console.error('Error creating reservation:', error);
       res.status(500).json({ message: 'Failed to create reservation', error: error.message });

@@ -1,7 +1,7 @@
 const cors = require('cors');
 
 // Define a whitelist of domains allowed to access your server
-const whitelist = ['https://self-made-portraits.com', 'http://self-made-portraits.com', 'http://localhost:3001'];
+const whitelist = ['www.self-made-portraits.com', 'https://self-made-portraits.com', 'http://self-made-portraits.com', 'http://localhost:3001'];
 
 // CORS options
 const corsOptions = {

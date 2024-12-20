@@ -1,4 +1,6 @@
 const Coupon = require('../models/coupon');
+const nodemailer = require('nodemailer');
+const path = require('path');
 const { writeCouponToGoogleSheets } = require('./sheets');
 
 exports.getAllCoupons = async (req, res) => {
@@ -123,11 +125,11 @@ exports.createCoupon = async (req, res) => {
               <ul>
                 <li><strong>Code:</strong> ${code}</li>
                 <li><strong>Discount Type:</strong> ${discountType}</li>
-                <li><strong>Discount Value:</strong> ${discountValue}%</li>
+                <li><strong>Discount Value:</strong> ${discountValue} GBP</li>
                 <li><strong>Quantity:</strong> ${quantity}</li>
                 <li><strong>Card Type:</strong> ${isDigital ? 'Digital' : 'Physical'}</li>
               </ul>
-              <p><strong>Total Price:</strong> $${totalPrice} GBP</p>
+              <p><strong>Total Price:</strong> ${totalPrice} GBP</p>
               ${!isDigital ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ''}
             <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
             <p>If you have any questions, feel free to contact us:</p>
@@ -149,7 +151,6 @@ exports.createCoupon = async (req, res) => {
     // Send the email asynchronously
     await transporter.sendMail(mailOptions)
     console.log(`Confirmation email sent to ${email}`);
-
   } catch (error) {
     // Log the error for debugging purposes
     console.error('Error creating coupon:', error);

@@ -107,7 +107,7 @@
       const mailOptions = {
         from: process.env.SMTP_USER,
         to: email,
-        subject: 'Reservation Confirmation',
+        subject: 'Self-Made Portraits - Reservation Confirmation',
         html: `
           <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
             <p>Dear ${firstName} ${lastName},</p>
@@ -120,7 +120,7 @@
               <li><strong>Pets:</strong> ${willComeWithPets ? 'Yes' : 'No'}</li>
               <li><strong>Raw:</strong> ${willBeRaw ? 'Yes' : 'No'}</li>
             </ul>
-            <p><strong>Total Price:</strong> ${finalPrice} USD</p>
+            <p><strong>Total Price:</strong> ${finalPrice} GBP</p>
             <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
             <p>If you have any questions, feel free to contact us:</p>
                 <p><strong>Phone:</strong> +44 1273 011626<br>

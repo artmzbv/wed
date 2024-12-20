@@ -92,10 +92,70 @@ exports.createCoupon = async (req, res) => {
     await writeCouponToGoogleSheets(newCoupon);
 
     // Send success response with status code 201 (Created)
-    return res.status(201).json({
+    res.status(201).json({
       message: 'Coupon created successfully!',
       coupon: newCoupon,
     });
+
+    // Configure the transporter for sending email
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.office365.com', // Adjust based on your email provider
+      port: 587,
+      secure: false, // Use STARTTLS
+      auth: {
+        user: process.env.SMTP_USER, // Your email address
+        pass: process.env.SMTP_PASS, // Your email password or app password
+      },
+    });
+
+        // Email options
+    const mailOptions = {
+          from: process.env.SMTP_USER, // Sender email
+          to: email, // Recipient email
+          subject: 'Self-Made Portraits - Reservation Confirmation',
+          html: `
+            <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
+              <p>Dear ${firstName} ${lastName},</p>
+              <p>Your coupon has been successfully created!</p>
+              <p><strong>Coupon Details:</strong></p>
+              <ul>
+                <li><strong>Code:</strong> ${code}</li>
+                <li><strong>Discount Type:</strong> ${discountType}</li>
+                <li><strong>Discount Value:</strong> ${discountValue}%</li>
+                <li><strong>Quantity:</strong> ${quantity}</li>
+                <li><strong>Card Type:</strong> ${isDigital ? 'Digital' : 'Physical'}</li>
+              </ul>
+              <p><strong>Total Price:</strong> $${totalPrice} GBP</p>
+              ${!isDigital ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ''}
+            <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
+            <p>If you have any questions, feel free to contact us:</p>
+                <p><strong>Phone:</strong> +44 1273 011626<br>
+                <strong>Email:</strong> info@self-made-portraits.com</p>
+                <div style="margin-top: 20px; text-align: left;">
+                <img src="cid:logo" alt="Logo" style="width: 150px; height: auto; margin-top: 20px;">
+                </div>
+            s</div>
+          `,
+          attachments: [
+            {
+              filename: 'logo.png',
+              path: path.join(__dirname, '../utils/logo/coupon-logo.png'), // Adjust path as needed
+              cid: 'logo', // Content ID for embedding in email
+            },
+          ],
+        };
+    
+        // Send the email asynchronously
+        transporter.sendMail(mailOptions)
+          .then(() => {
+            console.log(`Coupon confirmation email sent to ${email}`);
+          })
+          .catch((error) => {
+            console.error('Error sending coupon confirmation email:', error.message);
+      });
+
+
+
   } catch (error) {
     // Log the error for debugging purposes
     console.error('Error creating coupon:', error);

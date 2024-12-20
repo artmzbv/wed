@@ -139,7 +139,7 @@ exports.createCoupon = async (req, res) => {
           attachments: [
             {
               filename: 'logo.png',
-              path: path.join(__dirname, '../utils/logo/coupon-logo.png'), // Adjust path as needed
+              path: path.join(__dirname, '../utils/logo/logo.png'), // Adjust path as needed
               cid: 'logo', // Content ID for embedding in email
             },
           ],

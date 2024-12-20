@@ -106,6 +106,8 @@ exports.createCoupon = async (req, res) => {
         user: process.env.SMTP_USER, // Your email address
         pass: process.env.SMTP_PASS, // Your email password or app password
       },
+      debug: true,  // Enable debugging output
+      logger: true, // Log SMTP communication
     });
 
         // Email options
@@ -144,17 +146,9 @@ exports.createCoupon = async (req, res) => {
             },
           ],
         };
-    
-        // Send the email asynchronously
-        transporter.sendMail(mailOptions)
-          .then(() => {
-            console.log(`Coupon confirmation email sent to ${email}`);
-          })
-          .catch((error) => {
-            console.error('Error sending coupon confirmation email:', error.message);
-      });
-
-
+    // Send the email asynchronously
+    await transporter.sendMail(mailOptions)
+    console.log(`Confirmation email sent to ${email}`);
 
   } catch (error) {
     // Log the error for debugging purposes

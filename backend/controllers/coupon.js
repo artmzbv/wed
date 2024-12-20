@@ -108,11 +108,11 @@ exports.createCoupon = async (req, res) => {
         user: process.env.SMTP_USER, // Your email address
         pass: process.env.SMTP_PASS, // Your email password or app password
       },
-      debug: true,  // Enable debugging output
-      logger: true, // Log SMTP communication
+      // debug: true,  // Enable debugging output
+      // logger: true, // Log SMTP communication
     });
 
-        // Email options
+        // Email options Shippting adress is an object ${!isDigital ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ''}
     const mailOptions = {
           from: process.env.SMTP_USER, // Sender email
           to: email, // Recipient email
@@ -130,7 +130,6 @@ exports.createCoupon = async (req, res) => {
                 <li><strong>Card Type:</strong> ${isDigital ? 'Digital' : 'Physical'}</li>
               </ul>
               <p><strong>Total Price:</strong> ${totalPrice} GBP</p>
-              ${!isDigital ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ''}
             <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
             <p>If you have any questions, feel free to contact us:</p>
                 <p><strong>Phone:</strong> +44 1273 011626<br>
@@ -138,7 +137,7 @@ exports.createCoupon = async (req, res) => {
                 <div style="margin-top: 20px; text-align: left;">
                 <img src="cid:logo" alt="Logo" style="width: 150px; height: auto; margin-top: 20px;">
                 </div>
-            s</div>
+            </div>
           `,
           attachments: [
             {

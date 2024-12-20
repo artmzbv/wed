@@ -21,8 +21,8 @@ import { usePageTracking } from "../../utils/tracking";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
 import WhatsAppChatWidget from '../WhatsAppChatWidget/WhatsAppChatWidget';
 
-const stripePromise = loadStripe('pk_test_51QFvDQGSMfY1zPhDCHBX0QpMZosKduI2EDkwV3SId4qUKqwiEEpB15TnbjyU0zqK987IlEFTaAF74ft3m0UoTXt000chVUytMn');
-
+// const stripePromise = loadStripe('pk_test_51QFvDQGSMfY1zPhDCHBX0QpMZosKduI2EDkwV3SId4qUKqwiEEpB15TnbjyU0zqK987IlEFTaAF74ft3m0UoTXt000chVUytMn');
+const stripePromise = loadStripe('pk_live_51QFvDQGSMfY1zPhDFhHCxrCZoGPTascAw28TcUtpsJQXlIXWrugJ4QMQdpP7nrki2E4yWz8ltaazQHozbCHgxcWz00dH3S3krV')
 function App() {
   const [activeSection, setActiveSection] = useState("1");
   const [token, setToken] = useState(localStorage.getItem('adminToken') || '');

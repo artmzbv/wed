@@ -1,9 +1,11 @@
   const reservation = require('../models/reservation');
+  const path = require('path');
   // const createTransporter = require('../controllers/emailTransporter');
   const { google } = require('googleapis');
   const moment = require('moment');
   const { oauth2Client } = require('./sheets');
   const { writeReservationToGoogleSheets } = require('./sheets');
+  const nodemailer = require('nodemailer');
 
   
   // Setup Google Calendar API client
@@ -57,14 +59,14 @@
   const createReservation = async (req, res) => {
     try {
       const { date, time, duration, firstName, lastName, phone, email, willComeWithPets, willBeRaw, finalPrice } = req.body;
-
+  
       // Check if there is a reservation with the same date and time
       const existingReservation = await reservation.findOne({ date, time });
-
+  
       if (existingReservation) {
         return res.status(400).json({ message: 'A reservation already exists for this time and date.' });
       }
-
+  
       // Create a new reservation if no conflict
       const newReservation = new reservation({
         date,
@@ -74,42 +76,76 @@
         lastName,
         phone,
         email,
-        willComeWithPets, // Add willComeWithPets field here
+        willComeWithPets,
         willBeRaw,
         finalPrice,
       });
-
+  
       await newReservation.save();
-      
+      // Respond to the client
+      res.status(201).json({
+          message: 'Reservation created successfully!',
+          reservation: newReservation,
+      });
       // Write to Google Sheets
       await writeReservationToGoogleSheets(newReservation);
-      
-      res.status(201).json({
-        message: 'Reservation created successfully!',
-        reservation: newReservation,
-        });
 
-      // Send confirmation email in the background
-      // const transporter = await createTransporter();
-      // const mailOptions = {
-      //   from: 'info@self-made-portraits.com',
-      //   to: email,
-      //   subject: 'Reservation Confirmation',
-      //   text: `Dear ${firstName} ${lastName},\n\nYour reservation is confirmed.\n\nDetails:\n- Date: ${date}\n- Time: ${time}\n- Duration: ${duration} minutes\n- Pets: ${willComeWithPets ? 'Yes' : 'No'}\n- Pets: ${willBeRaw ? 'Yes' : 'No'}\n\nTotal Price: ${finalPrice} USD\n\nThank you for choosing us!`,
-      // };
-
-      // transporter.sendMail(mailOptions)
-      //   .then(() => {
-      //     console.log(`Confirmation email sent to ${email}`);
-      //   })
-      //   .catch((error) => {
-      //     console.error('Error sending confirmation email:', error.message);
-      //   });
-
-      } catch (error) {
-        console.error('Error creating reservation:', error);
-        return res.status(500).json({ message: 'Failed to create reservation', error: error.message });
-      }
+      // Configure the transporter
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.office365.com',
+        port: 587,
+        secure: false, // Use STARTTLS
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+        // debug: true,  // Enable debugging output
+        // logger: true, // Log SMTP communication
+      });
+  
+      // Email options
+      const mailOptions = {
+        from: process.env.SMTP_USER,
+        to: email,
+        subject: 'Reservation Confirmation',
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
+            <p>Dear ${firstName} ${lastName},</p>
+            <p>Your reservation is confirmed.</p>
+            <p><strong>Details:</strong></p>
+            <ul>
+              <li><strong>Date:</strong> ${date}</li>
+              <li><strong>Time:</strong> ${time}</li>
+              <li><strong>Duration:</strong> ${duration} minutes</li>
+              <li><strong>Pets:</strong> ${willComeWithPets ? 'Yes' : 'No'}</li>
+              <li><strong>Raw:</strong> ${willBeRaw ? 'Yes' : 'No'}</li>
+            </ul>
+            <p><strong>Total Price:</strong> ${finalPrice} USD</p>
+            <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
+            <p>If you have any questions, feel free to contact us:</p>
+                <p><strong>Phone:</strong> +44 1273 011626<br>
+                <strong>Email:</strong> info@self-made-portraits.com</p>
+                <div style="margin-top: 20px; text-align: left;">
+                <img src="cid:logo" alt="Logo" style="width: 150px; height: auto; margin-top: 20px;">
+                </div>
+              </div>
+        `,
+        attachments: [
+          {
+            filename: 'logo.png',
+            path: path.join(__dirname, '../utils/logo/logo.png'), // Adjust path as needed
+            cid: 'logo', // Content ID to match the img src in the HTML
+          },
+        ],
+      };
+  
+      // Send the confirmation email
+      await transporter.sendMail(mailOptions);
+      console.log(`Confirmation email sent to ${email}`);
+    } catch (error) {
+      console.error('Error creating reservation:', error);
+      res.status(500).json({ message: 'Failed to create reservation', error: error.message });
+    }
   };
 
 const checkReservationAvailability = async (req, res) => {

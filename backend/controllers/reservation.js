@@ -90,58 +90,58 @@
       // Write to Google Sheets
       await writeReservationToGoogleSheets(newReservation);
 
-      // Configure the transporter
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.office365.com',
-        port: 587,
-        secure: false, // Use STARTTLS
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        // debug: true,  // Enable debugging output
-        // logger: true, // Log SMTP communication
-      });
+      // // Configure the transporter
+      // const transporter = nodemailer.createTransport({
+      //   host: 'smtp.office365.com',
+      //   port: 587,
+      //   secure: false, // Use STARTTLS
+      //   auth: {
+      //     user: process.env.SMTP_USER,
+      //     pass: process.env.SMTP_PASS,
+      //   },
+      //   // debug: true,  // Enable debugging output
+      //   // logger: true, // Log SMTP communication
+      // });
   
-      // Email options
-      const mailOptions = {
-        from: process.env.SMTP_USER,
-        to: email,
-        subject: 'Reservation Confirmation',
-        html: `
-          <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
-            <p>Dear ${firstName} ${lastName},</p>
-            <p>Your reservation is confirmed.</p>
-            <p><strong>Details:</strong></p>
-            <ul>
-              <li><strong>Date:</strong> ${date}</li>
-              <li><strong>Time:</strong> ${time}</li>
-              <li><strong>Duration:</strong> ${duration} minutes</li>
-              <li><strong>Pets:</strong> ${willComeWithPets ? 'Yes' : 'No'}</li>
-              <li><strong>Raw:</strong> ${willBeRaw ? 'Yes' : 'No'}</li>
-            </ul>
-            <p><strong>Total Price:</strong> ${finalPrice} USD</p>
-            <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
-            <p>If you have any questions, feel free to contact us:</p>
-                <p><strong>Phone:</strong> +44 1273 011626<br>
-                <strong>Email:</strong> info@self-made-portraits.com</p>
-                <div style="margin-top: 20px; text-align: left;">
-                <img src="cid:logo" alt="Logo" style="width: 150px; height: auto; margin-top: 20px;">
-                </div>
-              </div>
-        `,
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: path.join(__dirname, '../utils/logo/logo.png'), // Adjust path as needed
-            cid: 'logo', // Content ID to match the img src in the HTML
-          },
-        ],
-      };
+      // // Email options
+      // const mailOptions = {
+      //   from: process.env.SMTP_USER,
+      //   to: email,
+      //   subject: 'Reservation Confirmation',
+      //   html: `
+      //     <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
+      //       <p>Dear ${firstName} ${lastName},</p>
+      //       <p>Your reservation is confirmed.</p>
+      //       <p><strong>Details:</strong></p>
+      //       <ul>
+      //         <li><strong>Date:</strong> ${date}</li>
+      //         <li><strong>Time:</strong> ${time}</li>
+      //         <li><strong>Duration:</strong> ${duration} minutes</li>
+      //         <li><strong>Pets:</strong> ${willComeWithPets ? 'Yes' : 'No'}</li>
+      //         <li><strong>Raw:</strong> ${willBeRaw ? 'Yes' : 'No'}</li>
+      //       </ul>
+      //       <p><strong>Total Price:</strong> ${finalPrice} USD</p>
+      //       <p style="margin-bottom: 20px;">Thank you for choosing us!</p>
+      //       <p>If you have any questions, feel free to contact us:</p>
+      //           <p><strong>Phone:</strong> +44 1273 011626<br>
+      //           <strong>Email:</strong> info@self-made-portraits.com</p>
+      //           <div style="margin-top: 20px; text-align: left;">
+      //           <img src="cid:logo" alt="Logo" style="width: 150px; height: auto; margin-top: 20px;">
+      //           </div>
+      //         </div>
+      //   `,
+      //   attachments: [
+      //     {
+      //       filename: 'logo.png',
+      //       path: path.join(__dirname, '../utils/logo/logo.png'), // Adjust path as needed
+      //       cid: 'logo', // Content ID to match the img src in the HTML
+      //     },
+      //   ],
+      // };
   
-      // Send the confirmation email
-      await transporter.sendMail(mailOptions);
-      console.log(`Confirmation email sent to ${email}`);
+      // // Send the confirmation email
+      // await transporter.sendMail(mailOptions);
+      // console.log(`Confirmation email sent to ${email}`);
     } catch (error) {
       console.error('Error creating reservation:', error);
       res.status(500).json({ message: 'Failed to create reservation', error: error.message });

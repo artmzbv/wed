@@ -104,9 +104,10 @@
     background-size: 90% 70%;
     background-image: none;
     position: relative;
+    padding-bottom: 30px;
    }
    .intro__text{
-   width: 78%;
+   width: 88%;
    }
    .intro__mobile-container {
     display:flex;
@@ -117,9 +118,10 @@
 
    .intro__picture{
     display: block;
-    width: 80%;
+    width: 90%;
     /* height: 300px; */
     object-fit: contain;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 

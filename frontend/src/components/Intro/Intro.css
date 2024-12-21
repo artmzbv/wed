@@ -105,16 +105,19 @@
     background-image: none;
     position: relative;
    }
-   
+   .intro__text{
+   width: 78%;
+   }
    .intro__mobile-container {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
+
    .intro__picture{
     display: block;
-    width: 100%;
+    width: 80%;
     /* height: 300px; */
     object-fit: contain;
     margin-bottom: 20px;
@@ -127,7 +130,7 @@
    .intro__buttons{
     /* margin-top: 230px; */
     margin-top: 0;
-    max-width: 50%;
+    max-width: 150px;
     }
     
     .intro__container{

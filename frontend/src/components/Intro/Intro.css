@@ -87,7 +87,7 @@
 
 @media screen and (max-width: 500px) {
     .intro {
-    background-size: 100% 85%;
+    background-size: 100% 75%;
    }
    .intro__buttons{
     margin-top: 230px;
@@ -97,6 +97,41 @@
 
 @media screen and (max-width: 376px) {
     .intro {
-    background-size: 100% 40%;
+    background-size: 100% 60%;
    }
+   .intro__title {
+     margin-bottom: 30px
+   }
+   
+   .intro__text {
+    position: absolute;
+    top: 460px;
+    left: 10%;
+    margin-left: 0;
+   }
+   .intro__buttons{
+    position: absolute;
+    top: 550px;
+    right: 20%;
+    width: 30%;
+    margin-top: 0;
+   }
+   .intro__subtitle{
+    margin: 10px auto;
+   }
+}
+
+@media screen and (max-width: 340px) {
+    .intro__title {
+        margin-bottom: 20px;
+        font-size: 18px
+      }
+    .intro__buttons{
+        top: 520px;
+        right: 15%;
+    }
+
+    .intro__text {
+        margin-left: 0px;
+    }
 }

@@ -4,6 +4,7 @@ import { useNavigate, useLocation  } from 'react-router-dom'; // Import useNavig
 import './GiftBooking.css'; 
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
 import logo from "../../images/logo/logo.png"
+import voucher from "../../images/voucher.webp"
 import { formatTime, transactionTimer } from '../../utils/constants/constants';
 
 const GiftBooking = () => {
@@ -348,7 +349,7 @@ const generateAggregatedSelections = () => {
             <div className='gift-booking__card-selection'>
             <div className='gift-booking__error-message'>{renderError('selectedCardType')}</div>
                 <div className={`gift-booking__card ${selectedCardType === "Physical Card" ? 'gift-booking__card_selected' : ''}`}>
-                  <img src="https://via.placeholder.com/200" alt="Physical Card" className='gift-booking__card-image' />
+                  <img src={voucher} alt="Physical Card" className='gift-booking__card-image' />
                   <label className='gift-booking__card-option'>
                     Physical Card
                     <input
@@ -361,7 +362,7 @@ const generateAggregatedSelections = () => {
                   </label>
                 </div>
                 <div className={`gift-booking__card ${selectedCardType === "Digital Card" ? 'gift-booking__card_selected' : ''}`}>
-                  <img src="https://via.placeholder.com/200" alt="Digital Card" className='gift-booking__card-image' />
+                  <img src={voucher} alt="Digital Card" className='gift-booking__card-image' />
                   <label className='gift-booking__card-option'>
                     Digital Card
                     <input
@@ -404,8 +405,8 @@ const generateAggregatedSelections = () => {
           {/* Left Column with Image */}
           <div className='gift-booking__image-container'>
           {isDigital ? (
-          <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />) :
-          (<img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />)}
+          <img src={voucher} alt="Gift Image" className='gift-booking__image' />) :
+          (<img src={voucher} alt="Gift Image" className='gift-booking__image' />)}
           </div>
 
           {/* Right Column with Session Durations and Quantity */}

@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.c647aa58.css",
-    "main.js": "/static/js/main.dd81efa2.js",
+    "main.css": "/static/css/main.159c93bd.css",
+    "main.js": "/static/js/main.a0957d7d.js",
     "static/js/453.169f8a40.chunk.js": "/static/js/453.169f8a40.chunk.js",
-    "static/media/webp-test.webp": "/static/media/webp-test.e730f34d8749e177716e.webp",
+    "static/media/webp-test.webp": "/static/media/webp-test.077516166efe767590df.webp",
     "static/media/private.jpg": "/static/media/private.09922e47999ae67ad7d1.jpg",
     "static/media/comfort.png": "/static/media/comfort.f35f09b905e0d3310621.png",
     "static/media/smile.png": "/static/media/smile.bce200b56e069a602555.png",
@@ -11,22 +11,23 @@
     "static/media/door.png": "/static/media/door.85032c73b1b3d202be16.png",
     "static/media/logo.png": "/static/media/logo.eb6defb17e198b507ae4.png",
     "static/media/twitter.png": "/static/media/twitter.4d73a49285dbe9cac801.png",
-    "static/media/webp-test-mobile_.webp": "/static/media/webp-test-mobile_.3cf0aac5dd41869ca458.webp",
+    "static/media/webp-test-mobile_.webp": "/static/media/webp-test-mobile_.02ab9637a3eb1f57a37a.webp",
     "static/media/dress.png": "/static/media/dress.b834ec9ae79b9a29839a.png",
     "static/media/click.png": "/static/media/click.3730ff8fe84f75634780.png",
     "static/media/assurance.png": "/static/media/assurance.b3e982ac07c504808dd2.png",
     "static/media/404.jpg": "/static/media/404.ef18081acbdf8817888d.jpg",
+    "static/media/voucher.webp": "/static/media/voucher.fa541864875c127729a2.webp",
     "static/media/font.woff": "/static/media/font.dc80ee6311e506051741.woff",
     "static/media/whatsapp-icon.svg": "/static/media/whatsapp-icon.79d21ee9bebe98a3c55beb31cbd2c9ed.svg",
     "index.html": "/index.html",
     "static/media/burger.svg": "/static/media/burger.00878a777adbe56929a2.svg",
     "static/media/close-button.svg": "/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.c647aa58.css.map": "/static/css/main.c647aa58.css.map",
-    "main.dd81efa2.js.map": "/static/js/main.dd81efa2.js.map",
+    "main.159c93bd.css.map": "/static/css/main.159c93bd.css.map",
+    "main.a0957d7d.js.map": "/static/js/main.a0957d7d.js.map",
     "453.169f8a40.chunk.js.map": "/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c647aa58.css",
-    "static/js/main.dd81efa2.js"
+    "static/css/main.159c93bd.css",
+    "static/js/main.a0957d7d.js"
   ]
 }

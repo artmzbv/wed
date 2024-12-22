@@ -121,12 +121,15 @@
         flex-direction:column;
         justify-content: space-between;
         align-items: flex-start;
+        width: 90%;
+        margin: 0;
     }
 
     .footer__reg-link{
         margin-left: 0;
         margin-bottom: 10px;
         white-space:unset;
+        padding: 1px 6px;
     }
     .footer__reg-logo_x{
         margin-left: 0;

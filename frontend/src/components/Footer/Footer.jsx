@@ -95,7 +95,7 @@ export default function Footer() {
           <div className='footer__reg-container'>
             <Link className="footer__reg-link" to="./cookie-policy">{`Cookie Policy`}</Link>
             <Link className="footer__reg-link" to="./terms-of-use">{`Terms of Use`}</Link>
-            <Link className="footer__reg-link" to="./privacy-policy">{`Privacy Policy`}</Link>
+            <Link className="footer__reg-link" to="./privacy-policy">{` Privacy Policy`}</Link>
             {/* <Link className="footer__reg-link" to="./pet-policy">{`Pet Policy`}</Link> */}
             {/* <Link target="_blank">
               <img className="footer__reg-logo footer__reg-logo_x" src={twitter} alt="Twitter" />

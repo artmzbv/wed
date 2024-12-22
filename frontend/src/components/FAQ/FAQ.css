@@ -61,7 +61,7 @@
   }
   
   .faq__answer_visible {
-    max-height: 100px; /* Set a max-height to show the answer */
+    max-height: 150px; /* Set a max-height to show the answer */
     padding: 15px; /* Add padding when visible */
   }
   

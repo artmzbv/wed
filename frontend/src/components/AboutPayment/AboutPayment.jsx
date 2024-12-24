@@ -5,18 +5,18 @@ const AboutPayment = () => {
 
   const items = [
     {number: '1', title:`Online\nBooking`,
-    description: 'Select and pay for your perfect photoshoot via our quick and easy booking platform'},
+    description: 'Choose and book your ideal photoshoot with ease through our simple booking platform.'},
     {number: '2', title: `Pay per\nsession`,
-    description: `Pick and choose what works for you: whether it's 15 minutes for headshots or capturing memories with a visiting friend, or a full hour that allows for themes and costume changes, catering to family, friends, professionals, and creatives alike to explore.`},
+    description: `Whether you're booking 15 minutes for headshots or a full hour for themed shoots and costume changes, there's something for everyone!`},
     {number: '3', title:`Same day \nresults`,
-    description: 'Receive a secure link to download your photoshoot.'},
+    description: `Within minutes of your session ending, you'll receive a secure download link for all your images.`},
     {number: '4', title:`Pick &\nChoose`,
-      description: `You can take as many pictures as you'd like`},
+      description: `Keep all your images and take time to select your favourite shots.`},
 ]
 
     return (
       <section className='about-payment' id="about">
-          <h2 className='about-payment__subtitle'>{`From booking to beautiful photos — \nmake it easy with us`}</h2>
+          <h2 className='about-payment__subtitle'>{`From booking to breathtaking photos — \nwe make it effortless for you.`}</h2>
             <div className='about-payment__container'>
             {items.map((item) => (
               <div key={item.title} 

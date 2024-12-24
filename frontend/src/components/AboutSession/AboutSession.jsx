@@ -8,20 +8,20 @@ import repeat from '../../images/about/repeat.png'
 const AboutSession = () => {
 
   const options = [
-    {title:'Get Excited!', src: dress, 
-    description: 'For your convenience, we have a mirrored changing area to prepare your best looks.', alt: 'ready'},
-    {title:'Strike That Pose', src: smile,
-    description: 'Take stunning professional photos of yourself and your loved ones by simply looking in a large mirror and using a small remote control clicker, allowing you to be both the photographer and the model.', alt: 'cheese'},
+    {title:'Reflect', src: dress, 
+    description: 'See yourself, pick all sides of your personality.', alt: 'ready'},
+    {title:'Strike That Pose!', src: smile,
+    description: 'Change positions and move around to create different lighting moods.', alt: 'cheese'},
     {title:'Click', src: click, 
-    description: 'Our studio features a minimalist design equipped with professional lighting, a magic mirror, lighter or darker background. This setup gives you full creative control over your shoot, all with the ease of a simple click.' ,alt: 'click'},
+    description: 'Capture stunning professional photos with just a click of a button, letting you be both the photographer and the model.' ,alt: 'click'},
     {title:'Shoot/Repeat', src: repeat,
-      description: `Your session is yours to take as many photos as you like.`, alt: 'repeat'},
+      description: `Unlimited Shots — take as many photos as you want!`, alt: 'repeat'},
 ]
 
     return (
       <section className='session' id="about">
-          <h1 className='session__title'>HOW IT WORKS?</h1>
-          <h2 className='session__subtitle'>{`Are you comfortable in front of a photographer?\n- Well, we’re not!`}</h2>
+          <h1 className='session__title'>HOW DOES IT ALL WORK?</h1>
+          <h2 className='session__subtitle'>{`No photographer needed, just you! \nNo experience required, just seize the moment!`}</h2>
             <div className='session__container'>
             {options.map((option) => (
               <div key={option.title} 

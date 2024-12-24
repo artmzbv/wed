@@ -8,20 +8,20 @@ import assurance from '../../images/privacy/assurance.png'
 const Privacy = () => {
 
   const options = [
-    {title:'Closed door', src: door, 
-    description: 'You will have the room to yourself behind a closed door. The door will remain closed until the end of your session.', alt: 'ready'},
+    {title:'Secure Setting', src: door, 
+    description: 'Away from prying eyes, relax and reflect in our studio space. No third party intervention, just you and your creativity.', alt: 'ready'},
     {title:'Comfort', src: comfort,
-    description: 'Music or silence, lights on, off, or dimmed, curtains open or closed. You can set everything up the way that works best for you.', alt: 'cheese'},
+    description: 'Strike a pose to your favourite playlist or relax to a rhythmical, technical symphony while remotely conducting the studio.', alt: 'cheese'},
     {title:'Safety', src: safety, 
-    description: 'No one will see your pictures until and if you give permission.' ,alt: 'click'},
+    description: 'Your secure download link ensures that only you can access your photos.' ,alt: 'click'},
     {title:'Assurance', src: assurance,
-      description: `Your photos will be deleted 1 week after your session or even sooner if you wish.`, alt: 'repeat'},
+      description: `Your photos will be deleted automatically after 48 hours.`, alt: 'repeat'},
 ]
 
     return (
       <section className='privacy' id="about">
-          <h1 className='privacy__title'>WE RESPSECT YOUR PRIVACY</h1>
-          <h2 className='privacy__subtitle'>We believe that comfort is the most important aspect of a photoshoot</h2>
+          <h1 className='privacy__title'>WE VALUE YOUR PRIVACY</h1>
+          <h2 className='privacy__subtitle'>For us, comfort is the foundation of every photoshoot experience</h2>
             <div className='privacy__container'>
             {options.map((option) => (
               <div key={option.title} 

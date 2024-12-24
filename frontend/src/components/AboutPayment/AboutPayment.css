@@ -119,6 +119,7 @@
 }
 @media screen and (max-width: 500px) {
     .about-payment__subtitle{
+        margin: 0 auto;
         text-align: center;
         /* white-space: pre-wrap; */
     }

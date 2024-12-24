@@ -16,7 +16,7 @@ const AboutPayment = () => {
 
     return (
       <section className='about-payment' id="about">
-          <h2 className='about-payment__subtitle'>{`From booking to breathtaking photos — \nwe make it effortless for you.`}</h2>
+          <h2 className='about-payment__subtitle'>{`From booking to breathtaking photos\n — We make it effortless for you.`}</h2>
             <div className='about-payment__container'>
             {items.map((item) => (
               <div key={item.title} 

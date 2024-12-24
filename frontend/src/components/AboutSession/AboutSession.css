@@ -26,7 +26,7 @@
     background-color: #2B2B2B;
     padding: 0 10px;
     border-radius: 10px;
-    height: 400px;
+    height: 370px;
 }
 
 .session__card-title{
@@ -42,7 +42,7 @@
 
 .session__card-description{
     color: white;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -58,8 +58,8 @@
 
     .session__card{
         width: 200px;
-        height: 350px;
-    }
+        height: 320px;
+    }   
 
     .session__card-title{
         margin-top: 10px;
@@ -93,7 +93,7 @@
         background-color: #2B2B2B;
         padding: 0 10px;
         border-radius: 10px;
-        height: 380px;
+        height: 350px;
         margin: 0 30px 40px;
     }
 

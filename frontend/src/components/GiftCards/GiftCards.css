@@ -38,6 +38,7 @@
 .gifts__description{
     color: white;
     width: 50%;
+    min-height: 60px;
 }
 
 .gifts__price{
@@ -65,7 +66,7 @@
     margin: 20px auto;
 }
 .gifts__image{
-    width: 220px;
+    width: 70%;
     height: 220px;
 }
 }
@@ -99,8 +100,12 @@
         width: 60%;
         margin: 20px auto;
     }
+    .gifts__image{
+        width: 60%;
     }
-    @media screen and (max-width: 350px) {
+    }
+    
+    @media screen and (max-width: 426px) {
         
     .gifts__image{
         width: 280px;

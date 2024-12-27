@@ -305,7 +305,7 @@
 
   .gift-booking__card-option{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -319,8 +319,14 @@
   .gift-booking__card-option-radio{
     cursor: pointer;
   }
+
   .gift-booking__card-image{
     height: 250px;
+    cursor: pointer;
+  }
+  
+  .gift-booking__card-image:hover{
+    opacity: 0.8;
   }
 
   .time__confirmation-text_subtitle{

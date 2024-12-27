@@ -349,8 +349,8 @@ const generateAggregatedSelections = () => {
             <div className='gift-booking__card-selection'>
             <div className='gift-booking__error-message'>{renderError('selectedCardType')}</div>
                 <div className={`gift-booking__card ${selectedCardType === "Physical Card" ? 'gift-booking__card_selected' : ''}`}>
+                <label className='gift-booking__card-option'>
                   <img src={voucher} alt="Physical Card" className='gift-booking__card-image' />
-                  <label className='gift-booking__card-option'>
                     Physical Card
                     <input
                       type='radio'
@@ -362,8 +362,8 @@ const generateAggregatedSelections = () => {
                   </label>
                 </div>
                 <div className={`gift-booking__card ${selectedCardType === "Digital Card" ? 'gift-booking__card_selected' : ''}`}>
+                <label className='gift-booking__card-option'>
                   <img src={voucher} alt="Digital Card" className='gift-booking__card-image' />
-                  <label className='gift-booking__card-option'>
                     Digital Card
                     <input
                       type='radio'

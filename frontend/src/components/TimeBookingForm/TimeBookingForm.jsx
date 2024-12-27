@@ -157,7 +157,7 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
 
         {/* Will you come with pets? */}
         <div className='time__form-group'>
-          <label className='time__form-field'>Will you come with pets? (+ 10 £)&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willComeWithPets')}</div></label>
+          <label className='time__form-field'>Will you come with pets? (+ £10)&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willComeWithPets')}</div></label>
           <span className='time__form-field-pets-mobile'>
           {renderError('willComeWithPets')}
         </span>
@@ -190,7 +190,7 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
         </div>
         {/* Will be .RAW format? */}
           <div className='time__form-group'>
-          <label className='time__form-field'>Will be in RAW format? (+ 10 £)&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willBeRaw')}</div></label>
+          <label className='time__form-field'>Will be in RAW format? (+ £10)&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willBeRaw')}</div></label>
           <span className='time__form-field-pets-mobile'>
           {renderError('willBeRaw')}
         </span>

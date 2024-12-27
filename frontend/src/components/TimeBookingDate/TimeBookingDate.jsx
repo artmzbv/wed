@@ -49,7 +49,7 @@ const TimeBookingDate = ({
     fetchAllReservations();
   }, []);
 
-  console.log(reservations)
+  // console.log(reservations)
   const handleNextStep = async () => {
     let hasError = false;
   

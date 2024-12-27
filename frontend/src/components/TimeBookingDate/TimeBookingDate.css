@@ -125,6 +125,12 @@
     text-align: center;
   }
   
+  .time__slot:hover {
+    background-color: #e5e5e5; /* Light grey background on hover */
+    color: #333; /* Darker text color for better contrast on hover */
+    border-color: #333; /* Darker border to match the text color */
+}
+
   /* Hover and Selected States */
   /* .time__slot:hover {
     background: #f1f1f1;
@@ -203,6 +209,13 @@
       font-weight: bold;
       margin: 0 auto;
     }
+
+    .time__duration-button:hover {
+      background-color: #e5e5e5; /* Light grey background on hover */
+      color: #333; /* Darker text color for better contrast on hover */
+      border-color: #333; /* Darker border to match the text color */
+  }
+  
     
     .time__duration-button_active {
       background-color: #F6C852; /* Orange background when active */

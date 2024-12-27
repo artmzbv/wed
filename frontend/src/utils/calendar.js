@@ -49,11 +49,11 @@
   export const isSlotBooked = (reservations,selectedDate, time) => {
     return reservations.some((res) => {
       const reservationDate = new Date(res.date).toISOString().split('T')[0];
-      console.log(reservationDate)
+      // console.log(reservationDate)
        // Format current date to YYYY-MM-DD for consistency
        const currentDate = formatDateToYYYYMMDD(new Date(selectedDate)); // Clicked date formatted as YYYY-MM-DD
       //  console.log('Current Date:', currentDate);// date for click
-      console.log(currentDate)
+      // console.log(currentDate)
       if (reservationDate !== currentDate) return false;
       const overlappingSlots = getOverlappingSlots(res.time, res.duration);
       return overlappingSlots.includes(time);

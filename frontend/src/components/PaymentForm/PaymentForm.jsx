@@ -36,8 +36,8 @@ const PaymentForm = () => {
   const [loading, setLoading] = useState(false);
   const [shippingDetails, setShippingDetails] = useState(null); // For physical items
 
-  console.log(willComeWithPets)
-  console.log(willBeRaw)
+  // console.log(willComeWithPets)
+  // console.log(willBeRaw)
   // Redirect to homepage if essential state data is missing (i.e., user accessed directly)
   useEffect(() => {
     if (!location.state || (!fromGifts && !fromTime)) {

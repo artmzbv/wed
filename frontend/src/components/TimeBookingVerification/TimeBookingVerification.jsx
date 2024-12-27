@@ -35,8 +35,8 @@ const TimeBookingVerification = ({
   const [paymentSuccess, setPaymentSuccess] = useState(''); // State to track payment success message
   const navigate = useNavigate(); // Initialize useNavigate
 
-  console.log(willComeWithPets)
-  console.log(willBeRaw)
+  // console.log(willComeWithPets)
+  // console.log(willBeRaw)
   const originalPrice = (() => {
     let basePrice;
     switch (selectedDuration) {

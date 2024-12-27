@@ -110,7 +110,7 @@ const GiftBooking = () => {
       { number: 4, label: 'Done' }
     ];
 
-    console.log(userSelections)
+    // console.log(userSelections)
       // Create a formatted sentence for the items chosen
       const generateSentence = () => {
         if (userSelections.length === 0) return "No items selected.";

@@ -136,7 +136,7 @@ return(
               {timeError && <p className='time__error-message-time'>{timeError}</p>}
               {timeSlots.map((time, index) => {
                   const booked = isSlotBooked(reservations, selectedDate, time);
-                  console.log(`Time Slot: ${time}, Booked: ${booked}`);
+                  // console.log(`Time Slot: ${time}, Booked: ${booked}`);
                   
                   return (
                     <li

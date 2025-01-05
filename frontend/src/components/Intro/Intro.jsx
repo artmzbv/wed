@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Intro.css'; 
 import Button from '../common/Button/Button'
-import intro from '../../images/intro/webp-test-mobile_.webp'
+import intro from '../../images/intro/NEW-MOBILE.webp'
 
 const Intro = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);

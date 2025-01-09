@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import headerLogo from "../../images/logo/logo.png";
 import "./Header.css";
 import BurgerMenu from "../Navigation/Navigation";
+import instagram from '../../images/network/instagram_b.svg';
 
 export default function Header({ activeSection, setActiveSection }) {
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -63,6 +64,9 @@ export default function Header({ activeSection, setActiveSection }) {
             </div>
           </div>
         )}
+        <Link className="header__instagram-link" target="_blank" to="https://www.instagram.com/self_made_portraits?igsh=MXhoZjdkc21pdWZpbg%3D%3D&utm_source=qr">
+          <img className="header__instagram-logo" src={instagram} alt="instagram" />
+        </Link>
         <button
           id="navigation"
           aria-label="menu"

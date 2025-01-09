@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import './Footer.css';
 import linkedin from '../../images/network/linkedin.png';
-import twitter from '../../images/network/twitter.png';
+import instagram from '../../images/network/Instagram_w.svg';
 
 export default function Footer() {
   const location = useLocation();
@@ -96,10 +96,9 @@ export default function Footer() {
             <Link className="footer__reg-link" to="./cookie-policy">{`Cookie Policy`}</Link>
             <Link className="footer__reg-link" to="./terms-of-use">{`Terms of Use`}</Link>
             <Link className="footer__reg-link" to="./privacy-policy">{` Privacy Policy`}</Link>
-            {/* <Link className="footer__reg-link" to="./pet-policy">{`Pet Policy`}</Link> */}
-            {/* <Link target="_blank">
-              <img className="footer__reg-logo footer__reg-logo_x" src={twitter} alt="Twitter" />
-            </Link> */}
+            <Link target="_blank" to="https://www.instagram.com/self_made_portraits?igsh=MXhoZjdkc21pdWZpbg%3D%3D&utm_source=qr">
+              <img className="footer__reg-logo footer__reg-logo_x" src={instagram} alt="instagram" />
+            </Link>
           </div>
           <p className="footer__reg-copyright">© Self Made Portraits 2024</p>
         </div>

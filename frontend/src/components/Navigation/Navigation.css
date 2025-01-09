@@ -12,6 +12,14 @@
     border: none;
 }
 
+.navigation__logo{
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+}
+
 /* Underline animation for general navigation links */
 .navigation__link::after {
     content: '';

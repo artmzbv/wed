@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from "../common/Button/Button";
 import "./Navigation.css";
+import instagram from '../../images/network/instagram_b.svg';
 
 function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
   const location = useLocation();
@@ -106,6 +107,9 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
           navigate("/book-now");   // Then navigate to the booking page
         }}
       />
+      <Link target="_blank" to="https://www.instagram.com/self_made_portraits?igsh=MXhoZjdkc21pdWZpbg%3D%3D&utm_source=qr">
+        <img className="navigation__logo" src={instagram} alt="instagram" />
+      </Link>
     </>
   );
 }

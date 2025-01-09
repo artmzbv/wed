@@ -60,6 +60,7 @@
 }
 
 .header__links-row{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -81,6 +82,19 @@
     z-index: 2;
     width: 100vw;
     background-color: #0000004d;
+}
+
+.header__instagram-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header__instagram-logo{
+    margin-right: 12vw;
+    margin-bottom: 0;
+    width: 20px;
+    height: 20px;
 }
 
 .header__links-column-container {

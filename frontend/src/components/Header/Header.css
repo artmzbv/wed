@@ -85,16 +85,11 @@
 }
 
 .header__instagram-link{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: none;
 }
 
 .header__instagram-logo{
-    margin-right: 12vw;
-    margin-bottom: 0;
-    width: 20px;
-    height: 20px;
+    display: none;
 }
 
 .header__links-column-container {
@@ -159,6 +154,20 @@
 .header__phone{
     margin-right: 5px;
     font-size: 10px;
+}
+
+.header__instagram-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header__instagram-logo{
+    display: block;
+    margin-right: 12vw;
+    margin-bottom: 0;
+    width: 20px;
+    height: 20px;
 }
 
 .header__network{

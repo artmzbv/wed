@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from "../common/Button/Button";
 import "./Navigation.css";
-import instagram from '../../images/network/instagram_b.svg';
+import instagram from '../../images/network/instagram.png';
 
 function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
   const location = useLocation();

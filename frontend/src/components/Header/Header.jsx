@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import headerLogo from "../../images/logo/logo.png";
 import "./Header.css";
 import BurgerMenu from "../Navigation/Navigation";
-import instagram from '../../images/network/instagram_b.svg';
+import instagram from '../../images/network/instagram.png';
 
 export default function Header({ activeSection, setActiveSection }) {
   const [isShowMenu, setIsShowMenu] = useState(false);

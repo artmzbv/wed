@@ -15,9 +15,10 @@
 .navigation__logo{
     position: absolute;
     bottom: 2px;
-    right: 5px;
-    width: 15px;
-    height: 15px;
+    right: -5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 /* Underline animation for general navigation links */

@@ -1,14 +1,14 @@
 import React from 'react';
 import './AboutSession.css'; 
-import dress from '../../images/about/dress.png'
-import smile from '../../images/about/smile.png'
-import click from '../../images/about/click.png'
-import repeat from '../../images/about/repeat.png'
+import reflect from '../../images/about/reflect.webp'
+import smile from '../../images/about/smile.webp'
+import click from '../../images/about/click.webp'
+import repeat from '../../images/about/repeat.webp'
 
 const AboutSession = () => {
 
   const options = [
-    {title:'Reflect', src: dress, 
+    {title:'Reflect', src: reflect, 
     description: 'See yourself reflected back at you. Capture exactly what you see in the mirror.', alt: 'ready'},
     {title:'Strike That Pose!', src: smile,
     description: 'Change positions and move around to create different lighting moods.', alt: 'cheese'},

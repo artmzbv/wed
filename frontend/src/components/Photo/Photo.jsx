@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Photo.css';
 import Button from '../common/Button/Button';
-import smile from '../../images/about/smile.png';
-import click from '../../images/about/click.png';
-import repeat from '../../images/about/repeat.png';
 import { URL } from '../../utils/constants/constants';
 import PhotosCarousel from '../PhotosCarusel/PhotosCarusel';
 import Privacy from '../Privacy/Privacy';

@@ -78,14 +78,14 @@
     };
 
     export const durations = [
-      { label: '60 mins', value: 60 },
-      { label: '45 mins', value: 45 },
       { label: '30 mins', value: 30 },
-      { label: '15 mins', value: 15 },
+      { label: '45 mins', value: 45 },
+      { label: '60 mins', value: 60 },
+      // { label: '15 mins', value: 15 },
     ];
 
     export const adminDurations = [
-      { label: '15 mins', value: 15 },
+      // { label: '15 mins', value: 15 },
       { label: '30 mins', value: 30 },
       { label: '45 mins', value: 45 },
       { label: '60 mins', value: 60 },

@@ -28,7 +28,7 @@ const Intro = () => {
             {!isMobile && (
               <>
                 <ul className='intro__list'>
-                <li className='intro__subtitle'>£30 for 15 min</li>
+                {/* <li className='intro__subtitle'>£30 for 15 min</li> */}
                 <li className='intro__subtitle'>£40 for 30 min</li>
                 <li className='intro__subtitle'>£60 for 45 min</li>
                 <li className='intro__subtitle'>£70 for 60 min</li>
@@ -44,7 +44,7 @@ const Intro = () => {
             {isMobile && (
               <div className='intro__mobile-container'>
                 <ul className='intro__list'>
-                <li className='intro__subtitle'>£30 for 15 min</li>
+                {/* <li className='intro__subtitle'>£30 for 15 min</li> */}
                 <li className='intro__subtitle'>£40 for 30 min</li>
                 <li className='intro__subtitle'>£60 for 45 min</li>
                 <li className='intro__subtitle'>£70 for 60 min</li>

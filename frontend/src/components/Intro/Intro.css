@@ -32,6 +32,8 @@
     list-style: none;
     margin: 8px auto;
     text-align: start;
+
+    font-size: 1.1em ;
 }
 
 .intro__buttons{

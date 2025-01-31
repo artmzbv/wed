@@ -40,9 +40,9 @@ const TimeBookingVerification = ({
   const originalPrice = (() => {
     let basePrice;
     switch (selectedDuration) {
-      case 15:
-        basePrice = 30;
-        break;
+      // case 15:
+      //   basePrice = 30;
+      //   break;
       case 30:
         basePrice = 40;
         break;

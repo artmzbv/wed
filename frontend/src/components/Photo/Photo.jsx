@@ -54,7 +54,7 @@ const Photo = () => {
       images: [], // Placeholder for dynamic images
       alt: 'journey',
       subtitle: 'TRULY SEE YOURSELF',
-      text: "Self-Made Portraits studio offers a distinctive journey of self-discovery through photography. With total privacy, you can fully delve into your creative expression. It’s just you reflecting you.",
+      text: "Self-Made Portraits offers a distinctive journey of self-discovery through photography. Fully delve into your creative expression. It’s just you reflecting you.",
       position: 'left',
       blockId: 1,
     },
@@ -70,7 +70,7 @@ const Photo = () => {
       images: [], // Placeholder for dynamic images
       alt: 'moments',
       subtitle: 'SPECIAL MOMENTS TO CAPTURE IN LIFE',
-      text: 'We provide an ideal space for capturing the beauty of pregnancy, birthdays, graduations, and other intimate moments. Our setting allows you to express yourself and showcase your unique beauty in a sensitive and personal way. Privacy is our utmost guarantee in this safe and secure studio.',
+      text: 'We provide an ideal space for capturing the beauty of pregnancy, birthdays, graduations, and other intimate moments. Our setting allows you to express yourself and showcase your unique beauty in a sensitive and personal way.',
       position: 'left',
       blockId: 3,
     },

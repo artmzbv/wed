@@ -9,13 +9,13 @@ const AboutSession = () => {
 
   const options = [
     {title:'Reflect', src: dress, 
-    description: 'See yourself, pick all sides of your personality.', alt: 'ready'},
+    description: 'See yourself reflected back at you. Capture exactly what you see in the mirror.', alt: 'ready'},
     {title:'Strike That Pose!', src: smile,
     description: 'Change positions and move around to create different lighting moods.', alt: 'cheese'},
     {title:'Click', src: click, 
     description: 'Capture stunning professional photos with just a click of a button, letting you be both the photographer and the model.' ,alt: 'click'},
     {title:'Shoot/Repeat', src: repeat,
-      description: `Unlimited Shots — take as many photos as you want!`, alt: 'repeat'},
+      description: `Take unlimited photos during your session`, alt: 'repeat'},
 ]
 
     return (

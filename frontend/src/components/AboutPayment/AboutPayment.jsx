@@ -7,11 +7,11 @@ const AboutPayment = () => {
     {number: '1', title:`Online\nBooking`,
     description: 'Choose and book your ideal photoshoot with ease through our simple booking platform.'},
     {number: '2', title: `Pay per\nsession`,
-    description: `Whether you're booking 15 minutes for headshots or a full hour for themed shoots and costume changes, there's something for everyone!`},
+    description: `Whether you’re booking a session for headshots or a full-themed photoshoot, the studio offers a wide variety of uses.`},
     {number: '3', title:`Same day \nresults`,
-    description: `Within minutes of your session ending, you'll receive a secure download link for all your images.`},
+    description: `You’ll receive a secure download link for your images. We can also transfer them directly to your personal portable hard drive if you wish.`},
     {number: '4', title:`Pick &\nChoose`,
-      description: `Keep all your images and take time to select your favourite shots.`},
+      description: `Keep all your photos and take your time selecting your favourites. No editing required—just crop the images to your desired size.`},
 ]
 
     return (

@@ -13,15 +13,29 @@
     return slots;
   };
 
-  export const getOverlappingSlots = (startTime, duration) => {
+  export const getOverlappingSlots = (startTime, duration, buffer = 0) => {
+    // Convert HH:MM to a Date on an arbitrary day
+    const current = new Date(`1970-01-01T${startTime}`);
+  
+    // Subtract the buffer from the start
+    current.setMinutes(current.getMinutes() - buffer);
+  
+    // Calculate the time we want to stop at
+    const endTime = new Date(current);
+    endTime.setMinutes(endTime.getMinutes() + duration + buffer * 2);
+  
+    // The absolute cutoff is 20:00
+    const dayEndTime = new Date('1970-01-01T20:00:00');
+  
     const slots = [];
-    let current = new Date(`1970-01-01T${startTime}`);
-    const endTime = new Date('1970-01-01T20:00:00');
-    for (let i = 0; i < duration + 15; i += 15) {
-      if (current > endTime) break;  // Stop if time exceeds 20:00
-      slots.push(current.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    // Use <= endTime so we include the final 15-min increment at endTime
+    while (current <= endTime && current < dayEndTime) {
+      slots.push(
+        current.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      );
       current.setMinutes(current.getMinutes() + 15);
     }
+  
     return slots;
   };
 
@@ -30,12 +44,16 @@
       const reservationDate = new Date(res.date).toISOString().split('T')[0];
       const currentDate = selectedDate?.toISOString().split('T')[0];
       if (reservationDate !== currentDate) return false;
-
-      const selectedSlots = getOverlappingSlots(time, duration + 15);
+  
+      // No extra buffer: just actual start -> end
+      const selectedSlots = getOverlappingSlots(time, duration);  
       const reservedSlots = getOverlappingSlots(res.time, res.duration);
+  
+      // If any actual slots overlap, it’s a genuine time conflict
       return selectedSlots.some((slot) => reservedSlots.includes(slot));
     });
   };
+  
 
   const formatDateToYYYYMMDD = (date) => {
     const year = date.getFullYear();
@@ -46,19 +64,21 @@
   };
   
 
-  export const isSlotBooked = (reservations,selectedDate, time) => {
+  export const isSlotBooked = (reservations, selectedDate, time) => {
     return reservations.some((res) => {
+      // Compare YYYY-MM-DD
       const reservationDate = new Date(res.date).toISOString().split('T')[0];
-      // console.log(reservationDate)
-       // Format current date to YYYY-MM-DD for consistency
-       const currentDate = formatDateToYYYYMMDD(new Date(selectedDate)); // Clicked date formatted as YYYY-MM-DD
-      //  console.log('Current Date:', currentDate);// date for click
-      // console.log(currentDate)
+      const currentDate = formatDateToYYYYMMDD(new Date(selectedDate));
       if (reservationDate !== currentDate) return false;
-      const overlappingSlots = getOverlappingSlots(res.time, res.duration);
+  
+      // Generate all 15-min increments for the reservation (including a 15-min buffer)
+      const overlappingSlots = getOverlappingSlots(res.time, res.duration, 15);
+  
+      // If user’s chosen slot is in that set, it’s booked
       return overlappingSlots.includes(time);
     });
   };
+  
 
     // Function to convert Date to custom format string (e.g., 'Thu Oct 24 2024 15:00:00')
   export const formatSelectedDate = (date, time) => {

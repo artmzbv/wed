@@ -11,10 +11,9 @@ const getCookie = (name) => {
 
 export const usePageTracking = () => {
   const location = useLocation();
-  // console.log(location)
 
   useEffect(() => {
-        // Check if user accepted cookies
+    // Check if user accepted cookies
     const cookieConsent = getCookie('cookieConsent');
     
     if (cookieConsent === 'accepted') {
@@ -41,7 +40,5 @@ export const sendMetrik = (action, category, label, value) => {
   if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
       window.gtag('event', action, values);
   } else {
-  // на случай, если локально статистика отключена
-      // console.log('event', action, values);
   }
 }

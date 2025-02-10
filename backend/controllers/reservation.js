@@ -140,8 +140,9 @@
       };
   
       // Send the confirmation email
-      await transporter.sendMail(mailOptions);
-      console.log(`Confirmation email sent to ${email}`);
+      await transporter.sendMail(mailOptions)
+      .then(() => console.log(`Confirmation email sent to ${email}`))
+      .catch((err) => console.error('Error sending confirmation email:', err))
     } catch (error) {
       console.error('Error creating reservation:', error);
       res.status(500).json({ message: 'Failed to create reservation', error: error.message });

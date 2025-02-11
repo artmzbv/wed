@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Main({ setActiveSection }) {
 
   // Array of section IDs to observe
-  const sectionIds = ["intro", "about", "photos", "gifts", "faq", "contact"];
+  const sectionIds = ["intro", "about", "photos", "gifts", "comments", "faq", "contact"];
 
   useEffect(() => {
     const observerOptions = {

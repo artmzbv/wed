@@ -84,13 +84,20 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
       </button>
       <button
         id="4"
+        className={`navigation__link navigation__link_main ${activeSection === "comments" && location.pathname === "/" ? "navigation__link_active" : ""}`}
+        onClick={(e) => handleNavigationClick(e, "comments")}
+      >
+        Reviews
+      </button>
+      <button
+        id="5"
         className={`navigation__link navigation__link_main ${activeSection === "faq" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "faq")}
       >
         FAQ
       </button>
       <button
-        id="5"
+        id="6"
         className={`navigation__link navigation__link_main ${activeSection === "contact" && location.pathname === "/" ? "navigation__link_active" : ""}`}
         onClick={(e) => handleNavigationClick(e, "contact")}
       >

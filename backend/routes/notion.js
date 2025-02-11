@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { getFAQs, getPhotos } = require('../controllers/notion');
+const { getFAQs, getPhotos, getComments } = require('../controllers/notion');
 
 router.get('/photos', getPhotos);
 router.get('/faqs', getFAQs);
-// router.post('/articles/:date/:title', getNotionDataFromDB);
+router.get('/comments', getComments);
 
 module.exports = router;

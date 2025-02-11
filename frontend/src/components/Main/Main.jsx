@@ -9,6 +9,7 @@ import FAQ from "../FAQ/FAQ";
 import Photo from "../Photo/Photo";
 import GiftCards from "../GiftCards/GiftCards";
 import ContactUs from "../ContactUs/ContactUs";
+import Comments from "../Comments/Comments";
 import Intro from "../Intro/Intro";
 import logo from "../../images/logo/logo.png"
 import { organizationSchema } from "../../utils/constants/schema";
@@ -79,6 +80,7 @@ export default function Main({ setActiveSection }) {
           <AboutPayment />
           <Photo />
           <GiftCards />
+          <Comments />
           <FAQ />
           <ContactUs />
       </main>

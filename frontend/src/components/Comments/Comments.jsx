@@ -37,7 +37,7 @@ const Comments = () => {
   
         const data = await response.json();
         setComments(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Failed to fetch comments:', error);
         setError(error.message);

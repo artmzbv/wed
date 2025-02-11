@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Button.css';
 
-const Button = ({ book, value, type }) => {
+const Button = ({ book, value, type, onClick }) => {
   let path = '';
 
   // Define the link path based on the type of booking
@@ -17,7 +17,7 @@ const Button = ({ book, value, type }) => {
   }
 
   return (
-    <Link to={path} className={`button ${book ? 'button__book-time' : 'button__book-gift'}`}>
+    <Link to={path} className={`button ${book ? 'button__book-time' : 'button__book-gift'}`} onClick={onClick}>
       {value}
     </Link>
   );

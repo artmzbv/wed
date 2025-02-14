@@ -99,22 +99,25 @@ exports.createCoupon = async (req, res) => {
       coupon: newCoupon,
     });
 
-    // Configure the transporter for sending email
+    // Configure the transporter for Gmail using OAuth2
     const transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com', // Adjust based on your email provider
-      port: 587,
-      secure: false, // Use STARTTLS
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // true для SSL/TLS на порту 465
       auth: {
-        user: process.env.SMTP_USER, // Your email address
-        pass: process.env.SMTP_PASS, // Your email password or app password
+        type: 'OAuth2',
+        user: process.env.GMAIL_ADDRESS, // ваш Gmail адрес
+        clientId: process.env.GMAIL_CLIENT_ID,
+        clientSecret: process.env.GMAIL_CLIENT_SECRET,
+        refreshToken: process.env.GMAIL_REFRESH_TOKEN,
+        // Опционально, если есть:
+        accessToken: process.env.GMAIL_ACCESS_TOKEN,
       },
-      // debug: true,  // Enable debugging output
-      // logger: true, // Log SMTP communication
     });
-
+      
         // Email options Shippting adress is an object ${!isDigital ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ''}
     const mailOptions = {
-          from: process.env.SMTP_USER, // Sender email
+          from: process.env.GMAIL_ADDRESS, // Sender email
           to: email, // Recipient email
           subject: 'Self-Made Portraits - Reservation Confirmation',
           html: `
@@ -149,7 +152,8 @@ exports.createCoupon = async (req, res) => {
         };
     // Send the email asynchronously
     await transporter.sendMail(mailOptions)
-    console.log(`Confirmation email sent to ${email}`);
+    .then(() => console.log(`Confirmation email sent to ${email}`))
+    .catch((err) => console.error('Error sending confirmation email:', err));
   } catch (error) {
     // Log the error for debugging purposes
     console.error('Error creating coupon:', error);

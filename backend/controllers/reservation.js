@@ -56,6 +56,7 @@
   };
 
   // Controller function to create a new reservation and add it to Google Calendar
+  // Controller function to create a new reservation and add it to Google Calendar
   const createReservation = async (req, res) => {
     try {
       const { date, time, duration, firstName, lastName, phone, email, willComeWithPets, willBeRaw, finalPrice } = req.body;
@@ -88,24 +89,29 @@
           reservation: newReservation,
       });
       // Write to Google Sheets
-      await writeReservationToGoogleSheets(newReservation);
+      await writeReservationToGoogleSheets(newReservation)
+      .then((result) => console.log('Reservation written to Google Sheets'))
+      .catch((err) => console.error('Error writing to Google Sheets'));
 
-      // Configure the transporter
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.office365.com',
-        port: 587,
-        secure: false, // Use STARTTLS
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        // debug: true,  // Enable debugging output
-        // logger: true, // Log SMTP communication
-      });
+    // Configure the transporter for Gmail using OAuth2
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // true для SSL/TLS на порту 465
+      auth: {
+        type: 'OAuth2',
+        user: process.env.GMAIL_ADDRESS, // ваш Gmail адрес
+        clientId: process.env.GMAIL_CLIENT_ID,
+        clientSecret: process.env.GMAIL_CLIENT_SECRET,
+        refreshToken: process.env.GMAIL_REFRESH_TOKEN,
+        accessToken: process.env.GMAIL_ACCESS_TOKEN,
+      },
+    });
+      
   
       // Email options
       const mailOptions = {
-        from: process.env.SMTP_USER,
+        from: process.env.GMAIL_ADDRESS,
         to: email,
         subject: 'Self-Made Portraits - Reservation Confirmation',
         html: `
@@ -142,10 +148,12 @@
       // Send the confirmation email
       await transporter.sendMail(mailOptions)
       .then(() => console.log(`Confirmation email sent to ${email}`))
-      .catch((err) => console.error('Error sending confirmation email:', err))
+      .catch((err) => console.error('Error sending confirmation email:', err));
     } catch (error) {
       console.error('Error creating reservation:', error);
-      res.status(500).json({ message: 'Failed to create reservation', error: error.message });
+      if (!res.headersSent) {
+        res.status(500).json({ message: 'Failed to create reservation', error: error.message });
+      }  
     }
   };
 

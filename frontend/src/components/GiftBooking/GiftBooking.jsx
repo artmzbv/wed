@@ -34,7 +34,7 @@ const GiftBooking = () => {
   const location = useLocation(); // Get the current path
 
   // Prices for each duration
-  const durationPrices = { '30': 40, '45': 60, '60': 75 };
+  const durationPrices = { '30': 40, '45': 60, '60': 70 };
 
 
     // Determine the steps dynamically based on the card type selected

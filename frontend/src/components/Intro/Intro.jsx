@@ -22,7 +22,7 @@ const Intro = () => {
       <section className='intro' id='intro'>
         <div className='intro__container'>
           <div className='intro__text'>
-            <h1 className='intro__title'>{`No Photographer\nProfessional Studio, Ready to Go!\nJust Click & Shoot.`}</h1>
+            <h1 className='intro__title'>{`Professional Studio, Ready to Go!\nJust Click & Shoot.`}</h1>
             
             {/* Render for screens larger than 500px */}
             {!isMobile && (

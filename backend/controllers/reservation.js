@@ -1,9 +1,9 @@
   const reservation = require('../models/reservation');
   const path = require('path');
   // const createTransporter = require('../controllers/emailTransporter');
-  const { google } = require('googleapis');
+  const { OAuth2Client } = require('google-auth-library') 
   const moment = require('moment');
-  const { oauth2Client } = require('./sheets');
+  // const { oauth2Client } = require('./sheets');
   const { writeReservationToGoogleSheets } = require('./sheets');
   const nodemailer = require('nodemailer');
 
@@ -56,7 +56,6 @@
   };
 
   // Controller function to create a new reservation and add it to Google Calendar
-  // Controller function to create a new reservation and add it to Google Calendar
   const createReservation = async (req, res) => {
     try {
       const { date, time, duration, firstName, lastName, phone, email, willComeWithPets, willBeRaw, finalPrice } = req.body;
@@ -93,18 +92,30 @@
       .then((result) => console.log('Reservation written to Google Sheets'))
       .catch((err) => console.error('Error writing to Google Sheets'));
 
+    // Google OAuth2 Setup
+    const oAuth2Client = new OAuth2Client(
+      process.env.GMAIL_CLIENT_ID,
+      process.env.GMAIL_CLIENT_SECRET,
+      "https://developers.google.com/oauthplayground"
+    );
+    
+    oAuth2Client.setCredentials({ refresh_token: process.env.GMAIL_REFRESH_TOKEN });
+    
+    const accessTokenResponse = await oAuth2Client.getAccessToken();
+    const accessToken = accessTokenResponse.token;
+  
     // Configure the transporter for Gmail using OAuth2
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
-      secure: true, // true для SSL/TLS на порту 465
+      secure: true, // false for STARTTLS
       auth: {
         type: 'OAuth2',
         user: process.env.GMAIL_ADDRESS, // ваш Gmail адрес
         clientId: process.env.GMAIL_CLIENT_ID,
         clientSecret: process.env.GMAIL_CLIENT_SECRET,
         refreshToken: process.env.GMAIL_REFRESH_TOKEN,
-        accessToken: process.env.GMAIL_ACCESS_TOKEN,
+        accessToken: accessToken
       },
     });
       
@@ -156,6 +167,7 @@
       }  
     }
   };
+
 
 const checkReservationAvailability = async (req, res) => {
   const { date, time, duration } = req.body;

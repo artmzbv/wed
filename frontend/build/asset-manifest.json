@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.54882c58.css",
-    "main.js": "/static/js/main.7450f9b1.js",
+    "main.css": "/static/css/main.492931c4.css",
+    "main.js": "/static/js/main.eb198865.js",
     "static/js/453.169f8a40.chunk.js": "/static/js/453.169f8a40.chunk.js",
     "static/media/comfort.webp": "/static/media/comfort.f053cd97b0583fbe837d.webp",
     "static/media/reflect.webp": "/static/media/reflect.11743eaa9c9e5ad94ade.webp",
@@ -14,6 +14,7 @@
     "static/media/logo.png": "/static/media/logo.eb6defb17e198b507ae4.png",
     "static/media/NEW-MOBILE.webp": "/static/media/NEW-MOBILE.f451a3fc353c3f483ffa.webp",
     "static/media/assurance.png": "/static/media/assurance.b3e982ac07c504808dd2.png",
+    "static/media/chamber.png": "/static/media/chamber.baebc1f6e0959b202609.png",
     "static/media/404.jpg": "/static/media/404.ef18081acbdf8817888d.jpg",
     "static/media/voucher.webp": "/static/media/voucher.fa541864875c127729a2.webp",
     "static/media/font.woff": "/static/media/font.dc80ee6311e506051741.woff",
@@ -23,12 +24,12 @@
     "index.html": "/index.html",
     "static/media/burger.svg": "/static/media/burger.00878a777adbe56929a2.svg",
     "static/media/close-button.svg": "/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.54882c58.css.map": "/static/css/main.54882c58.css.map",
-    "main.7450f9b1.js.map": "/static/js/main.7450f9b1.js.map",
+    "main.492931c4.css.map": "/static/css/main.492931c4.css.map",
+    "main.eb198865.js.map": "/static/js/main.eb198865.js.map",
     "453.169f8a40.chunk.js.map": "/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.54882c58.css",
-    "static/js/main.7450f9b1.js"
+    "static/css/main.492931c4.css",
+    "static/js/main.eb198865.js"
   ]
 }

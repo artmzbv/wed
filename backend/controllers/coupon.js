@@ -103,14 +103,13 @@ exports.createCoupon = async (req, res) => {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
-      secure: true, // true для SSL/TLS на порту 465
+      secure: true,
       auth: {
         type: 'OAuth2',
-        user: process.env.GMAIL_ADDRESS, // ваш Gmail адрес
+        user: process.env.GMAIL_ADDRESS, 
         clientId: process.env.GMAIL_CLIENT_ID,
         clientSecret: process.env.GMAIL_CLIENT_SECRET,
         refreshToken: process.env.GMAIL_REFRESH_TOKEN,
-        // Опционально, если есть:
         accessToken: process.env.GMAIL_ACCESS_TOKEN,
       },
     });

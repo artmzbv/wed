@@ -3,7 +3,6 @@ import Calendar from 'react-calendar';
 import './AdminDashboard.css';
 import { URL } from '../../utils/constants/constants';
 import {formatSelectedDate, generateTimeSlots, adminDurations, isOverlapping, checkEndTimeBoundary } from '../../utils/calendar';
-// import moment from './moment'
 
 const AdminDashboard = ({ token }) => {
   const [reservations, setReservations] = useState([]);
@@ -27,6 +26,7 @@ const AdminDashboard = ({ token }) => {
   // New states for creating a reservation
   const [newDate, setNewDate] = useState(getCurrentDate())
   const [newTime, setNewTime] = useState('');
+  const [newDiscountValue, setNewDiscountValue] = useState('');
   const [newDuration, setNewDuration] = useState('');
   const [newFirstName, setNewFirstName] = useState('');
   const [newLastName, setNewLastName] = useState('');
@@ -218,6 +218,74 @@ const AdminDashboard = ({ token }) => {
       }
     } catch (err) {
       setError('Failed to delete the coupon. Please try again.');
+    }
+  };
+
+    const handleCreateCoupon = async () => {
+
+     let generatedCouponCode = '';
+            // Generate a unique coupon code by checking with the server
+     const generateUniqueCouponCode = async () => {
+          let isUnique = false;
+              
+          while (!isUnique) {
+          // Generate random coupon code
+          generatedCouponCode = `COUPON-${Math.random().toString(36).substring(7).toUpperCase()}`;
+      
+                // Check if the generated coupon code exists in the database
+          const response = await fetch(`${URL}/api/coupons/check-unique`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json'  },
+              body: JSON.stringify({ code: generatedCouponCode })
+              });
+      
+          const { isDuplicate } = await response.json();
+              if (!isDuplicate) {
+                isUnique = true;
+              }
+            }
+          };
+      
+          // Ensure the coupon code is unique
+          await generateUniqueCouponCode();
+
+    try {
+      const response = await fetch(`${URL}/api/coupons/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          code: generatedCouponCode,
+          discountType: 'fixed',
+          discountValue: newDiscountValue,
+          usageLimit: 1,
+          duration: null,
+          quantity: 1,
+          pricePerItem: newDiscountValue,
+          totalPrice: newDiscountValue,
+          firstName: 'Promotion',
+          lastName: '',
+          email: 'info@self-made-portraits.com',
+          phone: '',
+          isDigital: 'digital',
+          address: null,
+        }),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        // Display success alert
+        window.alert('Coupon created successfully!');
+        
+        setCoupons((prev) => [...prev, data.coupon]);
+        // Clear the form inputs by resetting state
+        setNewDiscountValue('');
+      } else {
+        throw new Error(`Error: ${data.message}`);
+      }
+    } catch (err) {
+      console.error('Error creating coupon:', err.message);
     }
   };
 
@@ -514,7 +582,7 @@ const AdminDashboard = ({ token }) => {
                   {/* Conditionally display the address or "None" */}
                   {coupon.cardType === 'physical' && coupon.address ? (
                     <span>{`${coupon.address.country}, ${coupon.address.state}, ${coupon.address.city}, ${coupon.address.line1}, ${coupon.address.postal_code}`}</span>
-                  ) : (
+                  ) :  (
                     <span>None</span>
                   )}
                 </td>
@@ -537,8 +605,23 @@ const AdminDashboard = ({ token }) => {
             </table>
             </div>
           )}
+        <div className="admin-dashboard__new-reservation">
+           <h3 className="admin-dashboard__title">Add New Coupon</h3>  
+          <label className="admin-dashboard__new-reservation-label">
+            Discount Value (£):
+            <input
+              type="number"
+              className="admin-dashboard__new-reservation-input"
+              value={newDiscountValue || ""}
+              onChange={(e) => setNewDiscountValue(e.target.value || "")}
+              required
+            />
+          </label>
+              <button className="admin-dashboard__create-button" onClick={handleCreateCoupon}>
+                Create Coupon
+              </button>
         </div>
-
+    </div>
       )}
     </section>
   );

@@ -1,4 +1,3 @@
-import React from 'react';
 import './GiftCards.css'; 
 import Button from '../common/Button/Button';
 import digital from '../../images/voucher.webp'

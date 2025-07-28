@@ -97,7 +97,7 @@ const PaymentForm = () => {
             // Check if the generated coupon code exists in the database
             const response = await fetch(`${URL}/api/coupons/check-unique`, {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 'Content-Type': 'application/json'  },
               body: JSON.stringify({ code: generatedCouponCode })
             });
   

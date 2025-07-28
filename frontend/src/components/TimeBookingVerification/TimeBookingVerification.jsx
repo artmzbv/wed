@@ -59,7 +59,7 @@ const TimeBookingVerification = ({
   })();
 
   const finalPrice = Math.max(0, originalPrice - discount);
-
+  
   // Calculate remaining balance if discount is more than the original price
   const remainingBalance = discount > originalPrice ? discount - originalPrice : 0;
 
@@ -109,12 +109,6 @@ const TimeBookingVerification = ({
     setCoupon('');
     setDiscount(0);
   };
-
-  // Handle Timer for Step 3
-  // useEffect(() => {
-  //   const cleanup = transactionTimer(activeStep, setActiveStep, setRemainingTime);
-  //   return cleanup;
-  // }, [activeStep]);
 
   // Function to handle "Confirm Payment" when finalPrice is 0
   const handleConfirmPayment = async () => {
@@ -200,9 +194,8 @@ const TimeBookingVerification = ({
           </button>
           </div>
           {couponError && <p className="time__error-message">{couponError}</p>} {/* Display coupon error if present */}
-                 {/* Success Message for Payment */}
+          {/* Success Message for Payment */}
           {couponSuccess && <p className="time__success-message">{couponSuccess}</p>} {/* Display payment success if present */}
-
           {/* Display remaining balance if discount is more than price */}
           {remainingBalance > 0 && (
             <p className="time__remaining-balance">
@@ -215,7 +208,6 @@ const TimeBookingVerification = ({
           type='button'
           className='time__final-step-button time__final-step-button_active'
           onClick={finalPrice === 0 ? handleConfirmPayment : handleProceedToPayment}
-          // disabled={remainingTime === 0}
         >
           {finalPrice === 0 ? 'Confirm Payment' : 'Proceed to Payment'}
         </button>

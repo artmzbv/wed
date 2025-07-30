@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../utils/constants/constants';
-import { formatTime, transactionTimer } from '../../utils/constants/constants';
 import './TimeBookingVerification.css';
 
 const TimeBookingVerification = ({
@@ -24,25 +23,19 @@ const TimeBookingVerification = ({
   setWillBeRaw,
   willBeRaw,
   handleBackStep,
-  activeStep,
-  setActiveStep,
 }) => {
-  // const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
+
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(0);
   const [couponError, setCouponError] = useState(''); // State to handle coupon errors
   const [couponSuccess, setCouponSuccess] = useState(''); // For displaying coupon success messages
   const [paymentSuccess, setPaymentSuccess] = useState(''); // State to track payment success message
+  const [error, setError] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate
 
-  // console.log(willComeWithPets)
-  // console.log(willBeRaw)
   const originalPrice = (() => {
     let basePrice;
     switch (selectedDuration) {
-      // case 15:
-      //   basePrice = 30;
-      //   break;
       case 30:
         basePrice = 40;
         break;
@@ -95,6 +88,7 @@ const TimeBookingVerification = ({
       setCouponSuccess(''); // Clear success message
     }
   };
+
   // Function to reset form data (optional)
   const resetFormData = () => {
     setSelectedDate(null);
@@ -110,28 +104,62 @@ const TimeBookingVerification = ({
     setDiscount(0);
   };
 
-  // Function to handle "Confirm Payment" when finalPrice is 0
-  const handleConfirmPayment = async () => {
-    try {
-      const response = await fetch(`${URL}/api/coupons/delete`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ couponCode: coupon }), // Send couponCode in body
-      });
 
-      if (response.ok) {
-        setPaymentSuccess('Payment successful! Your reservation has been created.'); // Show success message
-        resetFormData(); // Optionally reset form data
-      } else {
-        const data = await response.json();
-        console.error('Failed to delete coupon:', data.message);
-      }
-    } catch (error) {
-      console.error('Error deleting coupon:', error);
+const handleConfirmPayment = async () => {
+  try {
+    // 1. Создание резервации
+    const reservationResponse = await fetch(`${URL}/api/reservations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        date: selectedDate.toISOString().split('T')[0],
+        time: selectedTime,
+        duration: selectedDuration,
+        firstName,
+        lastName,
+        email,
+        phone,
+        willComeWithPets,
+        willBeRaw,
+        finalPrice: 0,
+      }),
+    });
+
+    if (!reservationResponse.ok) {
+      const errorData = await reservationResponse.json();
+      throw new Error(errorData.message || `Error: ${reservationResponse.status}`);
     }
-  };
+
+    const reservationData = await reservationResponse.json();
+    console.log('Reservation created successfully:', reservationData);
+
+    // 2. Удаление использованного купона
+    const deleteResponse = await fetch(`${URL}/api/coupons/delete`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ couponCode: coupon }),
+    });
+
+    if (!deleteResponse.ok) {
+      const errorData = await deleteResponse.json();
+      console.error('Failed to delete coupon:', errorData.message);
+      // Не прерываем процесс, если ошибка только на удалении купона
+    }
+
+    // 3. Очистка и редирект
+    setPaymentSuccess('Payment successful! Your reservation has been created.');
+    resetFormData();
+    navigate('/payment/success');
+  } catch (error) {
+    console.error('Error in handleConfirmPayment:', error);
+    setError(`Error processing reservation: ${error.message}`);
+  }
+};
+
 
   // Function to handle navigation to the PaymentForm when finalPrice > 0
   const handleProceedToPayment = () => {
@@ -148,6 +176,7 @@ const TimeBookingVerification = ({
         finalPrice,
         willComeWithPets: willComeWithPets, 
         willBeRaw: willBeRaw, 
+        ...(coupon && { couponCode: coupon }) 
       },
     });
   };
@@ -161,10 +190,6 @@ const TimeBookingVerification = ({
         <h2 className='time__confirmation-subtitle'>Booking Confirmation</h2>
       </div>
       <div className='time__confirmation-final'>
-        {/* Display the Timer */}
-        {/* <p className='time__timer'>
-          <strong>Time Remaining: {formatTime(remainingTime)}</strong>
-        </p> */}
         <p className='time__confirmation-final-text'>
           <strong>Date:</strong> {selectedDate?.toLocaleDateString()} <br />
           <strong>Time:</strong> {selectedTime} <br />
@@ -178,7 +203,6 @@ const TimeBookingVerification = ({
           <strong>Total Price:</strong> £{finalPrice}
         </p>
 
-        {/* Coupon Input Section */}
         <div className='time__coupon'>
           <div className='time__coupon-container'>
           <p className='time__enter-text'>Enter coupon code</p>

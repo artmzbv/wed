@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useLocation  } from 'react-router-dom'; // Import useNavigate
 import './GiftBooking.css'; 
@@ -11,21 +11,12 @@ const GiftBooking = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [quantity, setQuantity] = useState({'30': 0, '45': 0, '60': 0 });
   const [totalSum, setTotalSum] = useState(0);
-  const [selectedDetails, setSelectedDetails] = useState({
-    duration: '',
-    quantity: 0,
-    total: 0,
-  });
   const [selectedDuration, setSelectedDuration] = useState(null);
   const [userSelections, setUserSelections] = useState([]); // State to store chosen items and their details
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  // const [recipientFirstName, setRecipientFirstName] = useState("");
-  // const [recipientLastName, setRecipientLastName] = useState("");
-  // const [recipientPhone, setRecipientPhone] = useState("");
-  // const [recipientEmail, setRecipientEmail] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [errors, setErrors] = useState({});
   const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
@@ -169,12 +160,6 @@ const GiftBooking = () => {
         else if (!isValidPhone(phone)) validationErrors.phone = "- phone number must have only digits";
         if (!email.trim()) validationErrors.email = "- email is required";
         else if (!isValidEmail(email)) validationErrors.email = "- invalid email format";
-        // if (!recipientFirstName.trim()) validationErrors.recipientFirstName = "- recipient's first name is required";
-        // if (!recipientLastName.trim()) validationErrors.recipientLastName = "- recipient's last name is required";
-        // if (!recipientPhone.trim()) validationErrors.recipientPhone = "- recipient's phone number is required";
-        // else if (!isValidPhone(recipientPhone)) validationErrors.recipientPhone = "- recipient's phone number must have only digits";
-        // if (!recipientEmail.trim()) validationErrors.recipientEmail = "- recipient's email is required";
-        // else if (!isValidEmail(recipientEmail)) validationErrors.recipientEmail = "- recipient's email is invalid";
         setErrors(validationErrors);
         return Object.keys(validationErrors).length === 0;
       };
@@ -187,10 +172,6 @@ const GiftBooking = () => {
           lastName,
           phone,
           email,
-          // recipientFirstName,
-          // recipientLastName,
-          // recipientPhone,
-          // recipientEmail,
           quantity,
           isDigital
         };
@@ -211,9 +192,6 @@ const GiftBooking = () => {
       }
     };
 
-    const handleCardTypeChange = (event) => {
-      setSelectedCardType(event.target.value);
-    };
 
   // Handle the "Next" button click
   const handleNextStepType = () => {
@@ -239,10 +217,6 @@ const GiftBooking = () => {
       lastName.trim() !== '' &&
       phone.trim() !== '' &&
       email.trim() !== '' 
-      // && recipientFirstName.trim() !== '' &&
-      // recipientLastName.trim() !== ''
-      //  && recipientPhone.trim() !== '' &&
-      // recipientEmail.trim() !== ''
     );
   }, [firstName, lastName, phone, email
     // , recipientFirstName, recipientLastName
@@ -255,13 +229,7 @@ const GiftBooking = () => {
     if (lastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, lastName: '' }));
     if (phone.trim() && isValidPhone(phone)) setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
     if (email.trim() && isValidEmail(email)) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
-    // if (recipientFirstName.trim()) setErrors((prevErrors) => ({ ...prevErrors, recipientFirstName: '' }));
-    // if (recipientLastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, recipientLastName: '' }));
-    // if (recipientPhone.trim() && isValidPhone(recipientPhone)) setErrors((prevErrors) => ({ ...prevErrors, recipientPhone: '' }));
-    // if (recipientEmail.trim() && isValidEmail(recipientEmail)) setErrors((prevErrors) => ({ ...prevErrors, recipientEmail: '' }));
-  }, [firstName, lastName, phone, email
-    // , recipientFirstName, recipientLastName, recipientPhone, recipientEmail
-  ]);
+  }, [firstName, lastName, phone, email]);
 
   useEffect(() => {
     const cleanup = transactionTimer(activeStep, setActiveStep, setRemainingTime)
@@ -292,8 +260,6 @@ const handleProceedToPayment = () => {
       lastName,
       phone,
       email,
-      // recipientFirstName,
-      // recipientLastName,
       totalSum, // Pass finalPrice correctly to the payment page
       userSelections, // Pass the selected gifts,
       isDigital
@@ -332,9 +298,6 @@ const generateAggregatedSelections = () => {
 ✨ No photographer? No problem! Just Click & Shoot" />
         <meta property="og:image" content={logo} />
         <link rel="canonical" href="https://self-made-portraits.com/"></link>
-        {/* <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script> */}
       </Helmet>
     <section className='gift-booking' id="gift-booking">
       <h1 className='gift-booking__title'>GIFT BOOKING</h1>
@@ -422,7 +385,6 @@ const generateAggregatedSelections = () => {
                   </div>
                   {/* Quantity Selection for each Duration */}
                   <div className='gift-booking__quantity-container'>
-                  {/* <div className='gift-booking__quantity-buttons'> */}
                       <button
                         type='button'
                         className='gift-booking__quantity-button'
@@ -533,56 +495,6 @@ const generateAggregatedSelections = () => {
                     required
                   />
                 </div>
-
-                {/* Recipient's Information */}
-                {/* <h3>Recipient's Information</h3>
-                <div className='gift-booking__form-group'>
-                  <label className='gift-booking__form-field' htmlFor='recipientFirstName'>Recipient's First Name&nbsp; {renderError('recipientFirstName')}</label>
-                  <input
-                    id='recipientFirstName'
-                    type='text'
-                    value={recipientFirstName}
-                    placeholder="Jane"
-                    onChange={(e) => setRecipientFirstName(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className='gift-booking__form-group'>
-                  <label className='gift-booking__form-field' htmlFor='recipientLastName'>Recipient's Last Name&nbsp; {renderError('recipientLastName')}</label>
-                  <input
-                    id='recipientLastName'
-                    type='text'
-                    value={recipientLastName}
-                    placeholder="Doe"
-                    onChange={(e) => setRecipientLastName(e.target.value)}
-                    required
-                  />
-                </div> */}
-
-                {/* <div className='gift-booking__form-group'>
-                  <label className='gift-booking__form-field' htmlFor='recipientPhone'>Recipient's Phone&nbsp; {renderError('recipientPhone')}</label>
-                  <input
-                    id='recipientPhone'
-                    type='tel'
-                    value={recipientPhone}
-                    placeholder="e.g., 07123456789"
-                    onChange={(e) => setRecipientPhone(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className='gift-booking__form-group'>
-                  <label className='gift-booking__form-field' htmlFor='recipientEmail'>Recipient's Email&nbsp; {renderError('recipientEmail')}</label>
-                  <input
-                    id='recipientEmail'
-                    type='email'
-                    value={recipientEmail}
-                    placeholder="recipient@domain.com"
-                    onChange={(e) => setRecipientEmail(e.target.value)}
-                    required
-                  />
-                </div> */}
               </form>
               <div className='gift-booking__button-container'>
               <button
@@ -627,13 +539,9 @@ const generateAggregatedSelections = () => {
         <strong>Last Name:</strong> {lastName} <br />
         <strong>Phone:</strong> {phone} <br />
         <strong>Email:</strong> {email} <br />
-{/* 
-        <h2>Recipient's Information</h2>
-        <strong>Recipient's First Name:</strong> {recipientFirstName} <br />
-        <strong>Recipient's Last Name:</strong> {recipientLastName} <br /> */}
         <strong>Total Price:</strong> <strong>£{totalSum}</strong>
       </p>
-            {/* Proceed to Payment Button */}
+        {/* Proceed to Payment Button */}
             <button
         type='button'
         className='time__final-step-button time__final-step-button_active'

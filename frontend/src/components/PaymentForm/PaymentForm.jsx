@@ -26,18 +26,16 @@ const PaymentForm = () => {
     willBeRaw,
     finalPrice = 0, // Default value if finalPrice is undefined
     isCouponPurchase = false, // Add a flag to indicate if it's a coupon purchase
-    isDigital
+    isDigital,
+    couponCode = '',
   } = location.state || {}; 
   
-  const [couponCode, setCouponCode] = useState(''); // State to store the coupon code
   const [discount, setDiscount] = useState(0); // State to store the discount amount
   const [totalPrice, setTotalPrice] = useState(finalPrice); // Use finalPrice from location state or default to 0
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [shippingDetails, setShippingDetails] = useState(null); // For physical items
 
-  // console.log(willComeWithPets)
-  // console.log(willBeRaw)
   // Redirect to homepage if essential state data is missing (i.e., user accessed directly)
   useEffect(() => {
     if (!location.state || (!fromGifts && !fromTime)) {
@@ -209,9 +207,7 @@ const PaymentForm = () => {
         // Check if the reservation time is available on the server before proceeding with payment
         const reservationCheckResponse = await fetch(`${URL}/api/reservations/check`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: {'Content-Type': 'application/json', },
           body: JSON.stringify({
             date: formattedDate,  // Ensure this field is sent
             time: time,           // Ensure time is sent (in "HH:mm" format)
@@ -293,12 +289,23 @@ const PaymentForm = () => {
           if (!reservationResponse.ok) {
             throw new Error(`Error: ${reservationResponse.status} ${reservationResponse.statusText}`);
           }
-  
+     // 2. Удаление использованного купона
+      if (couponCode) {
+        const deleteResponse = await fetch(`${URL}/api/coupons/delete`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ couponCode }),
+        });
+
+        if (!deleteResponse.ok) {
+          const errorData = await deleteResponse.json();
+          console.error('Failed to delete coupon:', errorData.message);
+        }
+      }
+
           const reservationData = await reservationResponse.json();
           console.log('Reservation created successfully:', reservationData);
         }
-  
-        // After successful payment and reservation creation (or coupon creation), navigate to the success page
         navigate('./success');
       }
     } catch (error) {

@@ -31,6 +31,7 @@ h2 {
   width: 100%; /* Make tabs container take the full width */
 }
 
+
 .admin-dashboard__tab {
   flex: 1; /* Each tab will take equal width */
   text-align: center; /* Center text within each tab */
@@ -305,6 +306,10 @@ h2 {
 
 .admin-dashboard__radio-group-label input{
   cursor: pointer;
+}
+.admin-dashboard__or{
+  color: #333;
+  text-align: center;
 }
 
 @media screen and (max-width: 1023px) {

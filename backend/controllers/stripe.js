@@ -11,7 +11,6 @@ const createPaymentIntent = async (req, res) => {
       amount, // Amount in cents
       currency, // Currency (e.g., 'usd')
     });
-
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
     });

@@ -30,7 +30,7 @@ const PaymentForm = () => {
     couponCode = '',
   } = location.state || {}; 
   
-  const [discount, setDiscount] = useState(0); // State to store the discount amount
+  // const [discount, setDiscount] = useState(0); // State to store the discount amount
   const [totalPrice, setTotalPrice] = useState(finalPrice); // Use finalPrice from location state or default to 0
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);

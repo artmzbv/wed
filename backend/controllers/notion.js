@@ -130,9 +130,9 @@ const getComments = async (req, res) => {
 
     // Fetch data from Notion
     const notionData = await getNotionData(databaseId, apiToken);
-    console.log("Notion Data:", JSON.stringify(notionData, null, 2)); 
+    //console.log("Notion Data:", JSON.stringify(notionData, null, 2)); 
     const filteredComments = extractComments(notionData);
-    console.log("Extracted Comments:", filteredComments);
+    //console.log("Extracted Comments:", filteredComments);
 
     // Save the fetched comments to your database
     const notionDocument = new Comments({ comments: filteredComments });

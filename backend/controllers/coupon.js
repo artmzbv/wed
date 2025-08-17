@@ -72,7 +72,7 @@ exports.createCoupon = async (req, res) => {
     // Create a new coupon object with all the required and optional fields
     const newCoupon = new Coupon({
       code,
-      discountType,
+      discountType: discountType,
       discountValue: discountValue || 0, // Default to 0 if not provided
       //expirationDate: expirationDate || null, // Optional field
       usageLimit: usageLimit || 1, // Default to 1 if not provided
@@ -117,16 +117,16 @@ exports.createCoupon = async (req, res) => {
         // Email options Shippting adress is an object ${!isDigital ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ''}
     const mailOptions = {
           from: process.env.GMAIL_ADDRESS, // Sender email
-          to: email, // Recipient email
+          to: email, // Recipient email 
           subject: 'Self-Made Portraits - Reservation Confirmation',
-          html: `
+          // before: <li><strong>Discount Type:</strong> ${discountType}</li>
+          html: ` 
             <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
               <p>Dear ${firstName} ${lastName},</p>
               <p>Your coupon has been successfully created!</p>
               <p><strong>Coupon Details:</strong></p>
               <ul>
                 <li><strong>Code:</strong> ${code}</li>
-                <li><strong>Discount Type:</strong> ${discountType}</li>
                 <li><strong>Discount Value:</strong> ${discountValue} GBP</li>
                 <li><strong>Quantity:</strong> ${quantity}</li>
                 <li><strong>Card Type:</strong> ${isDigital ? 'Digital' : 'Physical'}</li>
@@ -179,9 +179,10 @@ exports.applyCoupon = async (req, res) => {
       }
   
       const discount = coupon.discountValue; // Assuming it's a fixed discount
-      const finalPrice = originalPrice - discount;
-  
-      res.json({ discount, finalPrice });
+      // const finalPrice = originalPrice - discount;
+      const discountType = coupon.discountType
+      
+      res.json({ discount, discountType });
     } catch (error) {
       res.status(500).json({ message: 'Failed to apply coupon' });
     }
@@ -189,19 +190,27 @@ exports.applyCoupon = async (req, res) => {
 
 // Controller: couponController.js
 exports.deleteCoupon = async (req, res) => {
-    const { couponCode } = req.body; // Use req.body instead of req.params
-  
-    try {
-      const deletedCoupon = await Coupon.findOneAndDelete({ code: couponCode });
-  
-      if (!deletedCoupon) {
-        return res.status(404).json({ message: 'Coupon not found' });
-      }
-  
-      res.status(200).json({ message: 'Coupon deleted successfully' });
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to delete coupon', error: error.message });
+  const { couponCode, couponPath } = req.body; // couponPath может быть 'client' или 'admin'
+
+  try {
+    const coupon = await Coupon.findOne({ code: couponCode });
+    if (!coupon) {
+      return res.status(404).json({ message: 'Coupon not found' });
     }
-  };
-  
+
+    // Политика: не удаляем, если купон процентный и запрос от клиента
+    if (coupon.discountType === 'percent' && couponPath === 'client') {
+      return res.status(200).json({
+        message: 'Deletion skipped: client percent coupon must be retained.',
+        skipped: true
+      });
+    }
+
+    await coupon.deleteOne();
+    return res.status(200).json({ message: 'Coupon deleted successfully', deleted: true });
+  } catch (error) {
+    return res.status(500).json({ message: 'Failed to delete coupon', error: error.message });
+  }
+};
+
   

@@ -27,6 +27,7 @@ const TimeBookingVerification = ({
 
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(0);
+  const [discountType, setDiscountType] = useState('');
   const [couponError, setCouponError] = useState(''); // State to handle coupon errors
   const [couponSuccess, setCouponSuccess] = useState(''); // For displaying coupon success messages
   const [paymentSuccess, setPaymentSuccess] = useState(''); // State to track payment success message
@@ -51,7 +52,12 @@ const TimeBookingVerification = ({
     return basePrice + (willComeWithPets === "Yes" ? 10 : 0) + (willBeRaw === "Yes" ? 10 : 0); // Add £10 if pets are coming
   })();
 
-  const finalPrice = Math.max(0, originalPrice - discount);
+  // if fixed then this condition
+  // const finalPrice = Math.max(0, originalPrice - discount);
+  // if percent then original price * (discount/100) and do not delete
+  const finalPrice = discountType === 'percent'
+  ? Math.ceil(originalPrice * (1 - discount / 100))// percent
+  : Math.max(0, originalPrice - discount); // fixed
   
   // Calculate remaining balance if discount is more than the original price
   const remainingBalance = discount > originalPrice ? discount - originalPrice : 0;
@@ -63,7 +69,7 @@ const TimeBookingVerification = ({
       setCouponSuccess(''); // Clear success message
       return;
     }
-
+    
     try {
       const response = await fetch(`${URL}/api/coupons/apply`, {
         method: 'POST',
@@ -77,8 +83,13 @@ const TimeBookingVerification = ({
 
       if (response.ok) {
         setDiscount(data.discount); // Apply the discount from the server response
+        setDiscountType(data.discountType); // Apply the discountType from the server response
         setCouponError(""); // Clear any previous errors
-        setCouponSuccess(`Coupon applied successfully! £${data.discount} off your total.`); // Show success message
+        setCouponSuccess(
+          data.discountType === "percent"
+            ? `Coupon applied successfully! ${data.discount}% off your total.`
+            : `Coupon applied successfully! £${data.discount} off your total.`
+        );
       } else {
         setCouponError(data.message); // Display error message if coupon is invalid
         setCouponSuccess(''); // Clear success message
@@ -141,7 +152,7 @@ const handleConfirmPayment = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ couponCode: coupon }),
+      body: JSON.stringify({ couponCode: coupon, couponPath: "client"  }),
     });
 
     if (!deleteResponse.ok) {
@@ -180,7 +191,7 @@ const handleConfirmPayment = async () => {
       },
     });
   };
-
+console.log(discountType)
   return (
     <>
       <div className='time__confirmation'>
@@ -202,7 +213,6 @@ const handleConfirmPayment = async () => {
           <strong>With RAW format:</strong> {willBeRaw} <br />
           <strong>Total Price:</strong> £{finalPrice}
         </p>
-
         <div className='time__coupon'>
           <div className='time__coupon-container'>
           <p className='time__enter-text'>Enter coupon code</p>
@@ -221,7 +231,7 @@ const handleConfirmPayment = async () => {
           {/* Success Message for Payment */}
           {couponSuccess && <p className="time__success-message">{couponSuccess}</p>} {/* Display payment success if present */}
           {/* Display remaining balance if discount is more than price */}
-          {remainingBalance > 0 && (
+          {discountType === "fixed" && remainingBalance > 0 && (
             <p className="time__remaining-balance">
               You have £{remainingBalance} left in discount. You may choose a longer duration or proceed with this time.
             </p>

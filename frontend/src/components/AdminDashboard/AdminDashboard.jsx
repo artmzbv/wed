@@ -13,6 +13,7 @@ const AdminDashboard = ({ token }) => {
   const [selectedDate, setSelectedDate] = useState(''); // Calendar selected date
   const [activeTab, setActiveTab] = useState('bookings'); // State to track active tab
   const [expandedRows, setExpandedRows] = useState([]); // Track which rows are expanded
+  const [discountType, setDiscountType] = useState("percent");
 
     // Helper function to get today's date in YYYY-MM-DD format
   const getCurrentDate = () => {
@@ -207,7 +208,7 @@ const AdminDashboard = ({ token }) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ couponCode }),
+        body: JSON.stringify({ couponCode, couponPath: "admin" }),
       });
   
       if (response.ok) {
@@ -257,7 +258,7 @@ const AdminDashboard = ({ token }) => {
         },
         body: JSON.stringify({
           code: generatedCouponCode,
-          discountType: 'fixed',
+          discountType: discountType,
           discountValue: newDiscountValue,
           usageLimit: 1,
           duration: null,
@@ -560,6 +561,7 @@ const AdminDashboard = ({ token }) => {
                   <th>Last Name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>Discount Type</th>
                   <th>Card Type</th>
                   <th>Address</th>
                   <th>Actions</th>
@@ -570,13 +572,22 @@ const AdminDashboard = ({ token }) => {
                   coupons.map((coupon) => (
                     <tr key={coupon._id}>
                       <td>{coupon.code}</td>
-                      <td>£{coupon.discountValue}</td>
+                      <td>
+                    {coupon.discountType === "percent"
+                      ? `${coupon.discountValue}%`
+                      : `£${coupon.discountValue}`}
+                      </td>
                       <td>{coupon.duration} mins</td>
-                      <td>£{coupon.totalPrice}</td>
+                      <td>
+                    {coupon.discountType === "percent"
+                      ? `${coupon.totalPrice}%`
+                      : `£${coupon.totalPrice}`}
+                      </td>
                       <td>{coupon.firstName}</td>
                       <td>{coupon.lastName}</td>
                       <td>{coupon.email}</td>
                       <td>{coupon.phone}</td>
+                      <td>{coupon.discountType}</td>
                       <td>{coupon.cardType}</td>
                 <td>
                   {/* Conditionally display the address or "None" */}
@@ -607,16 +618,27 @@ const AdminDashboard = ({ token }) => {
           )}
         <div className="admin-dashboard__new-reservation">
            <h3 className="admin-dashboard__title">Add New Coupon</h3>  
+        <label className="admin-dashboard__new-reservation-label">
+          Discount Type:
+          <select
+            className="admin-dashboard__new-reservation-input"
+            value={discountType}
+            onChange={(e) => setDiscountType(e.target.value)}
+          >
+            <option value="percent">Percentage (%)</option>
+            <option value="fixed">Fixed (£)</option>
+          </select>
+        </label>
           <label className="admin-dashboard__new-reservation-label">
-            Discount Value (£):
-            <input
-              type="number"
-              className="admin-dashboard__new-reservation-input"
-              value={newDiscountValue || ""}
-              onChange={(e) => setNewDiscountValue(e.target.value || "")}
-              required
-            />
-          </label>
+          Discount Value {discountType === "percent" ?  "(%)" : "(£)"}:
+          <input
+            type="number"
+            className="admin-dashboard__new-reservation-input"
+            value={newDiscountValue || ""}
+            onChange={(e) => setNewDiscountValue(e.target.value || "")}
+            required
+          />
+        </label>
               <button className="admin-dashboard__create-button" onClick={handleCreateCoupon}>
                 Create Coupon
               </button>

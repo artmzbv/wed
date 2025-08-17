@@ -222,7 +222,6 @@ const checkReservationAvailability = async (req, res) => {
       }
 
       console.log(`Deleted reservation from MongoDB: ${JSON.stringify(deletedReservation)}`);
-
       // Step 2: If there is a corresponding Google Calendar event, delete it
       // if (deletedReservation.eventId) {
       //   try {

@@ -11,7 +11,7 @@ const addressSchema = new mongoose.Schema({
 
 const couponSchema = new mongoose.Schema({
   code: { type: String, required: true, unique: true },
-  discountType: { type: String, enum: ['percentage', 'fixed'], required: true },
+  discountType: { type: String, enum: ['percent', 'fixed'], required: true },
   discountValue: { type: Number, required: true },
   // expirationDate: { type: Date },
   usageLimit: { type: Number },

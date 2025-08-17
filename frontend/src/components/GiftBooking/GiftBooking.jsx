@@ -27,8 +27,7 @@ const GiftBooking = () => {
   // Prices for each duration
   const durationPrices = { '30 min': 40, '45 min': 60, '60 min': 70 };
 
-
-    // Determine the steps dynamically based on the card type selected
+  // Determine the steps dynamically based on the card type selected
   const isDigital = location.pathname.includes('digital');
   const isPhysical = location.pathname.includes('physical');
 

@@ -46,7 +46,6 @@
         ...(willComeWithPets && { willComeWithPets }),
         ...(willBeRaw && { willBeRaw }),
       });
-
       console.log('Reservations found:', reservations);
       res.status(200).json(reservations);
     } catch (error) {

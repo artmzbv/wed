@@ -338,7 +338,7 @@ const AdminDashboard = ({ token }) => {
                     <th>Duration</th>
                     <th>Price</th>
                     <th>With Pets</th>
-                    <th>RAW format</th>
+                    <th>Color Photo Package</th>
                     <th>Details</th>
                     <th>Delete</th>
                   </tr>
@@ -516,7 +516,7 @@ const AdminDashboard = ({ token }) => {
             </div>
           </label>
           <label className="admin-dashboard__new-reservation-label">
-            Will Be RAW:
+            Color Photo Package:
             <div className="admin-dashboard__radio-group">
               <label className="admin-dashboard__radio-group-label">
                 <input

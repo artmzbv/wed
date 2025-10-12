@@ -210,7 +210,7 @@ console.log(discountType)
           <strong>Phone:</strong> {phone} <br />
           <strong>Email:</strong> {email} <br />
           <strong>With Pets:</strong> {willComeWithPets} <br />
-          <strong>With RAW format:</strong> {willBeRaw} <br />
+          <strong>Colour Photo Package:</strong> {willBeRaw} <br />
           <strong>Total Price:</strong> £{finalPrice}
         </p>
         <div className='time__coupon'>

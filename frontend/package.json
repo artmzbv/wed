@@ -46,6 +46,13 @@
     ]
   },
   "reactSnap": {
+      "include": [
+    "/",
+    "/book/gift/digital",
+    "/book/gift/physical",
+    "/book/gift",
+    "/book/time"
+  ],
     "skipThirdPartyRequests": true,
     "puppeteerExecutablePath": "C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe",
     "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]

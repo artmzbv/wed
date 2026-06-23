@@ -1,0 +1,130 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(68, 66, 62, 0.90);
+}
+
+/* On screens wider than the 1440 canvas the bar bleeds full-width,
+   while .nav__inner keeps the content locked to the 1440 column.
+   In this range zoom is always 1, so 100vw maps to real pixels. */
+@media (min-width: 1441px) {
+  .nav {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+}
+
+.nav__inner {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--nav-side);
+  gap: 24px;
+}
+
+.nav__logo {
+  font-family: var(--font-logo);
+  font-weight: 300;
+  font-size: 26px;
+  color: white;
+  letter-spacing: 1px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav__date {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: white;
+  letter-spacing: 0.6px;
+  margin-right: auto;
+  padding-left: 32px;
+  white-space: nowrap;
+}
+
+.nav__links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 28px;
+}
+
+.nav__links a {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: 12px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.nav__links a:hover {
+  opacity: 0.7;
+}
+
+/* Burger — hidden on desktop, shown once the menu collapses */
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.nav__burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.nav__burger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav__burger--open span:nth-child(2) {
+  opacity: 0;
+}
+.nav__burger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .nav__burger {
+    display: flex;
+  }
+
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(68, 66, 62, 0.97);
+    padding: 18px var(--nav-side) 22px;
+  }
+
+  .nav__links--open {
+    display: flex;
+  }
+
+  .nav__links a {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Barlow:wght@100;200;300&family=Nokora:wght@300;400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'EB Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: white;
+  color: black;
+  overflow-x: hidden;
+}
+
+:root {
+  --color-bg: #ffffff;
+  --color-card: #EEEEEB;
+  --color-footer: #E1DBCB;
+  --color-nav: rgba(68, 66, 62, 0.90);
+  --color-btn: #696865;
+  --color-text: #000000;
+  --color-text-muted: #868686;
+  --color-accent-green: #5C724C;
+  --font-display: 'Barlow', 'Helvetica Neue', sans-serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-logo: 'Nokora', sans-serif;
+
+  /* Type scale — calm, readable hierarchy */
+  --fs-hero: 48px;       /* couple names */
+  --fs-title: 36px;      /* section headings */
+  --fs-statement: 22px;  /* large quotes on image bands */
+  --fs-lead: 19px;       /* emphasised body / values */
+  --fs-body: 16px;       /* default copy */
+  --fs-label: 15px;      /* small labels */
+
+  /* Rhythm */
+  --section-pad: 88px;   /* vertical breathing room per section */
+  --maxw: 1120px;        /* inner content column */
+  --radius: 10px;
+
+  /* Layout side-padding — 0 on the desktop canvas (inner column centers
+     itself); grows into real gutters once the layout goes fluid. */
+  --gutter: 0px;
+  --hero-side: 80px;
+  --nav-side: 40px;
+}
+
+/* ── Tablet ── fluid, flexible (canon: ~768–1024) */
+@media (max-width: 1024px) {
+  :root {
+    --fs-hero: 40px;
+    --fs-title: 30px;
+    --fs-statement: 20px;
+    --fs-lead: 18px;
+    --fs-body: 16px;
+    --fs-label: 14px;
+    --section-pad: 64px;
+    --gutter: 28px;
+    --hero-side: 28px;
+    --nav-side: 24px;
+  }
+}
+
+/* ── Large phone / small tablet ── single-column transition */
+@media (max-width: 768px) {
+  :root {
+    --section-pad: 56px;
+    --gutter: 20px;
+    --hero-side: 20px;
+    --nav-side: 18px;
+  }
+}
+
+/* ── Mobile ── (Figma 390 mock) */
+@media (max-width: 450px) {
+  :root {
+    --fs-hero: 30px;
+    --fs-title: 26px;
+    --fs-statement: 18px;
+    --fs-lead: 16px;
+    --fs-body: 15px;
+    --fs-label: 13px;
+    --section-pad: 44px;
+    --gutter: 16px;
+    --hero-side: 16px;
+    --nav-side: 14px;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

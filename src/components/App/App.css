@@ -1,0 +1,14 @@
+.app {
+  width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+/* Below the desktop canvas the app becomes a normal fluid page. */
+@media (max-width: 1024px) {
+  .app {
+    width: 100%;
+  }
+}

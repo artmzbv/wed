@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './DressCode.css';
-import men from '../../images/men.png';
-import women from '../../images/women.png';
+import men from '../../images/men.webp';
+import women from '../../images/women.webp';
 
 // Палитра вечера — тёмные тона
 const COLORS = ['#0B090C', '#50311D', '#591F1F'];

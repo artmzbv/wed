@@ -65,7 +65,8 @@
 .footer__monogram-sub {
   font-family: var(--font-logo);
   font-weight: 300;
-  font-size: 22px;
+  margin-top: 40px;
+  font-size: 8px;
   color: rgba(0, 0, 0, 0.40);
   letter-spacing: 1px;
 }

@@ -55,6 +55,11 @@
   z-index: 1;
 }
 
+/* Pull the last point left so it clears the arrowhead */
+.timeline__event:last-child {
+  transform: translateX(-24px);
+}
+
 .timeline__dot {
   width: 16px;
   height: 16px;
@@ -131,6 +136,10 @@
   .timeline__event {
     width: 100%;
     padding: 24px 0;
+  }
+
+  .timeline__event:last-child {
+    transform: none;
   }
 
   .timeline__text {

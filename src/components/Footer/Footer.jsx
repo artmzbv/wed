@@ -18,7 +18,7 @@ const Footer = () => {
       </div>
       <div className="footer__monogram">
         <span className="footer__monogram-main">И&amp;Н</span>
-        <span className="footer__monogram-sub">А&amp;З</span>
+        <span className="footer__monogram-sub">Студия Артемов&Зубов</span>
       </div>
     </footer>
   );

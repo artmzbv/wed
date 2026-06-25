@@ -6,7 +6,7 @@
 .dresscode__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  /* gap: 24px; */
   align-items: center;
   max-width: var(--maxw);
   margin: 0 auto;
@@ -14,7 +14,7 @@
 
 .dresscode__card {
   background: rgba(238, 238, 235, 0.90);
-  border-radius: var(--radius);
+  border-radius: var(--radius) 0 0 var(--radius);
   padding: 48px;
   display: flex;
   flex-direction: column;
@@ -120,6 +120,11 @@
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
+  .dresscode__card { 
+    background: rgba(238, 238, 235, 0.90); 
+    border-radius: var(--radius)
+}
 }
 
 @media (max-width: 450px) {

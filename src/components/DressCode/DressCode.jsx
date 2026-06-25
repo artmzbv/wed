@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './DressCode.css';
 import men from '../../images/men.webp';
 import women from '../../images/women.webp';
@@ -17,6 +17,17 @@ const DressCode = () => {
 
   const prev = () => setSlide((s) => (s - 1 + SLIDES.length) % SLIDES.length);
   const next = () => setSlide((s) => (s + 1) % SLIDES.length);
+
+  // Свайп пальцем влево/вправо (мобильная версия)
+  const touchStartX = useRef(null);
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (dx <= -40) next();
+    else if (dx >= 40) prev();
+    touchStartX.current = null;
+  };
 
   return (
     <section className="dresscode" id="дресс-код">
@@ -43,6 +54,8 @@ const DressCode = () => {
           <div
             className="dresscode__photo"
             style={{ backgroundImage: `url(${SLIDES[slide]})` }}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
           />
 
           <button className="dresscode__nav dresscode__nav--next" onClick={next} aria-label="Вперёд">

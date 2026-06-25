@@ -71,24 +71,24 @@
   letter-spacing: 1px;
 }
 
-/* Mobile mock order: contacts, monogram, then the organisers' note */
+/* Mobile order: organisers' note first, then contacts, then monogram */
 @media (max-width: 600px) {
   .footer {
     gap: 22px;
   }
 
-  .footer__contacts {
+  .footer__org-title {
     order: 1;
+  }
+
+  .footer__contacts {
+    order: 2;
     flex-direction: column;
     gap: 16px;
   }
 
   .footer__monogram {
-    order: 2;
-    margin-top: 0;
-  }
-
-  .footer__org-title {
     order: 3;
+    margin-top: 0;
   }
 }

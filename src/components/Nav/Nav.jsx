@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Nav.css';
 
 const NAV_LINKS = [
-  { label: 'ПРОГРАММА', href: '#программа' },
+  { label: 'ЛОКАЦИЯ', href: '#программа' },
   { label: 'ТАЙМИНГ', href: '#тайминг' },
   { label: 'ДРЕСС-КОД', href: '#дресс-код' },
   { label: 'ПОЖЕЛАНИЯ', href: '#пожелания' },

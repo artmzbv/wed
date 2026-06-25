@@ -33,6 +33,20 @@
   transform: translateY(-50%);
 }
 
+/* Arrowhead at the end of the timeline (points forward in time) */
+.timeline__line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 11px solid #D6CFB9;
+}
+
 .timeline__event {
   position: relative;
   display: flex;
@@ -79,7 +93,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-body);
   font-weight: 500;
-  color: #5C724C;
+  color: black;
 }
 
 /* Mobile: timeline turns vertical with events zig-zagging around a centre line */
@@ -101,6 +115,17 @@
     width: 2px;
     height: auto;
     transform: translateX(-50%);
+  }
+
+  /* Vertical line — arrow points down */
+  .timeline__line::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 11px solid #D6CFB9;
+    border-bottom: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
   }
 
   .timeline__event {

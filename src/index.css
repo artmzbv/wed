@@ -1,4 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Barlow:wght@100;200;300&family=Nokora:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nokora:wght@300;400&display=swap');
+
+/* Заголовки и хедер — PP Right Grotesk (Spatial Fine) */
+@font-face {
+  font-family: 'PP Right Grotesk';
+  src: url('./vendor/fonts/font_title.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Основной текст — Europa Grotesk No 2 SH */
+@font-face {
+  font-family: 'Europa Grotesk';
+  src: url('./vendor/fonts/font.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -6,7 +24,7 @@
 
 body {
   margin: 0;
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Europa Grotesk', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: white;
@@ -23,8 +41,8 @@ body {
   --color-text: #000000;
   --color-text-muted: #868686;
   --color-accent-green: #5C724C;
-  --font-display: 'Barlow', 'Helvetica Neue', sans-serif;
-  --font-body: 'EB Garamond', Georgia, serif;
+  --font-display: 'PP Right Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Europa Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --font-logo: 'Nokora', sans-serif;
 
   /* Type scale — calm, readable hierarchy */

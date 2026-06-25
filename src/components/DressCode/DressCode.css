@@ -7,40 +7,42 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+  align-items: center;
   max-width: var(--maxw);
   margin: 0 auto;
 }
 
 .dresscode__card {
-  background: rgba(238, 238, 235, 0.70);
+  background: rgba(238, 238, 235, 0.90);
   border-radius: var(--radius);
   padding: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 36px;
+  gap: 40px;
 }
 
 .dresscode__text {
   font-family: var(--font-body);
   font-size: var(--fs-lead);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
   text-align: center;
   color: black;
   margin: 0;
 }
 
+/* Палитра вечера — три вертикальных образца */
 .dresscode__swatches {
   display: flex;
-  gap: 10px;
+  gap: 16px;
   justify-content: center;
 }
 
 .dresscode__swatch {
-  width: 64px;
-  height: 56px;
-  border-radius: 6px;
+  width: 56px;
+  height: 170px;
+  border-radius: 8px;
 }
 
 .dresscode__carousel {
@@ -51,22 +53,26 @@
   gap: 16px;
 }
 
-.dresscode__slide {
+/* Одна фотография образа на слайд (пропорция снимков ≈ 29:32) */
+.dresscode__photo {
   width: 100%;
-  flex: 1;
-  min-height: 420px;
+  aspect-ratio: 29 / 32;
   border-radius: var(--radius);
+  background-color: #d8d2c6;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .dresscode__nav {
   position: absolute;
-  top: calc(50% - 16px);
+  top: calc(50% - 15px);
   transform: translateY(-50%);
   background: #373737;
   border: none;
   border-radius: 8px;
-  width: 32px;
-  height: 32px;
+  width: 33px;
+  height: 33px;
   color: white;
   font-size: 20px;
   line-height: 1;
@@ -82,17 +88,17 @@
   opacity: 0.7;
 }
 
-.dresscode__nav--prev { left: 12px; }
-.dresscode__nav--next { right: 12px; }
+.dresscode__nav--prev { left: 14px; }
+.dresscode__nav--next { right: 14px; }
 
 .dresscode__dots {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .dresscode__dot {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #D9D9D9;
   border: none;
@@ -102,20 +108,21 @@
 }
 
 .dresscode__dot--active {
-  background: #5C724C;
+  background: #373737;
+}
+
+@media (max-width: 1024px) {
+  .dresscode__swatch { height: 150px; }
 }
 
 @media (max-width: 768px) {
   .dresscode__content {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
   }
-
-  .dresscode__slide { min-height: 340px; }
 }
 
 @media (max-width: 450px) {
-  .dresscode__card { padding: 32px 24px; gap: 28px; }
-  .dresscode__slide { min-height: 300px; }
-  .dresscode__swatch { width: 56px; height: 48px; }
+  .dresscode__card { padding: 32px 24px; gap: 32px; }
+  .dresscode__swatch { width: 48px; height: 140px; }
 }

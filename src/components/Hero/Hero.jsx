@@ -4,7 +4,7 @@ import heroVideo from '../../images/intro/video.mov';
 const Hero = () => {
   return (
     <section className="hero">
-      <h1 className="hero__title">ИННА И НИКОЛАЙ</h1>
+      {/* <h1 className="hero__title">ИННА И НИКОЛАЙ</h1> */}
       <div className="hero__media-wrap">
         <video
           className="hero__media"

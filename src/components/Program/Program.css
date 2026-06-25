@@ -7,6 +7,7 @@
   max-width: var(--maxw);
   margin: 0 auto 28px;
   height: 240px;
+
   background: #c8bfac url('../../images/house.jpg') center/cover no-repeat;
   border-radius: var(--radius);
   position: relative;
@@ -56,11 +57,29 @@
 
 .program__value {
   font-family: var(--font-body);
-  font-size: var(--fs-lead);
+  font-size: 17px;
   font-weight: 400;
   color: black;
-  line-height: 1.3;
+  line-height: 1.4;
   margin-top: 6px;
+}
+
+.program__map-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 9px 22px;
+  background: #696865;
+  color: white;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: opacity 0.2s;
+}
+
+.program__map-btn:hover {
+  opacity: 0.85;
 }
 
 .program__divider {
@@ -82,4 +101,5 @@
   .program__card { padding: 28px 22px; }
   .program__banner { height: 150px; }
   .program__item { padding: 13px 0; }
+  .program__value { font-size: 15px; }
 }

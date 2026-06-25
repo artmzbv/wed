@@ -1,18 +1,15 @@
 import { useState } from 'react';
 import './DressCode.css';
+import men from '../../images/men.png';
+import women from '../../images/women.png';
 
-const COLORS = [
-  { hex: '#5C724C', label: 'Оливковый' },
-  { hex: '#DEE0D9', label: 'Серебристый' },
-  { hex: '#BA7A60', label: 'Терракота' },
-  { hex: '#F6EAD8', label: 'Кремовый' },
-];
+// Палитра вечера — тёмные тона
+const COLORS = ['#0B090C', '#50311D', '#591F1F'];
 
+// Каждый слайд — одна фотография образа (женский / мужской)
 const SLIDES = [
-  { bg: '#c8bfac' },
-  { bg: '#a89b8c' },
-  { bg: '#d6cfc4' },
-  { bg: '#b5aa9e' },
+  women,
+  men,
 ];
 
 const DressCode = () => {
@@ -28,17 +25,12 @@ const DressCode = () => {
 
         <div className="dresscode__card">
           <p className="dresscode__text">
-            Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас
-            Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия
+            Просим вас поддержать палитру вечера.<br />
+            Нам будет приятно, если вы предпочтете спокойные и лаконичные образы.
           </p>
           <div className="dresscode__swatches">
-            {COLORS.map((c) => (
-              <div
-                key={c.hex}
-                className="dresscode__swatch"
-                style={{ background: c.hex }}
-                title={c.label}
-              />
+            {COLORS.map((hex) => (
+              <div key={hex} className="dresscode__swatch" style={{ background: hex }} />
             ))}
           </div>
         </div>
@@ -48,7 +40,10 @@ const DressCode = () => {
             ‹
           </button>
 
-          <div className="dresscode__slide" style={{ background: SLIDES[slide].bg }} />
+          <div
+            className="dresscode__photo"
+            style={{ backgroundImage: `url(${SLIDES[slide]})` }}
+          />
 
           <button className="dresscode__nav dresscode__nav--next" onClick={next} aria-label="Вперёд">
             ›

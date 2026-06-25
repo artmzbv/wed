@@ -14,7 +14,7 @@
 }
 
 .hero__media-wrap {
-  height: 460px;
+  height: 480px;
   overflow: hidden;
   border-radius: var(--radius);
 }
@@ -38,5 +38,5 @@
 
 @media (max-width: 450px) {
   .hero { padding-top: 24px; padding-bottom: 44px; }
-  .hero__media-wrap { height: 230px; }
+  .hero__media-wrap { height: 300px; }
 }

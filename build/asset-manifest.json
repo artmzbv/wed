@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/wed/static/css/main.fe804e85.css",
-    "main.js": "/wed/static/js/main.5878b63f.js",
+    "main.css": "/wed/static/css/main.4b0c12c1.css",
+    "main.js": "/wed/static/js/main.ac2598df.js",
     "static/js/453.7e3e3be8.chunk.js": "/wed/static/js/453.7e3e3be8.chunk.js",
     "static/media/video.mov": "/wed/static/media/video.626c8b80cf837bef7706.mov",
-    "static/media/women.png": "/wed/static/media/women.ba673de51ffc17e9c35d.png",
     "static/media/invitation.jpg": "/wed/static/media/invitation.6d36316e540d185e56ff.jpg",
-    "static/media/men.png": "/wed/static/media/men.6bd4bc8fadce83781f1c.png",
     "static/media/house.jpg": "/wed/static/media/house.bbca71989c6f3d673625.jpg",
+    "static/media/women.webp": "/wed/static/media/women.2c66e2ac6ed1f9109729.webp",
     "static/media/font_title.woff": "/wed/static/media/font_title.b1669ffbc5730f1b44f7.woff",
+    "static/media/men.webp": "/wed/static/media/men.7e2b228b0fa71163a042.webp",
     "static/media/wish.avif": "/wed/static/media/wish.6164e7e049b50e3ac43d.avif",
     "static/media/font.woff": "/wed/static/media/font.a71dc22b50600a6e459f.woff",
     "index.html": "/wed/index.html",
-    "main.fe804e85.css.map": "/wed/static/css/main.fe804e85.css.map",
-    "main.5878b63f.js.map": "/wed/static/js/main.5878b63f.js.map",
+    "main.4b0c12c1.css.map": "/wed/static/css/main.4b0c12c1.css.map",
+    "main.ac2598df.js.map": "/wed/static/js/main.ac2598df.js.map",
     "453.7e3e3be8.chunk.js.map": "/wed/static/js/453.7e3e3be8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe804e85.css",
-    "static/js/main.5878b63f.js"
+    "static/css/main.4b0c12c1.css",
+    "static/js/main.ac2598df.js"
   ]
 }

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import './GuestForm.css';
 
-const DRINKS = [
-  'Шампанское',    'Белое вино',
-  'Красное вино',  'Виски',
-  'Водка',         'Джин',
-  'Ром',           'Не пью алкоголь',
+const TRANSPORT = [
+  'Самостоятельно',
+  'Присоединюсь к друзьям/семье',
+  'На трансфере',
 ];
 
 const GuestForm = () => {
@@ -13,18 +12,9 @@ const GuestForm = () => {
     name: '',
     attending: '',
     partnerName: '',
-    drinks: [],
+    transport: '',
   });
   const [submitted, setSubmitted] = useState(false);
-
-  const toggleDrink = (drink) => {
-    setForm((f) => ({
-      ...f,
-      drinks: f.drinks.includes(drink)
-        ? f.drinks.filter((d) => d !== drink)
-        : [...f.drinks, drink],
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -112,17 +102,19 @@ const GuestForm = () => {
         </div>
 
         <div className="guestform__right">
-          <p className="guestform__question">Ваши предпочтения</p>
-          <div className="guestform__drinks">
-            {DRINKS.map((drink) => (
-              <label key={drink} className="guestform__check">
+          <p className="guestform__question">Как вы предпочитаете добираться до площадки?</p>
+          <div className="guestform__transport">
+            {TRANSPORT.map((opt) => (
+              <label key={opt} className="guestform__radio">
                 <input
-                  type="checkbox"
-                  checked={form.drinks.includes(drink)}
-                  onChange={() => toggleDrink(drink)}
+                  type="radio"
+                  name="transport"
+                  value={opt}
+                  checked={form.transport === opt}
+                  onChange={() => setForm((f) => ({ ...f, transport: opt }))}
                 />
-                <span className="guestform__check-box" />
-                {drink}
+                <span className="guestform__radio-circle" />
+                {opt}
               </label>
             ))}
           </div>

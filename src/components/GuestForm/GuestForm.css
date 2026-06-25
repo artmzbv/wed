@@ -121,47 +121,10 @@
   background: #5C724C;
 }
 
-.guestform__drinks {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 24px;
-}
-
-.guestform__check {
+.guestform__transport {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  cursor: pointer;
-  color: black;
-}
-
-.guestform__check input[type='checkbox'] {
-  display: none;
-}
-
-.guestform__check-box {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #696865;
-  border-radius: 4px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s;
-}
-
-.guestform__check input[type='checkbox']:checked + .guestform__check-box {
-  background: #5C724C;
-  border-color: #5C724C;
-}
-
-.guestform__check input[type='checkbox']:checked + .guestform__check-box::after {
-  content: '✓';
-  color: white;
-  font-size: 15px;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .guestform__btn {
@@ -199,6 +162,5 @@
 }
 
 @media (max-width: 450px) {
-  .guestform__drinks { gap: 10px 16px; }
   .guestform__btn { width: 100%; padding: 14px 0; }
 }

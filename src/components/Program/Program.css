@@ -101,5 +101,6 @@
   .program__card { padding: 28px 22px; }
   .program__banner { height: 150px; }
   .program__item { padding: 13px 0; }
-  .program__value { font-size: 15px; }
+  /* .program__value { font-size: 15px; } */
+  .program__value { width: 95%; }
 }

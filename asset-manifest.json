@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wed/static/css/main.90281eeb.css",
-    "main.js": "/wed/static/js/main.e9c81556.js",
+    "main.css": "/wed/static/css/main.4c7361cc.css",
+    "main.js": "/wed/static/js/main.b1f660a4.js",
     "static/js/453.7e3e3be8.chunk.js": "/wed/static/js/453.7e3e3be8.chunk.js",
     "static/media/video.mov": "/wed/static/media/video.626c8b80cf837bef7706.mov",
     "static/media/invitation.jpg": "/wed/static/media/invitation.6d36316e540d185e56ff.jpg",
@@ -9,15 +9,17 @@
     "static/media/women.webp": "/wed/static/media/women.2c66e2ac6ed1f9109729.webp",
     "static/media/font_title.woff": "/wed/static/media/font_title.b1669ffbc5730f1b44f7.woff",
     "static/media/men.webp": "/wed/static/media/men.7e2b228b0fa71163a042.webp",
+    "static/media/eb-garamond-latin.woff": "/wed/static/media/eb-garamond-latin.7ccc5b93ce58012a65fd.woff",
     "static/media/wish.avif": "/wed/static/media/wish.6164e7e049b50e3ac43d.avif",
-    "static/media/font.woff": "/wed/static/media/font.a71dc22b50600a6e459f.woff",
+    "static/media/font.woff": "/wed/static/media/font.bde8c8ed04c2af8a796a.woff",
+    "static/media/logo.svg": "/wed/static/media/logo.a5488536d4924586f94fe422a357d682.svg",
     "index.html": "/wed/index.html",
-    "main.90281eeb.css.map": "/wed/static/css/main.90281eeb.css.map",
-    "main.e9c81556.js.map": "/wed/static/js/main.e9c81556.js.map",
+    "main.4c7361cc.css.map": "/wed/static/css/main.4c7361cc.css.map",
+    "main.b1f660a4.js.map": "/wed/static/js/main.b1f660a4.js.map",
     "453.7e3e3be8.chunk.js.map": "/wed/static/js/453.7e3e3be8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90281eeb.css",
-    "static/js/main.e9c81556.js"
+    "static/css/main.4c7361cc.css",
+    "static/js/main.b1f660a4.js"
   ]
 }

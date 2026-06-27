@@ -8,7 +8,7 @@
   margin: 0 auto 28px;
   height: 240px;
 
-  background: #c8bfac url('../../images/house.jpg') center/cover no-repeat;
+  background: #c8bfac url('../../images/house.webp') center/cover no-repeat;
   border-radius: var(--radius);
   position: relative;
 }
@@ -50,7 +50,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-label);
   font-weight: 500;
-  color: black;
+  color: #535353;
   line-height: 1.2;
   letter-spacing: 0.3px;
 }
@@ -59,7 +59,7 @@
   font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
-  color: black;
+  color: #535353;
   line-height: 1.4;
   margin-top: 6px;
 }

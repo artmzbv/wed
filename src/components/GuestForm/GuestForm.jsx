@@ -83,21 +83,6 @@ const GuestForm = () => {
               Не смогу
             </label>
           </div>
-
-          {form.attending === 'yes' && (
-            <div className="guestform__block">
-              <p className="guestform__hint">Если Вы будете не одни, пожалуйста, заполните поле ниже</p>
-              <div className="guestform__line" />
-              <input
-                className="guestform__input"
-                type="text"
-                placeholder="Имя и Фамилия Вашего спутника"
-                value={form.partnerName}
-                onChange={(e) => setForm((f) => ({ ...f, partnerName: e.target.value }))}
-              />
-              <div className="guestform__line" />
-            </div>
-          )}
         </div>
 
         <div className="guestform__right">
@@ -118,11 +103,9 @@ const GuestForm = () => {
             ))}
           </div>
         </div>
-
         <div className="guestform__submit-row">
           <button className="guestform__btn" type="submit">Отправить</button>
         </div>
-
       </form>
     </section>
   );

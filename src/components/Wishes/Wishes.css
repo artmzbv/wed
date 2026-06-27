@@ -39,6 +39,7 @@
 .wishes__text {
   position: relative;
   z-index: 1;
+  white-space: pre-wrap;
   max-width: 600px;
   font-family: var(--font-body);
   font-size: var(--fs-lead);

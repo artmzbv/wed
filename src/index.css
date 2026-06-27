@@ -58,9 +58,9 @@ body {
   --fs-hero: 48px;       /* couple names */
   --fs-title: 36px;      /* section headings */
   --fs-statement: 22px;  /* large quotes on image bands */
-  --fs-lead: 19px;       /* emphasised body / values */
-  --fs-body: 16px;       /* default copy */
-  --fs-label: 16px;      /* small labels */
+  --fs-lead: 22px;       /* emphasised body / values */
+  --fs-body: 18px;       /* default copy */
+  --fs-label: 18px;      /* small labels */
 
   /* Rhythm */
   --section-pad: 88px;   /* vertical breathing room per section */
@@ -81,7 +81,7 @@ body {
     --fs-title: 30px;
     --fs-statement: 20px;
     --fs-lead: 18px;
-    --fs-body: 16px;
+    --fs-body: 18px;
     --fs-label: 14px;
     --section-pad: 64px;
     --gutter: 28px;
@@ -96,7 +96,7 @@ body {
     --section-pad: 56px;
     --gutter: 20px;
     --hero-side: 20px;
-    --nav-side: 18px;
+    --nav-side: 20px;
   }
 }
 
@@ -105,7 +105,7 @@ body {
   :root {
     --fs-hero: 30px;
     --fs-title: 26px;
-    --fs-statement: 18px;
+    --fs-statement: 20px;
     --fs-lead: 16px;
     --fs-body: 16px;
     --fs-label: 14px;

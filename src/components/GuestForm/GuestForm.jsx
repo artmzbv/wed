@@ -40,7 +40,7 @@ const GuestForm = () => {
       <p className="guestform__deadline">
         Просим подтвердить своё присутствие на мероприятии до:
       </p>
-      <p className="guestform__date">15/07/2026</p>
+      <p className="guestform__date">25/07/2026</p>
 
       <form className="guestform__grid" onSubmit={handleSubmit}>
 

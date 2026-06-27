@@ -57,7 +57,7 @@
 
 .program__value {
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: var(--fs-label);
   font-weight: 400;
   color: #535353;
   line-height: 1.4;

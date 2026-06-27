@@ -47,20 +47,19 @@ const DressCode = () => {
         </div>
 
         <div className="dresscode__carousel">
-          <button className="dresscode__nav dresscode__nav--prev" onClick={prev} aria-label="Назад">
-            ‹
-          </button>
-
           <div
             className="dresscode__photo"
             style={{ backgroundImage: `url(${SLIDES[slide]})` }}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-          />
-
-          <button className="dresscode__nav dresscode__nav--next" onClick={next} aria-label="Вперёд">
-            ›
-          </button>
+          >
+            <button className="dresscode__nav dresscode__nav--prev" onClick={prev} aria-label="Назад">
+              ‹
+            </button>
+            <button className="dresscode__nav dresscode__nav--next" onClick={next} aria-label="Вперёд">
+              ›
+            </button>
+          </div>
 
           <div className="dresscode__dots">
             {SLIDES.map((_, i) => (

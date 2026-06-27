@@ -46,12 +46,11 @@ const GuestForm = () => {
 
         <div className="guestform__left">
           <div className="guestform__block">
-            <p className="guestform__hint">Пожалуйста, подтвердите Ваше присутствие</p>
-            <div className="guestform__line" />
+            <p className="guestform__hint">Ваши Имя и Фамилия</p>
             <input
               className="guestform__input"
               type="text"
-              placeholder="Имя и Фамилия"
+              placeholder="Если вы будете с парой/семьей, укажите все имена"
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               required
@@ -60,7 +59,7 @@ const GuestForm = () => {
           </div>
 
           <div className="guestform__block">
-            <p className="guestform__question">Планируете ли Вы присутствовать?</p>
+            <p className="guestform__question">Планируете ли Вы быть на празднике?</p>
             <label className="guestform__radio">
               <input
                 type="radio"

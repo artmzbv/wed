@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Nav.css';
+import logo from '../../images/logo/logo.svg';
 
 const NAV_LINKS = [
   { label: 'ЛОКАЦИЯ', href: '#программа' },
@@ -22,7 +23,8 @@ const Nav = () => {
   return (
     <nav className="nav">
       <div className="nav__inner">
-        <div className="nav__logo">И&amp;Н</div>
+        
+        <img className="nav__logo" src={logo} alt="Инна и Николай" />
         <div className="nav__date">25 августа, 2026</div>
 
         <button

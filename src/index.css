@@ -9,9 +9,18 @@
   font-display: swap;
 }
 
-/* Основной текст — Europa Grotesk No 2 SH */
+/* Основной текст — EB Garamond, собран из двух сабсетов.
+   Латиница, цифры и пунктуация */
 @font-face {
-  font-family: 'Europa Grotesk';
+  font-family: 'EB Garamond';
+  src: url('./vendor/fonts/eb-garamond-latin.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Кириллица (отдельным именем — глифы подбираются пофолбэчно) */
+@font-face {
+  font-family: 'EB Garamond Cyrillic';
   src: url('./vendor/fonts/font.woff') format('woff');
   font-weight: 100 900;
   font-style: normal;
@@ -24,7 +33,7 @@
 
 body {
   margin: 0;
-  font-family: 'Europa Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'EB Garamond', 'EB Garamond Cyrillic', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: white;
@@ -42,7 +51,7 @@ body {
   --color-text-muted: #868686;
   --color-accent-green: #5C724C;
   --font-display: 'PP Right Grotesk', 'Helvetica Neue', sans-serif;
-  --font-body: 'Europa Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'EB Garamond', 'EB Garamond Cyrillic', Georgia, serif;
   --font-logo: 'Nokora', sans-serif;
 
   /* Type scale — calm, readable hierarchy */

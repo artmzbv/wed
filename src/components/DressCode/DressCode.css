@@ -55,6 +55,7 @@
 
 /* Одна фотография образа на слайд (пропорция снимков ≈ 29:32) */
 .dresscode__photo {
+  position: relative;
   width: 100%;
   aspect-ratio: 29 / 32;
   border-radius: var(--radius);
@@ -66,7 +67,7 @@
 
 .dresscode__nav {
   position: absolute;
-  top: calc(50% - 15px);
+  top: 50%;
   transform: translateY(-50%);
   background: #373737;
   border: none;
@@ -115,19 +116,40 @@
   .dresscode__swatch { height: 150px; }
 }
 
+/* Планшет (2 колонки): фото немного заходит на карточку */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dresscode__carousel {
+    z-index: 1;
+    margin-left: -36px;
+    width: calc(100% + 36px);
+  }
+}
+
 @media (max-width: 768px) {
   .dresscode__content {
     grid-template-columns: 1fr;
-    gap: 24px;
+    /* gap: 24px; */
   }
 
-  .dresscode__card { 
-    background: rgba(238, 238, 235, 0.90); 
-    border-radius: var(--radius)
-}
+  /* Одна колонка: фото слегка наезжает вверх на карточку */
+  .dresscode__carousel {
+    margin-top: -20px;
+    z-index: 1;
+  }
+
+  .dresscode__photo {
+    top: 0;
+    width: 80%;
+    aspect-ratio: 29 / 32;
+  }
+
+  .dresscode__card {
+    background: rgba(238, 238, 235, 0.90);
+    border-radius: var(--radius);
+  }
 }
 
 @media (max-width: 450px) {
   .dresscode__card { padding: 32px 24px; gap: 32px; }
-  .dresscode__swatch { width: 48px; height: 140px; }
+  .dresscode__swatch { width: 48px; height: 120px; }
 }

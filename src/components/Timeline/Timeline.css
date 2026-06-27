@@ -121,6 +121,11 @@
     height: auto;
     transform: translateX(-50%);
   }
+  
+  .timeline__dot {
+      width: 14px;
+      height: 14px;
+  }
 
   /* Vertical line — arrow points down */
   .timeline__line::after {

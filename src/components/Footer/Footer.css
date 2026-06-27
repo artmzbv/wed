@@ -62,6 +62,12 @@
   letter-spacing: 1px;
 }
 
+.footer__logo {
+  height: 40px;
+  width: auto;
+  /* svg внутри белый (fill="white"); brightness(0) делает его чёрным */
+  filter: brightness(0);
+}
 .footer__monogram-sub {
   font-family: var(--font-logo);
   font-weight: 300;

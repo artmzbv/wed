@@ -1,4 +1,5 @@
 import './Footer.css';
+import logo from '../../images/logo/logo.svg';
 
 const Footer = () => {
   return (
@@ -17,7 +18,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__monogram">
-        <span className="footer__monogram-main">И&amp;Н</span>
+        <img className="footer__logo" src={logo} alt="Инна и Николай" />
         <span className="footer__monogram-sub">Студия Артемов&Зубов</span>
       </div>
     </footer>

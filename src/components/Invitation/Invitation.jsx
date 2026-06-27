@@ -5,7 +5,7 @@ const Invitation = () => {
     <section className="invitation">
       <div className="invitation__overlay" />
       <p className="invitation__text">
-        С любовью и благодарностью приглашаем вас разделить с нами радость нашего свадебного дня.
+        {`С любовью и благодарностью приглашаем вас разделить с нами радость\n нашего свадебного дня.`}
       </p>
     </section>
   );

@@ -57,13 +57,20 @@
 /* Одна фотография образа на слайд (пропорция снимков ≈ 29:32) */
 .dresscode__photo {
   position: relative;
-  width: 100%;
+  width: 84%;
   aspect-ratio: 29 / 32;
   border-radius: var(--radius);
   background-color: #d8d2c6;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* Десктоп: фото вплотную к карточке (без зазора слева) */
+@media (min-width: 1025px) {
+  .dresscode__photo {
+    align-self: flex-start;
+  }
 }
 
 .dresscode__nav {

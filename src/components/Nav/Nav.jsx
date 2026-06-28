@@ -20,6 +20,11 @@ const Nav = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
+  const scrollToTop = () => {
+    setOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <nav className="nav">
       <div className="nav__inner">

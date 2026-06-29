@@ -39,7 +39,7 @@
 .wishes__text {
   position: relative;
   z-index: 1;
-  white-space: pre-wrap;
+  white-space: normal;
   max-width: 600px;
   font-family: var(--font-body);
   font-size: var(--fs-lead);
@@ -53,9 +53,10 @@
    и слегка приподнимаем весь контент */
 @media (max-width: 768px) {
   .wishes__text {
-    white-space: normal;
     text-wrap: pretty; /* ровнее переносит строки, без висячих слов */
   }
+  /* На мобиле перенос между предложениями убираем — текст идёт сплошняком */
+  .wishes__break { display: none; }
   .wishes__title,
   .wishes__text { transform: translateY(-40px); }
 }

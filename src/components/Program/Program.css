@@ -98,7 +98,7 @@
   .program__cards { grid-template-columns: 1fr; }
   .program__banner { height: 190px; }
   .program__map-btn{
-  font-size: 14px;
+  font-size: 16px;
   }
 }
 

@@ -14,7 +14,7 @@ const Program = () => {
           <div className="program__item">
             <span className="program__label">Адрес:</span>
             <span className="program__value">
-              Загородный отель Pine River<br />Восход, Обнинск<br />Калужская область
+              Загородный отель Pine River<br />Калужская область
             </span>
             <a
               className="program__map-btn"
@@ -26,8 +26,8 @@ const Program = () => {
             </a>
           </div>
           <div className="program__item">
-            <span className="program__label">Начало мероприятия</span>
-            <span className="program__value">15:00</span>
+            <span className="program__label">Сбор гостей</span>
+            <span className="program__value">14:30</span>
           </div>
         </div>
 
@@ -37,14 +37,14 @@ const Program = () => {
               Мы позаботились о вашем размещении в домиках на территории загородного клуба после мероприятия.<br />
             </span>
           </div>
-          <div className="program__item">
+          {/* <div className="program__item">
             <span className="program__value">
               Детали о времени заселения и выселения сообщат наши организаторы ближе к дате торжества.
             </span>
-          </div>
+          </div> */}
           <div className="program__item">
             <span className="program__value">
-              За неделю до мероприятия вам придет приглашение для вступления в чат по организационным моментам.
+              За неделю до мероприятия мы добавим вас в чат, где организаторы уточнят подробнее все детали.
             </span>
           </div>
         </div>

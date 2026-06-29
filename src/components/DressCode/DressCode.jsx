@@ -37,7 +37,7 @@ const DressCode = () => {
         <div className="dresscode__card">
           <p className="dresscode__text">
             Просим вас поддержать палитру вечера.<br />
-            Нам будет приятно, если вы предпочтете спокойные и лаконичные образы.
+            и отдать предпочтение лаконичным  образам.
           </p>
           <div className="dresscode__swatches">
             {COLORS.map((hex) => (

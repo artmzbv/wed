@@ -125,7 +125,7 @@ const GuestForm = () => {
         </div>
 
         <div className="guestform__right">
-          <p className="guestform__question">Как вы предпочитаете добираться до площадки?</p>
+          <p className="guestform__question">Как вы планируете добираться до площадки?</p>
           <div className="guestform__transport">
             {TRANSPORT.map((opt) => (
               <label key={opt} className="guestform__radio">

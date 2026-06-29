@@ -22,7 +22,7 @@
 .wishes__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.30);
 }
 
 .wishes__title {

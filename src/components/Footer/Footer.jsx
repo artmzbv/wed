@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p className="footer__org-title">
-        На все вопросы, связанные с торжеством, с радостью ответят организаторы
+        {`На все вопросы, связанные с торжеством,\nс радостью ответят организаторы`}
       </p>
       <div className="footer__contacts">
         <div className="footer__col">

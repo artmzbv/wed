@@ -15,6 +15,12 @@
   .wishes { height: 400px; }
 }
 
+@media (max-width: 768px) {
+  /* Чуть приподнимаем текстовый блок на мобильных */
+  .wishes__title,
+  .wishes__text { transform: translateY(-20px); }
+}
+
 @media (max-width: 450px) {
   .wishes { height: 360px; }
 }

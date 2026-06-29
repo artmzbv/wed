@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './GuestForm.css';
 
+// label — что видит гость на сайте, value — ТОЧНЫЙ текст варианта в Google-форме.
+// value менять нельзя, иначе ответ не запишется; label можно любой.
 const TRANSPORT = [
-  'Самостоятельно',
-  'Присоединюсь к друзьям/семье',
-  'Рассчитываю на трансфер',
+  { label: 'Самостоятельно', value: 'Самостоятельно' },
+  { label: 'Присоединюсь к друзьям/семье', value: 'Присоединюсь к друзьям/семье' },
+  { label: 'Рассчитываю на трансфер', value: 'На трансфере' },
 ];
 
 // ─── Подключение к Google Forms ───────────────────────────────────
@@ -38,8 +40,9 @@ const GuestForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Все вопросы обязательны (как в Google-форме)
-    if (!form.name.trim() || !form.attending || !form.transport) {
+    // Транспорт обязателен только если гость придёт; при «Не смогу» — нет.
+    const needsTransport = form.attending === 'yes';
+    if (!form.name.trim() || !form.attending || (needsTransport && !form.transport)) {
       setError('Пожалуйста, ответьте на все вопросы.');
       return;
     }
@@ -128,16 +131,16 @@ const GuestForm = () => {
           <p className="guestform__question">Как вы планируете добираться до площадки?</p>
           <div className="guestform__transport">
             {TRANSPORT.map((opt) => (
-              <label key={opt} className="guestform__radio">
+              <label key={opt.value} className="guestform__radio">
                 <input
                   type="radio"
                   name="transport"
-                  value={opt}
-                  checked={form.transport === opt}
-                  onChange={() => patch({ transport: opt })}
+                  value={opt.value}
+                  checked={form.transport === opt.value}
+                  onChange={() => patch({ transport: opt.value })}
                 />
                 <span className="guestform__radio-circle" />
-                {opt}
+                {opt.label}
               </label>
             ))}
           </div>

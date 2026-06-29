@@ -34,7 +34,7 @@ const Program = () => {
         <div className="program__card">
           <div className="program__item">
             <span className="program__value">
-              Мы позаботились о вашем размещении в домиках на территории загородного клуба после мероприятия.<br />
+              Мы позаботились о вашем размещении в домиках на территории загородного клуба после мероприятия<br />
             </span>
           </div>
           {/* <div className="program__item">
@@ -44,7 +44,7 @@ const Program = () => {
           </div> */}
           <div className="program__item">
             <span className="program__value">
-              За неделю до мероприятия мы добавим вас в чат, где организаторы уточнят подробнее все детали.
+              За неделю до мероприятия мы добавим вас в чат, где организаторы уточнят подробнее все детали
             </span>
           </div>
         </div>

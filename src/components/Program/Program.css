@@ -71,7 +71,7 @@
   background: #696865;
   color: white;
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 22px;
   line-height: 1;
   text-decoration: none;
   border-radius: 8px;
@@ -95,7 +95,11 @@
 @media (max-width: 768px) {
   .program__cards { grid-template-columns: 1fr; }
   .program__banner { height: 190px; }
+  .program__map-btn{
+  font-size: 14px;
+  }
 }
+
 
 @media (max-width: 450px) {
   .program__card { padding: 28px 22px; }

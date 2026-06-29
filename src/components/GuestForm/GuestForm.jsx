@@ -78,7 +78,7 @@ const GuestForm = () => {
     <section className="guestform" id="анкета">
       <h2 className="section-title">АНКЕТА ГОСТЯ</h2>
       <p className="guestform__deadline">
-        Просим подтвердить своё присутствие на мероприятии до 25/07/2026:
+        Просим подтвердить ваше присутствие на мероприятии до 25/07/2026:
       </p>
       {/* <p className="guestform__date">25/07/2026</p> */}
 

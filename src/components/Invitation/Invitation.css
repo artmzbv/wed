@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   padding: 64px var(--gutter);
+  white-space: pre-wrap;
 }
 
 @media (max-width: 1024px) {
@@ -17,8 +18,9 @@
 }
 
 @media (max-width: 450px) {
-  .invitation { height: 320px; }
+  .invitation { height: 320px; white-space: normal }
 }
+
 
 .invitation__overlay {
   position: absolute;
@@ -38,4 +40,9 @@
   color: white;
   margin: 0;
   white-space: pre-wrap;
+}
+
+/* На мобильных убираем жёсткий перенос (\n) — текст переносится естественно */
+@media (max-width: 768px) {
+  .invitation__text { white-space: normal; }
 }

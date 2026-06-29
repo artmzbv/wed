@@ -4,7 +4,7 @@ import './GuestForm.css';
 const TRANSPORT = [
   'Самостоятельно',
   'Присоединюсь к друзьям/семье',
-  'На трансфере',
+  'Рассчитываю на трансфер',
 ];
 
 // ─── Подключение к Google Forms ───────────────────────────────────
@@ -78,9 +78,9 @@ const GuestForm = () => {
     <section className="guestform" id="анкета">
       <h2 className="section-title">АНКЕТА ГОСТЯ</h2>
       <p className="guestform__deadline">
-        Просим подтвердить своё присутствие на мероприятии до:
+        Просим подтвердить своё присутствие на мероприятии до 25/07/2026:
       </p>
-      <p className="guestform__date">25/07/2026</p>
+      {/* <p className="guestform__date">25/07/2026</p> */}
 
       <form className="guestform__grid" onSubmit={handleSubmit}>
 
@@ -98,7 +98,7 @@ const GuestForm = () => {
           </div>
 
           <div className="guestform__block">
-            <p className="guestform__question">Планируете ли Вы быть на празднике?</p>
+            <p className="guestform__question">Планируете ли вы быть на празднике?</p>
             <label className="guestform__radio">
               <input
                 type="radio"

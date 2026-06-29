@@ -48,3 +48,8 @@
   color: white;
   margin: 0;
 }
+
+/* На мобильных убираем жёсткий перенос (\n) — текст переносится естественно */
+@media (max-width: 768px) {
+  .wishes__text { white-space: normal; }
+}

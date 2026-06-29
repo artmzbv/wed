@@ -1,7 +1,7 @@
 import './Timeline.css';
 
 const EVENTS = [
-  { time: '15:00', label: 'Начало мероприятия', above: false },
+  { time: '15:00', label: 'Начало\nмероприятия', above: false },
   { time: '16:00', label: 'Церемония', above: true },
   { time: '17:00', label: 'Ужин', above: false },
   { time: '21:00', label: 'Пати-тайм', above: true },

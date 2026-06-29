@@ -18,7 +18,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 70px 24px;
+  /* symmetric room on both sides so first/last point and label clear the line ends */
+  padding: 70px 100px 70px 100px;
   max-width: var(--maxw);
   margin: 0 auto;
 }
@@ -55,10 +56,6 @@
   z-index: 1;
 }
 
-/* Pull the last point left so it clears the arrowhead */
-.timeline__event:last-child {
-  transform: translateX(-24px);
-}
 
 .timeline__dot {
   width: 16px;
@@ -70,6 +67,8 @@
 
 .timeline__text {
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   width: 120px;
   display: flex;
@@ -141,10 +140,6 @@
   .timeline__event {
     width: 100%;
     padding: 32px 0;
-  }
-
-  .timeline__event:last-child {
-    transform: none;
   }
 
   .timeline__text {

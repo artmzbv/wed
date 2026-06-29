@@ -17,7 +17,17 @@ const Nav = () => {
     e.preventDefault();
     setOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!el) return;
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      // Scroll to the top of the block, offset by the sticky nav height
+      const navH = document.querySelector('.nav')?.offsetHeight ?? 0;
+      const top = el.getBoundingClientRect().top + window.scrollY - navH;
+      window.scrollTo({ top, behavior: 'smooth' });
+    } else {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   const scrollToTop = () => {

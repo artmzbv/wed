@@ -17,8 +17,12 @@
   .invitation { height: 360px; }
 }
 
+@media (max-width: 768px) {
+  .invitation { height: 300px; }
+}
+
 @media (max-width: 450px) {
-  .invitation { height: 320px; white-space: normal }
+  .invitation { height: 260px; white-space: normal }
 }
 
 

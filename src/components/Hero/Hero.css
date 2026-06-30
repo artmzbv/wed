@@ -34,11 +34,11 @@
 
 @media (max-width: 768px) {
   /* Горизонтальное видео во всю ширину (как program__banner), высота повыше */
-  .hero__media-wrap { height: 240px; }
+  .hero__media-wrap { height: 290px; }
   .hero__media { width: 100%; }
 }
 
 @media (max-width: 450px) {
   .hero { padding-top: 24px; padding-bottom: 44px; }
-  .hero__media-wrap { height: 210px; }
+  .hero__media-wrap { height: 250px; }
 }

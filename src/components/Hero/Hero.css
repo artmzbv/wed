@@ -40,5 +40,5 @@
 
 @media (max-width: 450px) {
   .hero { padding-top: 24px; padding-bottom: 44px; }
-  .hero__media-wrap { height: 440px; }
+  .hero__media-wrap { height: 210px; }
 }

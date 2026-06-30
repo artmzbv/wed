@@ -176,9 +176,16 @@
 @media (max-width: 768px) {
   .guestform__grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;            /* между группами (левая ↔ транспорт) */
     max-width: 460px;
   }
+  /* Единый вертикальный ритм при одной колонке:
+     28px между группами, 14px внутри группы (вопрос↔варианты и между строками) */
+  .guestform__left { gap: 28px; }
+  .guestform__right { gap: 14px; }
+  .guestform__block { gap: 14px; }
+  .guestform__transport { gap: 14px; }
+  .guestform__question { margin-bottom: 0; }
 }
 
 @media (max-width: 450px) {

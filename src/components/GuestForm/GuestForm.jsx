@@ -93,7 +93,7 @@ const GuestForm = () => {
             <input
               className="guestform__input"
               type="text"
-              placeholder="Павел Техников"
+              placeholder="Миша Филиппов"
               value={form.name}
               onChange={(e) => patch({ name: e.target.value })}
             />

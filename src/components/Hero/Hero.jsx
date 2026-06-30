@@ -1,5 +1,6 @@
 import './Hero.css';
-import heroVideo from '../../images/intro/video_site.mp4';
+import heroVideo from '../../images/intro/video_hero.mp4';
+import heroPoster from '../../images/intro/poster.jpg';
 
 const Hero = () => {
   return (
@@ -12,11 +13,10 @@ const Hero = () => {
           muted
           loop
           playsInline
-          preload="metadata" 
-          poster="/videos/video_poster.jpg"
+          preload="auto"
+          poster={heroPoster}
         >
           <source src={heroVideo} type="video/mp4" />
-          <source src={heroVideo} type="video/quicktime" />
         </video>
       </div>
     </section>

@@ -116,7 +116,7 @@
     bottom: 16px;
     left: 50%;
     right: auto;
-    width: 2px;
+    width: 1.5px;
     height: auto;
     transform: translateX(-50%);
   }
@@ -126,15 +126,16 @@
       height: 11px;
   }
 
-  /* Vertical line — arrow points down */
+  /* Vertical line — arrow points down (chevron without fill) */
   .timeline__line::after {
     top: 100%;
     left: 50%;
-    transform: translateX(-50%);
-    border-top: 18px solid #696865;
-    border-bottom: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-right: 1.5px solid #696865;
+    border-bottom: 1.5px solid #696865;
+    transform: translate(-50%, -100%) rotate(45deg);
   }
 
   .timeline__event {

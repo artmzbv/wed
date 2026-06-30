@@ -27,7 +27,7 @@ const Program = () => {
           </div>
           <div className="program__item">
             <span className="program__label">Сбор гостей</span>
-            <span className="program__value">14:30</span>
+            <span className="program__value">15:00</span>
           </div>
         </div>
 

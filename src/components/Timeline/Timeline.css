@@ -116,7 +116,7 @@
     bottom: 16px;
     left: 50%;
     right: auto;
-    width: 1.5px;
+    width: 1px;
     height: auto;
     transform: translateX(-50%);
   }
@@ -133,8 +133,8 @@
     width: 8px;
     height: 8px;
     border: 0;
-    border-right: 1.5px solid #696865;
-    border-bottom: 1.5px solid #696865;
+    border-right: 1px solid #696865;
+    border-bottom: 1px solid #696865;
     transform: translate(-50%, -100%) rotate(45deg);
   }
 

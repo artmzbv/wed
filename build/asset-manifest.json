@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/wed/static/css/main.649ddc0c.css",
-    "main.js": "/wed/static/js/main.0c7e21d3.js",
-    "static/js/453.7e3e3be8.chunk.js": "/wed/static/js/453.7e3e3be8.chunk.js",
-    "static/media/video_hero.mp4": "/wed/static/media/video_hero.5725ec56da974dacbf5a.mp4",
-    "static/media/wish.png": "/wed/static/media/wish.ed483c467e7d45ccef1b.png",
-    "static/media/house.webp": "/wed/static/media/house.805082d99905e7c88384.webp",
-    "static/media/poster.jpg": "/wed/static/media/poster.b63f2be6a0a75c023ba6.jpg",
-    "static/media/font_title.woff": "/wed/static/media/font_title.b1669ffbc5730f1b44f7.woff",
-    "static/media/flowers.webp": "/wed/static/media/flowers.6296d5de74e0760cb42f.webp",
-    "static/media/men.webp": "/wed/static/media/men.7e2b228b0fa71163a042.webp",
-    "static/media/women.webp": "/wed/static/media/women.1f72784451cd1fc08816.webp",
-    "static/media/eb-garamond-latin.woff": "/wed/static/media/eb-garamond-latin.7ccc5b93ce58012a65fd.woff",
-    "static/media/font.woff": "/wed/static/media/font.bde8c8ed04c2af8a796a.woff",
-    "static/media/logo.svg": "/wed/static/media/logo.a5488536d4924586f94fe422a357d682.svg",
-    "index.html": "/wed/index.html",
-    "main.649ddc0c.css.map": "/wed/static/css/main.649ddc0c.css.map",
-    "main.0c7e21d3.js.map": "/wed/static/js/main.0c7e21d3.js.map",
-    "453.7e3e3be8.chunk.js.map": "/wed/static/js/453.7e3e3be8.chunk.js.map"
+    "main.css": "/static/css/main.0c2e8d17.css",
+    "main.js": "/static/js/main.85e8802f.js",
+    "static/js/453.7e3e3be8.chunk.js": "/static/js/453.7e3e3be8.chunk.js",
+    "static/media/video_hero.mp4": "/static/media/video_hero.5725ec56da974dacbf5a.mp4",
+    "static/media/wish.png": "/static/media/wish.ed483c467e7d45ccef1b.png",
+    "static/media/house.webp": "/static/media/house.805082d99905e7c88384.webp",
+    "static/media/poster.jpg": "/static/media/poster.b63f2be6a0a75c023ba6.jpg",
+    "static/media/font_title.woff": "/static/media/font_title.b1669ffbc5730f1b44f7.woff",
+    "static/media/flowers.webp": "/static/media/flowers.6296d5de74e0760cb42f.webp",
+    "static/media/men.webp": "/static/media/men.7e2b228b0fa71163a042.webp",
+    "static/media/women.webp": "/static/media/women.1f72784451cd1fc08816.webp",
+    "static/media/eb-garamond-latin.woff": "/static/media/eb-garamond-latin.7ccc5b93ce58012a65fd.woff",
+    "static/media/font.woff": "/static/media/font.bde8c8ed04c2af8a796a.woff",
+    "static/media/logo.svg": "/static/media/logo.a5488536d4924586f94fe422a357d682.svg",
+    "index.html": "/index.html",
+    "main.0c2e8d17.css.map": "/static/css/main.0c2e8d17.css.map",
+    "main.85e8802f.js.map": "/static/js/main.85e8802f.js.map",
+    "453.7e3e3be8.chunk.js.map": "/static/js/453.7e3e3be8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.649ddc0c.css",
-    "static/js/main.0c7e21d3.js"
+    "static/css/main.0c2e8d17.css",
+    "static/js/main.85e8802f.js"
   ]
 }

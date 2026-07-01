@@ -27,6 +27,11 @@
   font-display: swap;
 }
 
+:root {
+  /* Только светлая тема — не даём браузеру авто-инвертировать цвета */
+  color-scheme: light;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
